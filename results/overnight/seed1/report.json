@@ -1,0 +1,89 @@
+{
+  "benchmark": "gf_escape",
+  "n_trials": 20,
+  "params": {
+    "v_rest_mV": -52.0,
+    "v_thresh_mV": -45.0,
+    "v_reset_mV": -52.0,
+    "tau_m_ms": 20.0,
+    "tau_syn_ms": 5.0,
+    "refractory_ms": 2.2,
+    "w_syn_mV": 0.275,
+    "w_scale": 0.3,
+    "tau_adapt_ms": 100.0,
+    "gap_delay_ms": 0.8,
+    "chem_delay_ms": 1.8,
+    "dt_ms": 0.1,
+    "seed": 1,
+    "class_gains": {
+      "sensory": 1.0,
+      "relay": 1.0,
+      "local": 1.0
+    },
+    "region_gains": {
+      "SEZ": 2.0,
+      "other": 1.0
+    }
+  },
+  "arms": {
+    "real_electrical": {
+      "arm": "real_electrical",
+      "n_lif": 168279,
+      "n_chem_syn": 5916480,
+      "n_stim": 1896,
+      "pop_rate_hz": 0.002164659087982855,
+      "gf_per_cell": 0.925,
+      "gf_hit": 0.95,
+      "gf_per_hit": 1.131578947368421,
+      "gf_lat_ms": 26.052631578948677,
+      "ttmn_per_cell": 0.8,
+      "ttmn_lag_ms": 0.900000000000064,
+      "psi_per_cell": 0.925,
+      "ttmn_to_gf_ratio": 0.8648648648648649,
+      "wall_s": 46.4
+    },
+    "real_chemical_only": {
+      "arm": "real_chemical_only",
+      "n_lif": 168279,
+      "n_chem_syn": 5916499,
+      "n_stim": 1896,
+      "pop_rate_hz": 0.002112364981172142,
+      "gf_per_cell": 0.975,
+      "gf_hit": 0.95,
+      "gf_per_hit": 1.131578947368421,
+      "gf_lat_ms": 23.694736842106707,
+      "ttmn_per_cell": 0.0,
+      "ttmn_lag_ms": NaN,
+      "psi_per_cell": 0.0,
+      "ttmn_to_gf_ratio": 0.0,
+      "wall_s": 42.9
+    },
+    "rewired_null": {
+      "arm": "rewired_null",
+      "n_lif": 168279,
+      "n_chem_syn": 5900828,
+      "n_stim": 1896,
+      "pop_rate_hz": 0.0,
+      "gf_per_cell": 0.0,
+      "gf_hit": 0.0,
+      "gf_per_hit": 0.0,
+      "gf_lat_ms": NaN,
+      "ttmn_per_cell": 0.0,
+      "ttmn_lag_ms": NaN,
+      "psi_per_cell": 0.0,
+      "ttmn_to_gf_ratio": NaN,
+      "wall_s": 44.8
+    }
+  },
+  "checks": {
+    "gf_spikes_per_response_1_to_2": true,
+    "gf_hit_ge_0.8": true,
+    "gf_latency_10_60ms": true,
+    "ttmn_one_to_one": true,
+    "ttmn_lag_0.5_1.5ms": true,
+    "cns_quiet": true,
+    "electrical_necessary": true,
+    "null_silent": true
+  },
+  "pass": true
+}
