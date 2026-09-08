@@ -6,6 +6,7 @@ loom_protocol: population loom after Turner, Krieger, Pang & Clandinin 2022
 gain. TUNING is an ordinal placeholder from their Fig 3A groups until the
 authors' per-glomerulus loom dF/F replaces it.
 """
+import os
 import numpy as np
 
 LOOM_TUNING = {
@@ -15,7 +16,8 @@ LOOM_TUNING = {
 
 
 def loom_protocol(model, n_trials=20, peak_hz=5.0, burst_ms=60, gap_ms=300,
-                  gain_sigma=0.5, seed=0):
+                  gain_sigma=0.5, seed=None):
+    seed = int(os.environ.get("FLYCNS_SEED", "0")) if seed is None else seed
     """Run n_trials looms; return list of (onset_ms, gain)."""
     rng = np.random.default_rng(seed)
     tuning = model.stim["type"].map(LOOM_TUNING).fillna(0).values

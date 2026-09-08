@@ -10,7 +10,11 @@ for rep in sorted(Path("results").glob("*/report.json")):
         total += v is not None; passed += bool(v)
         rows.append(f"| {r['benchmark']} | {k} | {'SKIP' if v is None else ('PASS' if v else 'FAIL')} |")
 p = LIFParams().__dict__
-md = ["# MaleCNS v1.0 LIF benchmark suite", "",
+import os
+tag = os.environ.get("FLYCNS_RUN_TAG", "")
+md = ["# MaleCNS v1.0 LIF benchmark suite" + (f"  [{tag}]" if tag else ""), "",
+      f"env: FLYCNS_SEED={os.environ.get('FLYCNS_SEED','0')} FLYCNS_SIGNFLIP={os.environ.get('FLYCNS_SIGNFLIP','0')} "
+      f"FLYCNS_WSCALE={os.environ.get('FLYCNS_WSCALE','0.3')}", "",
       f"**{passed}/{total} checks pass under ONE parameter set** (same LIFParams for every circuit).", "",
       "## Parameters", "```", json.dumps(p, indent=2), "```",
       f"effective chemical kick per synapse: {p['w_syn_mV']*p['w_scale']:.4f} mV "

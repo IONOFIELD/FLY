@@ -76,6 +76,7 @@ INTRINSIC_OVERRIDES = [
 
 
 def load_graph(data_dir="data", min_weight=5):
+    import os
     neurons = pd.read_parquet(f"{data_dir}/neurons.parquet")
     edges = pd.read_parquet(f"{data_dir}/edges.parquet")
     edges = edges[edges["weight"] >= min_weight].copy()
@@ -83,6 +84,13 @@ def load_graph(data_dir="data", min_weight=5):
     n_unknown = edges["sign"].isna().sum()
     edges = edges[edges["sign"].notna() & (edges["sign"] != 0)].reset_index(drop=True)
     edges["sign"] = edges["sign"].astype(float)
+    # robustness: flip a random fraction of neurotransmitter signs (FLYCNS_SIGNFLIP, e.g. 0.05)
+    flip = float(os.environ.get("FLYCNS_SIGNFLIP", "0"))
+    if flip > 0:
+        rng = np.random.default_rng(int(os.environ.get("FLYCNS_SEED", "0")) + 1000)
+        m = rng.random(len(edges)) < flip
+        edges.loc[m, "sign"] *= -1
+        print(f"[graph] SIGN-FLIP PERTURBATION: {m.sum():,} edges ({flip:.0%}) sign-inverted")
     print(f"[graph] {len(neurons):,} neurons, {len(edges):,} signed edges "
           f"(dropped {n_unknown:,} unknown-NT pairs and modulatory amines)")
     return neurons, edges

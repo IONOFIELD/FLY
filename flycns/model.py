@@ -12,6 +12,7 @@ Electrical synapse: I_gap_post = g_gap*(v_pre - v_post)  (summed) plus a
          spikelet v_post += A_spikelet with the measured 0.8 ms latency.
 Parameters from Shiu et al. 2024 unless stated; w_scale fitted on MaleCNS.
 """
+import os
 from dataclasses import dataclass, field
 import numpy as np
 import pandas as pd
@@ -30,12 +31,12 @@ class LIFParams:
     tau_syn_ms: float = 5.0
     refractory_ms: float = 2.2
     w_syn_mV: float = 0.275          # Shiu et al. 2024 per-synapse kick
-    w_scale: float = 0.3             # fitted on MaleCNS (sweep.py)
+    w_scale: float = float(os.environ.get("FLYCNS_WSCALE", "0.3"))   # fitted on MaleCNS (sweep.py)
     tau_adapt_ms: float = 100.0
     gap_delay_ms: float = 0.8        # Tanouye & Wyman 1980
     chem_delay_ms: float = 1.8       # Shiu et al. 2024
     dt_ms: float = 0.1
-    seed: int = 0
+    seed: int = int(os.environ.get("FLYCNS_SEED", "0"))
     # class-wise gain on top of w_scale, keyed by presynaptic class (graph.pre_class)
     class_gains: dict = field(default_factory=lambda: {"sensory": 1.0, "relay": 1.0, "local": 1.0})
     # regional gain by presynaptic type prefix region (graph.type_region): SEZ vs other
