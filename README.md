@@ -26,6 +26,13 @@ integrate-and-fire network, validated against published circuit physiology.
 | auditory | JO-A/B at 150 Hz | DNp01 membrane V | JO alone subthreshold (~3 mV, Pezier & Blagburn 2013), summates with loom, electrical carries it, chem-only+rewired null silent | 5 checks |
 | feeding | sugar GRN (or Fdg proxy), bitter | MN9 by side | contra > ipsi, monotonic 10-200 Hz, bitter suppresses, second-order sufficient, null silent (port of Shiu 2024) | 5 checks |
 
+Feeding status on v1.0: under a single global synaptic scale the model does not reproduce
+sugar-driven MN9 activation. `benchmarks/screen_afferents.py` (a sufficiency screen after
+Shiu 2024) shows no afferent type drives MN9 at w_scale 0.3, and at Shiu's 1.0 MN9 responds
+to auditory and vibration afferents as strongly as to taste while the CNS floods. Taste
+afferents suppress MN9 when co-applied at intermediate gain. `benchmarks/fit_gains.py`
+searches class-wise gains (sensory, relay, local) against all circuits at once.
+
 `benchmarks/summarize.py` writes `results/SUITE.md`: every check across every circuit under one declared parameter set.
 
 ## Every deviation from the raw connectome is declared

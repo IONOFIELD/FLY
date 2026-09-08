@@ -64,6 +64,16 @@ def load_graph(data_dir="data", min_weight=5):
     return neurons, edges
 
 
+def pre_class(superclass):
+    """Three presynaptic classes for class-wise synaptic gain (tier 2 fitting)."""
+    sc = "" if superclass is None or superclass != superclass else str(superclass)
+    if "sensory" in sc:
+        return "sensory"
+    if "descending" in sc or "ascending" in sc:
+        return "relay"
+    return "local"
+
+
 def infer_side(meta):
     """somaSide, filled from instance suffix (_L/_R) then soma x relative to the
     midline of labelled neurons. Sensory neurons often lack soma coordinates."""
@@ -78,6 +88,16 @@ def infer_side(meta):
             guess = np.where(meta["x"] < mid, "L" if left_is_low else "R", "R" if left_is_low else "L")
             side = side.fillna(pd.Series(guess, index=meta.index).where(meta["x"].notna()))
     return side
+
+
+def pre_class(superclass):
+    """Three presynaptic classes for class-wise synaptic gain (tier 2 fitting)."""
+    sc = "" if superclass is None or superclass != superclass else str(superclass)
+    if "sensory" in sc:
+        return "sensory"
+    if "descending" in sc or "ascending" in sc:
+        return "relay"
+    return "local"
 
 
 def infer_side(meta):

@@ -1,0 +1,2 @@
+sensory,relay,local,score,dev,chk_E1,chk_E2,chk_E3,chk_A1,chk_A2,chk_F1,chk_F2,chk_S1,gf_hit,gf_per,ttmn_ratio,pop_loom,jo_hit,jo_loom_hit,loom_hit,mn9_taste,pop_taste,mn9_control,wall_s
+1.0,1.0,0.75,6,0.25,True,True,True,True,False,False,True,True,0.8333333333333334,1.0,1.0,0.0011516792548112611,0.0,0.3333333333333333,1.0,0.0,0.0077880439997431656,0.0,103

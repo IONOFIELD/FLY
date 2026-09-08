@@ -18,7 +18,7 @@ import pandas as pd
 from brian2 import (NeuronGroup, PoissonGroup, Synapses, SpikeMonitor, StateMonitor, Network,
                     ms, mV, Hz, second, defaultclock, prefs, seed as b2seed)
 
-from .graph import electrical_pairs, drop_mixed_chemical, INTRINSIC_OVERRIDES
+from .graph import electrical_pairs, drop_mixed_chemical, pre_class, INTRINSIC_OVERRIDES
 
 
 @dataclass
@@ -36,6 +36,8 @@ class LIFParams:
     chem_delay_ms: float = 1.8       # Shiu et al. 2024
     dt_ms: float = 0.1
     seed: int = 0
+    # class-wise gain on top of w_scale, keyed by presynaptic class (graph.pre_class)
+    class_gains: dict = field(default_factory=lambda: {"sensory": 1.0, "relay": 1.0, "local": 1.0})
 
 
 class CNSModel:
@@ -82,10 +84,11 @@ class CNSModel:
                 self.overrides_applied.append(dict(type=typ, parameter=par, value=val, source=src))
 
         w_unit = p.w_syn_mV * p.w_scale * mV
+        gain_of = self.meta["superclass"].map(pre_class).map(p.class_gains).fillna(1.0)
         rec = edges[edges["pre"].isin(self.lif_index.index) & edges["post"].isin(self.lif_index.index)]
         S_rec = Synapses(G, G, "w : volt", on_pre="g_post += w")
         S_rec.connect(i=self.lif_index[rec["pre"]].values, j=self.lif_index[rec["post"]].values)
-        S_rec.w = (rec["weight"] * rec["sign"]).values * w_unit
+        S_rec.w = (rec["weight"] * rec["sign"] * gain_of.loc[rec["pre"]].values).values * w_unit
         S_rec.delay = p.chem_delay_ms * ms
 
         P = PoissonGroup(len(stim), rates=0 * Hz)
@@ -94,7 +97,7 @@ class CNSModel:
         if len(se):
             S_stim = Synapses(P, G, "w : volt", on_pre="g_post += w")
             S_stim.connect(i=self.stim_index[se["pre"]].values, j=self.lif_index[se["post"]].values)
-            S_stim.w = (se["weight"] * se["sign"]).values * w_unit
+            S_stim.w = (se["weight"] * se["sign"] * gain_of.loc[se["pre"]].values).values * w_unit
             S_stim.delay = p.chem_delay_ms * ms
             objs.append(S_stim)
         else:
@@ -137,6 +140,12 @@ class CNSModel:
         self.net = Network(*objs)
         self.n_chem = len(rec)
         self.n_stim_syn = len(se)
+
+    def store(self):
+        self.net.store("base")
+
+    def restore(self):
+        self.net.restore("base")
 
     def readout_index(self, typ):
         return [self.lif_index[b] for b in self.meta.index[self.meta["type"] == typ]
