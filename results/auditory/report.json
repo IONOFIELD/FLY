@@ -17,60 +17,60 @@
   "jo_hz": 150,
   "arms": {
     "A1_jo_alone_electrical": {
-      "gf_per_cell": 0.025,
-      "gf_hit": 0.05,
-      "gf_lat_ms": 49.0,
-      "pop_rate_hz": 0.0031083594486483756,
-      "wall_s": 48.2,
-      "gf_depol_mV": 1.5720494628357413
+      "gf_per_cell": 0.1,
+      "gf_hit": 0.2,
+      "gf_lat_ms": 33.22500000000022,
+      "pop_rate_hz": 0.005453152162622471,
+      "wall_s": 44.7,
+      "gf_depol_mV": 1.8331966164012041
     },
     "A3_jo_alone_no_electrical_no_mixed_edges": {
-      "gf_per_cell": 0.0,
-      "gf_hit": 0.0,
-      "gf_lat_ms": NaN,
-      "pop_rate_hz": 0.0031060076003896248,
-      "wall_s": 46.5,
-      "gf_depol_mV": 0.5265075053505577
+      "gf_per_cell": 0.05,
+      "gf_hit": 0.1,
+      "gf_lat_ms": 31.399999999999977,
+      "pop_rate_hz": 0.0054437447695874705,
+      "wall_s": 42.4,
+      "gf_depol_mV": 0.97495617152292
     },
     "ref_jo_alone_chem_only_EM_as_annotated": {
-      "gf_per_cell": 0.825,
+      "gf_per_cell": 1.05,
       "gf_hit": 1.0,
-      "gf_lat_ms": 10.600000000001273,
-      "pop_rate_hz": 0.0031357976783337963,
-      "wall_s": 47.2,
-      "gf_depol_mV": 3.625056910781825
+      "gf_lat_ms": 9.46500000000126,
+      "pop_rate_hz": 0.005479806442888309,
+      "wall_s": 42.3,
+      "gf_depol_mV": 3.6312712696477947
     },
     "loom_alone": {
-      "gf_per_cell": 0.85,
-      "gf_hit": 0.8,
-      "gf_lat_ms": 32.15625000000142,
-      "pop_rate_hz": 0.001920619922866194,
-      "wall_s": 49.7,
-      "gf_depol_mV": 6.354854259872275
+      "gf_per_cell": 1.7,
+      "gf_hit": 0.9,
+      "gf_lat_ms": 23.14444444444574,
+      "pop_rate_hz": 0.004525817243981723,
+      "wall_s": 44.4,
+      "gf_depol_mV": 6.578105299500616
     },
     "A2_loom_plus_jo": {
-      "gf_per_cell": 0.4,
-      "gf_hit": 0.45,
-      "gf_lat_ms": 20.688888888890183,
-      "pop_rate_hz": 0.005059568049882175,
-      "wall_s": 49.9,
-      "gf_depol_mV": 4.38971743558877
+      "gf_per_cell": 0.625,
+      "gf_hit": 0.65,
+      "gf_lat_ms": 17.576923076924327,
+      "pop_rate_hz": 0.009666454596084827,
+      "wall_s": 44.7,
+      "gf_depol_mV": 4.446983982462936
     },
     "A4_jo_rewired_null_chem": {
       "gf_per_cell": 0.0,
       "gf_hit": 0.0,
       "gf_lat_ms": NaN,
-      "pop_rate_hz": 0.0002555675107842044,
-      "wall_s": 47.6,
-      "gf_depol_mV": 0.0
+      "pop_rate_hz": 0.0007149618706601055,
+      "wall_s": 42.9,
+      "gf_depol_mV": -8.257750039319944e-12
     }
   },
   "checks": {
     "A1_jo_alone_mostly_subthreshold": true,
     "A2_summation_with_loom": true,
-    "A3_declared_pairs_carry_jo_drive": true,
+    "A3_declared_pairs_carry_jo_drive": false,
     "A4_null_silent": true,
     "A5_cns_quiet": true
   },
-  "pass": true
+  "pass": false
 }

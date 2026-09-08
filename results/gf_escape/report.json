@@ -9,7 +9,7 @@
     "tau_syn_ms": 5.0,
     "refractory_ms": 2.2,
     "w_syn_mV": 0.275,
-    "w_scale": 0.3,
+    "w_scale": 0.4,
     "tau_adapt_ms": 100.0,
     "gap_delay_ms": 0.8,
     "chem_delay_ms": 1.8,
@@ -31,39 +31,39 @@
       "n_lif": 168279,
       "n_chem_syn": 5916480,
       "n_stim": 1896,
-      "pop_rate_hz": 0.001920619922866194,
-      "gf_per_cell": 0.85,
-      "gf_hit": 0.8,
-      "gf_per_hit": 1.21875,
-      "gf_lat_ms": 32.15625000000142,
-      "ttmn_per_cell": 0.7,
-      "ttmn_lag_ms": 0.899999999999956,
-      "psi_per_cell": 0.85,
-      "ttmn_to_gf_ratio": 0.8235294117647058,
-      "wall_s": 45.3
+      "pop_rate_hz": 0.004525817243981723,
+      "gf_per_cell": 1.7,
+      "gf_hit": 0.9,
+      "gf_per_hit": 1.9722222222222223,
+      "gf_lat_ms": 23.14444444444574,
+      "ttmn_per_cell": 1.2,
+      "ttmn_lag_ms": 0.8999999999999173,
+      "psi_per_cell": 1.625,
+      "ttmn_to_gf_ratio": 0.7058823529411765,
+      "wall_s": 44.6
     },
     "real_chemical_only": {
       "arm": "real_chemical_only",
       "n_lif": 168279,
       "n_chem_syn": 5916499,
       "n_stim": 1896,
-      "pop_rate_hz": 0.0018730798257655455,
-      "gf_per_cell": 0.9,
-      "gf_hit": 0.85,
-      "gf_per_hit": 1.2058823529411764,
-      "gf_lat_ms": 28.188235294119046,
+      "pop_rate_hz": 0.004422021365311976,
+      "gf_per_cell": 1.7,
+      "gf_hit": 0.9,
+      "gf_per_hit": 2.0,
+      "gf_lat_ms": 22.772222222223583,
       "ttmn_per_cell": 0.0,
       "ttmn_lag_ms": NaN,
       "psi_per_cell": 0.0,
       "ttmn_to_gf_ratio": 0.0,
-      "wall_s": 44.7
+      "wall_s": 42.4
     },
     "rewired_null": {
       "arm": "rewired_null",
       "n_lif": 168279,
       "n_chem_syn": 5900828,
       "n_stim": 1896,
-      "pop_rate_hz": 0.0,
+      "pop_rate_hz": 3.1693398067098908e-06,
       "gf_per_cell": 0.0,
       "gf_hit": 0.0,
       "gf_per_hit": 0.0,
@@ -72,18 +72,18 @@
       "ttmn_lag_ms": NaN,
       "psi_per_cell": 0.0,
       "ttmn_to_gf_ratio": NaN,
-      "wall_s": 47.4
+      "wall_s": 44.4
     }
   },
   "checks": {
     "gf_spikes_per_response_1_to_2": true,
     "gf_hit_ge_0.8": true,
     "gf_latency_10_60ms": true,
-    "ttmn_one_to_one": true,
+    "ttmn_one_to_one": false,
     "ttmn_lag_0.5_1.5ms": true,
     "cns_quiet": true,
     "electrical_necessary": true,
     "null_silent": true
   },
-  "pass": true
+  "pass": false
 }

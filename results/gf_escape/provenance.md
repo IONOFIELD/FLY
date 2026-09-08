@@ -23,7 +23,7 @@
 - gf_spikes_per_response_1_to_2: PASS
 - gf_hit_ge_0.8: PASS
 - gf_latency_10_60ms: PASS
-- ttmn_one_to_one: PASS
+- ttmn_one_to_one: FAIL
 - ttmn_lag_0.5_1.5ms: PASS
 - cns_quiet: PASS
 - electrical_necessary: PASS

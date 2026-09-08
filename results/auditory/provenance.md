@@ -6,6 +6,6 @@ Electrical JON->GF calibrated to a 3 mV compound GF potential at 150 Hz (Pezier 
 ## Checks
 - A1_jo_alone_mostly_subthreshold: PASS
 - A2_summation_with_loom: PASS
-- A3_declared_pairs_carry_jo_drive: PASS
+- A3_declared_pairs_carry_jo_drive: FAIL
 - A4_null_silent: PASS
 - A5_cns_quiet: PASS
