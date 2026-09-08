@@ -18,7 +18,11 @@ integrate-and-fire network, validated against published circuit physiology.
     flycns/protocols.py  stimulus protocols with citations (loom after Turner, Krieger et al. 2022)
     benchmarks/          one file per circuit; writes results/<name>/report.json + provenance.md
     viz/cascade_3d.py    animated 3D cascade from saved spikes (plotly, html)
-    viz/cascade_ascii.py the same cascade drawn on an ASCII projection of the CNS in the terminal
+    viz/explore.py       INTERACTIVE: pick a sensory group and rate, drive it, watch the cascade
+                         (one build, then ~10 s per stimulation; --sez GAIN to use a fitted SEZ gain)
+    viz/cascade_ascii.py braille dorsal-view animation of the cascade in the terminal;
+                         --synapses draws arbors and lights transmission sites (run
+                         viz/fetch_cascade_synapses.py first, pulls synapse xyz from neuprint)
     make_testdata.py     synthetic graph for smoke tests (no data required)
 
 ## Benchmarks
