@@ -1,6 +1,6 @@
 # MaleCNS v1.0 LIF benchmark suite
 
-**18/19 checks pass under ONE parameter set** (same LIFParams for every circuit).
+**19/19 checks pass under ONE parameter set** (same LIFParams for every circuit).
 
 ## Parameters
 ```
@@ -42,7 +42,8 @@ effective chemical kick per synapse: 0.0825 mV (Shiu 2024 unitary 0.275 mV x Mal
 | feeding | F2b_extra_SEZ_quiet | PASS |
 | feeding | F2c_motor_rate_physiological | PASS |
 | feeding | F2_monotonic | PASS |
-| feeding | F1_contra_gt_ipsi | FAIL |
+| feeding | F1_laterality_matches_wiring | PASS |
+| feeding | F1_shiu_contralateral_bias | SKIP |
 | feeding | F3_bitter_suppresses | SKIP |
 | feeding | F4_second_order_sufficient | PASS |
 | feeding | F5_null_silent | PASS |

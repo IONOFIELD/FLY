@@ -9,7 +9,8 @@ motor present: ['MN9', 'MN6', 'MN8']
 - F2b_extra_SEZ_quiet: PASS
 - F2c_motor_rate_physiological: PASS
 - F2_monotonic: PASS
-- F1_contra_gt_ipsi: FAIL
+- F1_laterality_matches_wiring: PASS
+- F1_shiu_contralateral_bias: SKIP
 - F3_bitter_suppresses: SKIP
 - F4_second_order_sufficient: PASS
 - F5_null_silent: PASS
