@@ -2,7 +2,9 @@
   "benchmark": "feeding",
   "n_trials": 6,
   "sugar_types": [
-    "BM_Taste"
+    "LN-DN1",
+    "BM",
+    "GNG654"
   ],
   "bitter_types": [],
   "second_order_present": [
@@ -20,34 +22,34 @@
     "F1_left_sugar_50Hz": {
       "MN9_ipsi_L": 0.0,
       "MN9_contra_R": 0.0,
-      "pop_rate_hz": 0.001383927736530082,
+      "pop_rate_hz": 0.003032048863373598,
       "wall_s": 21.8
     },
     "F2_dose": [
       {
         "sugar_hz": 10,
         "MN9_spikes_per_cell": 0.0,
-        "pop_rate_hz": 7.836913823336372e-05
+        "pop_rate_hz": 0.00019239793022582177
       },
       {
         "sugar_hz": 25,
-        "MN9_spikes_per_cell": 0.0,
-        "pop_rate_hz": 0.0006857299595419325
+        "MN9_spikes_per_cell": 0.08333333333333333,
+        "pop_rate_hz": 0.0020201782673711284
       },
       {
         "sugar_hz": 50,
         "MN9_spikes_per_cell": 0.0,
-        "pop_rate_hz": 0.002577275977810848
+        "pop_rate_hz": 0.1632318291734407
       },
       {
         "sugar_hz": 100,
         "MN9_spikes_per_cell": 0.0,
-        "pop_rate_hz": 0.007909939611235643
+        "pop_rate_hz": 0.1848872850977471
       },
       {
         "sugar_hz": 200,
-        "MN9_spikes_per_cell": 0.0,
-        "pop_rate_hz": 0.0197917696374804
+        "MN9_spikes_per_cell": 21.5,
+        "pop_rate_hz": 0.26105548791936967
       }
     ],
     "F4_sufficiency": {

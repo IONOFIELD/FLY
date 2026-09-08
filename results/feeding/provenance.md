@@ -1,6 +1,6 @@
 # Provenance: feeding (port of Shiu et al. 2024 tests to MaleCNS)
 
-sugar types used: ['BM_Taste']
+sugar types used: ['LN-DN1', 'BM', 'GNG654']
 bitter types used: none resolved
 second-order present: ['DNge062', 'GNG120', 'GNG117', 'GNG108']
 motor present: ['MN9', 'MN6', 'MN8']

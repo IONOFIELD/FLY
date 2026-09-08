@@ -60,13 +60,14 @@ print("motor present:", mn_have, " missing:", mn_miss)
 if "MN9" not in mn_have:
     raise SystemExit("MN9 not found; cannot run feeding benchmark")
 
-sugar = SUGAR or list(sugar_hits)
+# drive priority: explicit argv list > sugar-specific GRN types if annotated >
+# discovered MxLbN afferents onto MN9's excitatory inputs (GNG642, BM_Taste on v1.0)
+specific = [t for t in sugar_hits if not t.startswith("BM_")]
+sugar = SUGAR or specific or taste_afferents
 bitter = BITTER or list(bitter_hits)
-if not sugar:
-    fb = [t for t in TASTE_SENSORY_FALLBACK if t in set(neurons.type.dropna())]
-    print(f"WARNING: no sugar GRN type resolved; using unsplit taste sensory population {fb} "
-          f"(F3 bitter test will be skipped, F1/F2/F5 test taste -> MN9 wiring)")
-    sugar = fb
+if not specific and not SUGAR:
+    print(f"WARNING: no sugar-specific GRN type in this annotation; driving taste-region afferents "
+          f"{sugar} (F3 bitter test skipped; F1/F2/F5 test taste -> MN9 wiring)")
 if not sugar:
     raise SystemExit("no usable sensory drive; supply type names as argv[3]")
 
