@@ -86,6 +86,15 @@ benchmark reports the EM-as-annotated arm for reference.
   uses MN9's strongest input types (GNG###, DNge###) discovered at runtime and lists them.
 - Sensory somas (JO, taste) have no `somaSide`; side is inferred from soma x vs midline.
 
+## Robustness (results/overnight, 2026-09-08)
+Full suite under seeds 0-2, 5% and 10% neurotransmitter sign inversion, and w_scale 0.25-0.40.
+At the fitted parameters, 18-19/19 across seeds; the only seed-sensitive checks were two
+marginal specifications (GF response probability at exactly 0.80; summation tested on a
+loom that already fired GF), both since re-specified with citations and dated notes in the
+benchmark headers. 5% sign inversion costs 0-2 checks, 10% costs 4. Above w_scale 0.3 the
+failures are flood signatures (extra TTMn spikes, indirect JO->GF depolarisation, extra-SEZ
+activity); below it the suite holds to 0.25.
+
 ## Known placeholders
 - Loom tuning weights are ordinal from Turner et al. 2022 Fig 3A; replace with per-glomerulus dF/F.
 - dF/F to firing-rate mapping unknown; PEAK_HZ anchored to GF physiology.
