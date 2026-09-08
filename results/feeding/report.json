@@ -7,9 +7,9 @@
   "bitter_types": [],
   "second_order_present": [
     "DNge062",
-    "GNG015",
     "GNG120",
-    "GNG095"
+    "GNG117",
+    "GNG108"
   ],
   "motor_present": [
     "MN9",
@@ -20,8 +20,8 @@
     "F1_left_sugar_50Hz": {
       "MN9_ipsi_L": 0.0,
       "MN9_contra_R": 0.0,
-      "pop_rate_hz": 0.0,
-      "wall_s": 21.2
+      "pop_rate_hz": 0.001383927736530082,
+      "wall_s": 21.8
     },
     "F2_dose": [
       {
@@ -52,9 +52,9 @@
     ],
     "F4_sufficiency": {
       "DNge062": 3.75,
-      "GNG015": 0.0,
       "GNG120": 2.5,
-      "GNG095": 0.0
+      "GNG117": 2.5833333333333335,
+      "GNG108": 2.8333333333333335
     },
     "F5_null": {
       "MN9": 0.0
@@ -64,7 +64,7 @@
     "F1_contra_gt_ipsi": false,
     "F2_monotonic": false,
     "F3_bitter_suppresses": null,
-    "F4_second_order_sufficient": false,
+    "F4_second_order_sufficient": true,
     "F5_null_silent": true
   },
   "pass": false

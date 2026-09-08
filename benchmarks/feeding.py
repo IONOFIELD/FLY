@@ -39,11 +39,19 @@ bitter_hits = find_types(neurons, BITTER_GRN_PATTERNS)
 so_have, so_miss = present_types(neurons, FEEDING_SECOND_ORDER)
 # MaleCNS does not use Shiu's FlyWire names; discover MN9's strongest input types instead
 _mn9 = meta.index[meta["type"] == "MN9"]
-mn9_inputs = (edges[edges.post.isin(_mn9)].assign(t=lambda d: d.pre.map(meta["type"]))
-              .groupby("t").weight.sum().sort_values(ascending=False))
+_exc = edges[edges.post.isin(_mn9) & (edges.sign > 0)].assign(t=lambda d: d.pre.map(meta["type"]))
+mn9_inputs = _exc.groupby("t").weight.sum().sort_values(ascending=False)
 if not so_have:
     so_have = list(mn9_inputs.head(4).index)
-    print("second-order (Shiu names) absent; using MN9's top input types:", so_have)
+    print("second-order (Shiu names) absent; using MN9's top EXCITATORY input types:", so_have)
+# sensory afferents feeding those excitatory inputs (superclass contains 'sensory')
+_up = meta.index[meta["type"].isin(mn9_inputs.head(6).index)]
+_s2 = edges[edges.post.isin(_up)].assign(t=lambda d: d.pre.map(meta["type"]),
+                                        sc=lambda d: d.pre.map(meta["superclass"]).fillna(""))
+taste_afferents = (_s2[_s2.sc.str.contains("sensory")].groupby("t").weight.sum()
+                   .sort_values(ascending=False))
+taste_afferents = list(taste_afferents[taste_afferents >= 50].index)
+print("sensory afferents onto MN9 excitatory inputs (>=50 syn):", taste_afferents)
 mn_have, mn_miss = present_types(neurons, FEEDING_MOTOR)
 print("sugar GRN candidates:", sugar_hits or "NONE FOUND")
 print("bitter GRN candidates:", bitter_hits or "NONE FOUND")

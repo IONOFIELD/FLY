@@ -17,5 +17,14 @@ md = ["# MaleCNS v1.0 LIF benchmark suite", "",
       f"(Shiu 2024 unitary {p['w_syn_mV']} mV x MaleCNS rescale {p['w_scale']})", "",
       "## Checks", "| benchmark | check | result |", "|---|---|---|"] + rows + [
       "", "Declared deviations from the raw connectome: see each results/*/provenance.md and flycns/graph.py."]
+# citation integrity: every author-year tag in code must resolve in REFERENCES.md
+import re
+refs = Path("REFERENCES.md").read_text() if Path("REFERENCES.md").exists() else ""
+code = "".join(f.read_text() for f in list(Path("flycns").glob("*.py")) + list(Path("benchmarks").glob("*.py")))
+tags = set(re.findall(r"([A-Z][A-Za-z\u00e9\-]+(?: et al\.| & [A-Z][A-Za-z]+)?) (19\d\d|20\d\d)", code))
+missing = sorted(f"{a} {y}" for a, y in tags if a.split()[0].rstrip(",") not in refs or y not in refs)
+md += ["", f"## Citation check: {len(tags)-len(missing)}/{len(tags)} tags resolve in REFERENCES.md"]
+if missing:
+    md += ["Unresolved: " + ", ".join(missing)]
 Path("results/SUITE.md").write_text("\n".join(md))
 print("\n".join(md))

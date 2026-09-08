@@ -26,6 +26,10 @@ ELECTRICAL_SYNAPSES = [
     ("JO-A*", "DNp01", True, {"compound_mV": 3.0, "at_hz": 150}, "JON->GF electrical; Pezier & Blagburn 2013; Yorozu 2009"),
     ("JO-B*", "DNp01", True, {"compound_mV": 3.0, "at_hz": 150}, "JON->GF electrical; Pezier & Blagburn 2013; Yorozu 2009"),
 ]
+# Mixed synapses that EM annotated as chemical: MaleCNS v1.0 has 679 direct
+# JO-A/B -> DNp01 "chemical" synapses. When the electrical model is on, these
+# direct edges are removed so the same contact is not counted twice.
+MIXED_IN_EM = [("JO-A*", "DNp01"), ("JO-B*", "DNp01")]
 TAU_M_S = 0.020   # for compound-potential calibration; must match LIFParams.tau_m_ms
 G_GAP_RELAY = 0.2  # ohmic coupling (fraction of leak) for a 1:1 relay pair; population
                    # pairs share this budget so many resting partners cannot shunt the post cell
@@ -77,9 +81,12 @@ def infer_side(meta):
 
 
 def infer_side(meta):
-    """somaSide where annotated; otherwise L/R from soma x against the midline
-    (sensory somas outside the CNS have no somaSide). None if no coordinate."""
+    """somaSide where annotated; else the instance suffix (_L/_R, which MaleCNS
+    gives even to sensory neurons); else soma x against the midline; else None."""
     side = meta["somaSide"].copy()
+    if "instance" in meta:
+        suf = meta["instance"].fillna("").str.extract(r"_([LR])$")[0]
+        side = side.where(side.isin(["L", "R"]), suf)
     if "x" in meta:
         mid = meta.loc[meta["somaSide"].isin(["L", "R"]), "x"].median()
         guess = pd.Series(np.where(meta["x"] < mid, "L", "R"), index=meta.index)
@@ -127,6 +134,22 @@ def electrical_pairs(neurons):
                 pairs.append(dict(pre=b, post=q, pre_type=row["type"], post_type=post_t,
                                   spikelet_mV=float(spk), g_gap=float(g_gap), source=src))
     return pd.DataFrame(pairs)
+
+
+def drop_mixed_chemical(edges, neurons):
+    """Remove direct chemical edges for pairs declared in MIXED_IN_EM."""
+    meta = neurons.set_index("bodyId")
+    keep = pd.Series(True, index=edges.index)
+    n_drop = 0
+    for pre_t, post_t in MIXED_IN_EM:
+        pres = _match(meta, pre_t).index
+        posts = _match(meta, post_t).index
+        m = edges["pre"].isin(pres) & edges["post"].isin(posts)
+        n_drop += int(edges.loc[m, "weight"].sum())
+        keep &= ~m
+    if n_drop:
+        print(f"[graph] removed {n_drop:,} EM chemical synapses on declared mixed pairs (modelled as electrical)")
+    return edges[keep].reset_index(drop=True)
 
 
 def rewire_null(edges, seed=0):

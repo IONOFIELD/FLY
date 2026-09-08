@@ -37,15 +37,27 @@ latency (GF-TTMn); population inputs (JON-GF) are calibrated to a measured compo
 potential and share one coupling budget so resting partners cannot shunt the target.
 Monoamines are sign 0 by deliberate scope (Shiu used +1; no principled default exists).
 
-## What is prior art and what is new
-Shiu et al. 2024 validated feeding and grooming on FlyWire with fixed literature
-parameters; the feeding benchmark here is a port. The new claims are: a benchmark
-suite with numeric pass/fail criteria, one parameter set across independent circuits,
-and a validated spiking sensory-to-motor cascade crossing the neck connective on MaleCNS.
+## What this builds on and what it adds
+This is a port and extension of Shiu et al. 2024 (Nature) from FlyWire to MaleCNS.
+The model, its parameters, and the feeding validation design are theirs; the giant
+fiber physiology is from von Reyn, Ache, Tanouye & Wyman, Allen, and Augustin; the
+loom stimulus follows Turner, Krieger, Pang & Clandinin 2022. What this repository
+adds is a test harness: explicit pass/fail criteria per circuit, ablation and null
+arms, one shared parameter set, and a declared list of every deviation from the raw
+connectome. Where the model disagrees with a published measurement, the model is
+presumed wrong. Full references: REFERENCES.md.
+
+## Mixed synapses annotated as chemical in EM
+MaleCNS v1.0 lists 679 direct JO-A/B -> DNp01 chemical synapses. Physiology says this
+contact is a mixed synapse that is primarily electrical (Pezier & Blagburn 2013).
+`MIXED_IN_EM` declares such pairs; when the electrical model is on, the EM chemical
+edges for those pairs are removed so the contact is not counted twice. The auditory
+benchmark reports the EM-as-annotated arm for reference.
 
 ## MaleCNS naming notes (discovered on v1.0)
-- Labellar taste GRNs are one type, `BM_Taste`; there is no sugar/bitter split, so the
-  bitter-suppression check is skipped and the feeding benchmark reports it as SKIP.
+- No sugar/bitter GRN split exists. The taste afferents feeding MN9's excitatory inputs
+  are discovered at runtime (sensory-superclass types with >= 50 synapses onto them;
+  on v1.0 this is dominated by `GNG642`, with `BM_Taste` minor). Bitter suppression is SKIP.
 - Shiu's FlyWire second-order names (Fdg, Bract, Zorro...) do not exist; the benchmark
   uses MN9's strongest input types (GNG###, DNge###) discovered at runtime and lists them.
 - Sensory somas (JO, taste) have no `somaSide`; side is inferred from soma x vs midline.

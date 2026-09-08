@@ -16,6 +16,8 @@ add("Fdg", 4, "cb_intrinsic"); add("Bract", 4, "descending_neuron"); add("MN9", 
 add("filler", 300, "cb_intrinsic")
 n = pd.DataFrame(rows)
 n.loc[n.type.str.startswith("JO-") | n.type.str.contains("GRN"), "somaSide"] = None
+n["instance"] = n.type + "_" + n.somaSide.fillna(pd.Series(["L","R"]*(len(n)//2+1))[:len(n)].set_axis(n.index))
+n.loc[n.type.str.startswith("JO-"), "instance"] = None
 e = []
 gf = n[n.type=="DNp01"].bodyId.values
 for b in n[n.type.isin(["LC4","LPLC2","LC6"])].bodyId: 
@@ -28,6 +30,8 @@ def chain(pre_t, post_t, w, contra=False):
 chain("Gr64f_sugar_GRN", "Fdg", 120); chain("Fdg", "MN9", 400, contra=True); chain("Bract", "MN9", 400)
 for a in n[n.type=="Gr66a_bitter_GRN"].bodyId:
     for b in n[n.type=="Fdg"].bodyId: e.append(dict(pre=a, post=b, weight=40, nt="gaba"))
+for a in n[n.type=="JO-A1"].bodyId[:5]:
+    for g in gf: e.append(dict(pre=a, post=g, weight=100, nt="acetylcholine"))
 for i in range(3000):
     a, b = rng.choice(n.bodyId.values, 2, replace=False)
     e.append(dict(pre=a, post=b, weight=int(rng.integers(5,10)), nt=rng.choice(["acetylcholine","gaba"])))

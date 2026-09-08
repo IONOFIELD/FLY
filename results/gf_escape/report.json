@@ -20,18 +20,18 @@
     "real_electrical": {
       "arm": "real_electrical",
       "n_lif": 168279,
-      "n_chem_syn": 5916499,
+      "n_chem_syn": 5916480,
       "n_stim": 1896,
       "pop_rate_hz": 0.0019380512918030983,
       "gf_per_cell": 0.85,
       "gf_hit": 0.8,
       "gf_per_hit": 1.21875,
-      "gf_lat_ms": 29.237500000001322,
+      "gf_lat_ms": 32.15625000000142,
       "ttmn_per_cell": 0.85,
-      "ttmn_lag_ms": 0.9000000000000448,
+      "ttmn_lag_ms": 0.899999999999956,
       "psi_per_cell": 0.85,
       "ttmn_to_gf_ratio": 1.0,
-      "wall_s": 47.0
+      "wall_s": 47.9
     },
     "real_chemical_only": {
       "arm": "real_chemical_only",
@@ -47,7 +47,7 @@
       "ttmn_lag_ms": NaN,
       "psi_per_cell": 0.0,
       "ttmn_to_gf_ratio": 0.0,
-      "wall_s": 45.2
+      "wall_s": 45.4
     },
     "rewired_null": {
       "arm": "rewired_null",
@@ -63,7 +63,7 @@
       "ttmn_lag_ms": NaN,
       "psi_per_cell": 0.0,
       "ttmn_to_gf_ratio": NaN,
-      "wall_s": 46.7
+      "wall_s": 47.8
     }
   },
   "checks": {

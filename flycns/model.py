@@ -18,7 +18,7 @@ import pandas as pd
 from brian2 import (NeuronGroup, PoissonGroup, Synapses, SpikeMonitor, StateMonitor, Network,
                     ms, mV, Hz, second, defaultclock, prefs, seed as b2seed)
 
-from .graph import electrical_pairs, INTRINSIC_OVERRIDES
+from .graph import electrical_pairs, drop_mixed_chemical, INTRINSIC_OVERRIDES
 
 
 @dataclass
@@ -48,6 +48,8 @@ class CNSModel:
         self.neurons = neurons
         self.meta = neurons.set_index("bodyId")
 
+        if electrical:
+            edges = drop_mixed_chemical(edges, neurons)
         stim = neurons[neurons["type"].isin(stim_types)][["bodyId", "type"]].reset_index(drop=True)
         self.stim = stim
         self.stim_index = pd.Series(np.arange(len(stim)), index=stim["bodyId"].values)

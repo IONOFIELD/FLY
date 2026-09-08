@@ -1,6 +1,6 @@
 # MaleCNS v1.0 LIF benchmark suite
 
-**13/17 checks pass under ONE parameter set** (same LIFParams for every circuit).
+**15/17 checks pass under ONE parameter set** (same LIFParams for every circuit).
 
 ## Parameters
 ```
@@ -25,15 +25,15 @@ effective chemical kick per synapse: 0.0825 mV (Shiu 2024 unitary 0.275 mV x Mal
 ## Checks
 | benchmark | check | result |
 |---|---|---|
-| auditory | A1_jo_alone_mostly_subthreshold | FAIL |
+| auditory | A1_jo_alone_mostly_subthreshold | PASS |
 | auditory | A2_summation_with_loom | PASS |
-| auditory | A3_electrical_carries_jo_drive | PASS |
+| auditory | A3_declared_pairs_carry_jo_drive | PASS |
 | auditory | A4_null_silent | PASS |
 | auditory | A5_cns_quiet | PASS |
 | feeding | F1_contra_gt_ipsi | FAIL |
 | feeding | F2_monotonic | FAIL |
 | feeding | F3_bitter_suppresses | SKIP |
-| feeding | F4_second_order_sufficient | FAIL |
+| feeding | F4_second_order_sufficient | PASS |
 | feeding | F5_null_silent | PASS |
 | gf_escape | gf_spikes_per_response_1_to_2 | PASS |
 | gf_escape | gf_hit_ge_0.8 | PASS |
