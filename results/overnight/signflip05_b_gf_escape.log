@@ -1,0 +1,79 @@
+[graph] SIGN-FLIP PERTURBATION: 306,977 edges (5%) sign-inverted
+[graph] 176,422 neurons, 6,127,738 signed edges (dropped 110,136 unknown-NT pairs and modulatory amines)
+
+  loom  ->  LC4/LPLC2 (lobula)  ==chem==>  GF (DNp01)  ==gap 0.8ms==>  TTMn  ->  jump
+                                                 \==gap 0.8ms==>  PSI  ->  DLMn (wing)
+  [brain] ........................................ neck ........ [VNC]
+[graph] removed 679 EM chemical synapses on declared mixed pairs (modelled as electrical)
+  raster: 4 ms/char, 120 ms from onset   (| spike, # multiple)
+  t0  DNp01  ......|.|.....................
+  t0  TTMn   ......|.|.....................
+  t0  CNS    .1234333233233331.............   (log2 spikes/bin, 9 = flood)
+
+  t1  DNp01  ...|.......|....|.............
+  t1  TTMn   ....|......|..................
+  t1  CNS    ..234333433444432111.1........   (log2 spikes/bin, 9 = flood)
+
+  t2  DNp01  ............|.|...............
+  t2  TTMn   .............||...............
+  t2  CNS    .223322233323334321...........   (log2 spikes/bin, 9 = flood)
+
+  region activity (spikes per neuron over 20 stimulus windows):
+  visual_centrifugal     ######################################## 0.485
+  vnc_efferent           ###########################              0.330
+  descending_neuron      ############                             0.151
+  cb_intrinsic           ####                                     0.053
+  vnc_motor              ###                                      0.046
+  ascending_neuron       #                                        0.019
+  vnc_intrinsic                                                   0.000
+  visual_projection                                               0.000
+[real_electrical] GF 0.78/cell hit 0.95 lat 28.3 ms | TTMn 0.75/cell lag 0.90 ms | pop 0.0018 Hz | 45.2s
+  raster: 4 ms/char, 120 ms from onset   (| spike, # multiple)
+  t0  DNp01  .....|..|.....................
+  t0  TTMn   ..............................
+  t0  CNS    .1234323233233331.............   (log2 spikes/bin, 9 = flood)
+
+  t1  DNp01  ...|......|.....|.............
+  t1  TTMn   ..............................
+  t1  CNS    ..234333434344432111.1........   (log2 spikes/bin, 9 = flood)
+
+  t2  DNp01  ......|.......|...............
+  t2  TTMn   ..............................
+  t2  CNS    .2233222333233343211..........   (log2 spikes/bin, 9 = flood)
+
+  region activity (spikes per neuron over 20 stimulus windows):
+  visual_centrifugal     ######################################## 0.485
+  descending_neuron      ############                             0.152
+  cb_intrinsic           ####                                     0.053
+  ascending_neuron       #                                        0.019
+  vnc_motor                                                       0.003
+  vnc_intrinsic                                                   0.000
+  visual_projection                                               0.000
+[real_chemical_only] GF 0.82/cell hit 0.95 lat 26.1 ms | TTMn 0.00/cell lag nan ms | pop 0.0018 Hz | 42.7s
+  raster: 4 ms/char, 120 ms from onset   (| spike, # multiple)
+  t0  DNp01  ..............................
+  t0  TTMn   ..............................
+  t0  CNS    ..............................   (log2 spikes/bin, 9 = flood)
+
+  t1  DNp01  ..............................
+  t1  TTMn   ..............................
+  t1  CNS    ..............................   (log2 spikes/bin, 9 = flood)
+
+  t2  DNp01  ..............................
+  t2  TTMn   ..............................
+  t2  CNS    ..............................   (log2 spikes/bin, 9 = flood)
+
+  region activity: none
+[rewired_null] GF 0.00/cell hit 0.00 lat nan ms | TTMn 0.00/cell lag nan ms | pop 0.0000 Hz | 44.7s
+
+CHECKS
+  PASS  gf_spikes_per_response_1_to_2
+  PASS  gf_hit_ge_0.8
+  PASS  gf_latency_10_60ms
+  PASS  ttmn_one_to_one
+  PASS  ttmn_lag_0.5_1.5ms
+  PASS  cns_quiet
+  PASS  electrical_necessary
+  PASS  null_silent
+
+BENCHMARK PASS  -> results/gf_escape/report.json
