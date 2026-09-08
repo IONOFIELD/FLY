@@ -18,6 +18,7 @@ integrate-and-fire network, validated against published circuit physiology.
     flycns/protocols.py  stimulus protocols with citations (loom after Turner, Krieger et al. 2022)
     benchmarks/          one file per circuit; writes results/<name>/report.json + provenance.md
     viz/cascade_3d.py    animated 3D cascade from saved spikes (plotly, html)
+    viz/cascade_ascii.py the same cascade drawn on an ASCII projection of the CNS in the terminal
     make_testdata.py     synthetic graph for smoke tests (no data required)
 
 ## Benchmarks

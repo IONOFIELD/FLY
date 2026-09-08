@@ -1,17 +1,17 @@
 {
   "region_gains": {
-    "SEZ": 1.0,
+    "SEZ": 2.5,
     "other": 1.0
   },
-  "score": 6,
+  "score": 7,
   "checks": {
     "E1": true,
     "E2": true,
     "E3": true,
     "A1": true,
-    "A2": false,
-    "F1": false,
-    "F2": true,
+    "A2": true,
+    "F1": true,
+    "F2": false,
     "S1": true
   }
 }

@@ -10,3 +10,4 @@ python benchmarks/feeding.py 6 "$D" || echo "feeding benchmark did not complete 
 python benchmarks/summarize.py
 python viz/cascade_3d.py "" "$D" || true
 echo; echo "suite summary: results/SUITE.md    3D: results/gf_escape/cascade_3d.html"
+echo "terminal anatomy animation:  python viz/cascade_ascii.py          (add --path for route only)"

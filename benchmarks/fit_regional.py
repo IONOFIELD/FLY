@@ -42,7 +42,7 @@ N = int(sys.argv[1]) if len(sys.argv) > 1 else 6
 DATA = sys.argv[2] if len(sys.argv) > 2 else "data"
 OUT = Path("results/fit_regional"); OUT.mkdir(parents=True, exist_ok=True)
 
-SEZ_GRID = [1.0, 1.5, 2.0, 3.0, 4.0]
+SEZ_GRID = [1.5, 1.75, 2.0, 2.25, 2.5]
 from flycns.graph import gustatory_afferents
 TASTE_FALLBACK = ["aPhM2a", "aPhM5", "PhG1c", "claw_tpGRN", "LB3a", "LB3b", "LB3c", "LB3d"]
 CONTROL = ["JO-FV"]
@@ -71,9 +71,23 @@ def gf_metrics(m, onsets, window=160):
                 lat=d.lat.mean(), pop=m.population_rate_hz())
 
 
-def mn9_metrics(m, onsets):
+from flycns.graph import type_region
+def mn9_metrics(m, onsets, verbose=False):
     r = readout_rates(m, onsets, ["MN9"], 250, meta)
-    return dict(mn9=r.spikes_per_cell.mean() if len(r) else 0.0, pop=m.population_rate_hz())
+    sp = m.spike_frame()
+    reg = sp["type"].map(type_region)
+    sc = sp["superclass"].fillna("")
+    in_sez = (reg == "SEZ") | sc.isin(["cb_motor", "cb_sensory", "cb_sensory_tbc"])
+    dur = m.t_ms / 1000.0
+    out = dict(mn9=r.spikes_per_cell.mean() if len(r) else 0.0, pop=m.population_rate_hz(),
+               pop_nonSEZ=(~in_sez).sum() / len(m.lif_ids) / dur)
+    if verbose:
+        mot = sp[sc == "cb_motor"].groupby("type").size().sort_values(ascending=False)
+        n_mot = m.meta.loc[m.lif_ids][m.meta.loc[m.lif_ids, "superclass"] == "cb_motor"].groupby("type").size()
+        if len(mot):
+            print("  cb_motor types firing (spikes / n cells):", ", ".join(f"{t}:{v}/{n_mot.get(t, '?')}" for t, v in mot.head(8).items()),
+                  f"  [{len(mot)} of {len(n_mot)} motor types active]")
+    return out
 
 
 rows = []
@@ -92,16 +106,16 @@ for gsez in SEZ_GRID:
     tuning = m.stim["type"].map(LOOM_TUNING).fillna(0).values; is_jo = m.stim["type"].isin(jo).values
     on = []
     for _ in range(N):
-        m.run(300); on.append(m.t_ms); m.set_stim_rates(tuning * 5.0 + is_jo * 150); m.run(60)
+        m.run(300); on.append(m.t_ms); m.set_stim_rates(tuning * 5.0 * 0.6 + is_jo * 150); m.run(60)
         m.set_stim_rates(np.zeros(len(m.stim)))
     m.run(300); A2 = gf_metrics(m, on); m.restore()
     # loom alone at fixed gain 1 for the A2 comparison
     on = []
     for _ in range(N):
-        m.run(300); on.append(m.t_ms); m.set_stim_rates(tuning * 5.0); m.run(60); m.set_stim_rates(np.zeros(len(m.stim)))
+        m.run(300); on.append(m.t_ms); m.set_stim_rates(tuning * 5.0 * 0.6); m.run(60); m.set_stim_rates(np.zeros(len(m.stim)))
     m.run(300); L0 = gf_metrics(m, on); m.restore()
     # feeding and specificity
-    on = pulse_protocol(m, {t: 50 for t in taste}, n_trials=N); F = mn9_metrics(m, on)
+    on = pulse_protocol(m, {t: 50 for t in taste}, n_trials=N); F = mn9_metrics(m, on, verbose=True)
     A.raster(m, on, ["MN9"], window_ms=250, bin_ms=8, max_trials=1); A.region_bar(m, on); m.restore()
     on = pulse_protocol(m, {t: 50 for t in control}, n_trials=N); S = mn9_metrics(m, on); m.restore()
 
@@ -121,12 +135,14 @@ for gsez in SEZ_GRID:
     row = dict(sensory=gs, relay=gr, local=gl, score=score, dev=dev, **{f"chk_{k}": v for k, v in checks.items()},
                gf_hit=E["hit"], gf_per=E["per"], ttmn_ratio=E["ratio"], pop_loom=E["pop"],
                jo_hit=A1["hit"], jo_loom_hit=A2["hit"], loom_hit=L0["hit"],
-               mn9_taste=F["mn9"], pop_taste=F["pop"], mn9_control=S["mn9"], wall_s=round(time.time() - t0))
+               mn9_taste=F["mn9"], pop_taste=F["pop"], pop_taste_nonSEZ=F["pop_nonSEZ"],
+               mn9_control=S["mn9"], wall_s=round(time.time() - t0))
     rows.append(row)
     flags = "".join(k if v else "." for k, v in checks.items()).replace("E", "E").replace("A", "A")
     print(f"SEZ gain {gsez:<4} score {score}/8  "
           f"[{' '.join(k for k, v in checks.items() if v):<24}]  GF hit {E['hit']:.2f} per {E['per'] or 0:.2f} "
-          f"| JO hit {A1['hit']:.2f} | MN9 taste {F['mn9']:.2f} ctrl {S['mn9']:.2f} pop {F['pop']:.3f} | {row['wall_s']}s")
+          f"| JO hit {A1['hit']:.2f} | MN9 taste {F['mn9']:.2f} ctrl {S['mn9']:.2f} pop {F['pop']:.3f} "
+          f"(outside SEZ {F['pop_nonSEZ']:.4f}) | {row['wall_s']}s")
     pd.DataFrame(rows).to_csv(OUT / "grid.csv", index=False)
 
 grid = pd.DataFrame(rows).sort_values(["score", "dev"], ascending=[False, True])
