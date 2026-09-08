@@ -1,6 +1,6 @@
 {
   "benchmark": "auditory",
-  "n_trials": 20,
+  "n_trials": 40,
   "jo_types": [
     "JO-A2",
     "JO-A1",
@@ -17,59 +17,59 @@
   "jo_hz": 150,
   "arms": {
     "A1_jo_alone_electrical": {
-      "gf_per_cell": 0.0,
-      "gf_hit": 0.0,
-      "gf_lat_ms": NaN,
-      "pop_rate_hz": 0.0029829275415150236,
-      "wall_s": 47.2,
-      "gf_depol_mV": 1.1041109784784318
+      "gf_per_cell": 0.0125,
+      "gf_hit": 0.025,
+      "gf_lat_ms": 49.0,
+      "pop_rate_hz": 0.0031321979105908056,
+      "wall_s": 100.5,
+      "gf_depol_mV": 1.353369959855701
     },
     "A3_jo_alone_no_electrical_no_mixed_edges": {
       "gf_per_cell": 0.0,
       "gf_hit": 0.0,
       "gf_lat_ms": NaN,
-      "pop_rate_hz": 0.0029829275415150236,
-      "wall_s": 44.8,
-      "gf_depol_mV": 0.15173400116036734
+      "pop_rate_hz": 0.00313099798800981,
+      "wall_s": 102.1,
+      "gf_depol_mV": 0.31909966261034517
     },
     "ref_jo_alone_chem_only_EM_as_annotated": {
-      "gf_per_cell": 0.7,
+      "gf_per_cell": 1.2375,
       "gf_hit": 1.0,
-      "gf_lat_ms": 14.07000000000134,
-      "pop_rate_hz": 0.0030040941758437767,
-      "wall_s": 44.6,
-      "gf_depol_mV": 3.6322915339788038
+      "gf_lat_ms": 11.192499999999587,
+      "pop_rate_hz": 0.0031737952267319684,
+      "wall_s": 95.1,
+      "gf_depol_mV": 3.640484432536142
     },
     "subthreshold_loom_alone": {
-      "gf_per_cell": 0.275,
-      "gf_hit": 0.55,
-      "gf_lat_ms": 44.00000000000144,
-      "pop_rate_hz": 0.0007051781069929507,
-      "wall_s": 47.0,
-      "gf_depol_mV": 5.631917703413239
+      "gf_per_cell": 0.0,
+      "gf_hit": 0.0,
+      "gf_lat_ms": NaN,
+      "pop_rate_hz": 0.0015581631253149025,
+      "wall_s": 104.9,
+      "gf_depol_mV": 3.666914666997937
     },
     "A2_loom_plus_jo": {
-      "gf_per_cell": 0.1,
-      "gf_hit": 0.2,
-      "gf_lat_ms": 38.075000000001054,
-      "pop_rate_hz": 0.003952837088171815,
-      "wall_s": 47.0,
-      "gf_depol_mV": 3.639005632182008
+      "gf_per_cell": 0.0375,
+      "gf_hit": 0.075,
+      "gf_lat_ms": 44.13333333333139,
+      "pop_rate_hz": 0.0047242641185197476,
+      "wall_s": 103.3,
+      "gf_depol_mV": 2.6635411968377065
     },
     "A4_jo_rewired_null_chem": {
       "gf_per_cell": 0.0,
       "gf_hit": 0.0,
       "gf_lat_ms": NaN,
-      "pop_rate_hz": 0.0002986847288612941,
-      "wall_s": 45.1,
+      "pop_rate_hz": 0.0002415844129736747,
+      "wall_s": 98.2,
       "gf_depol_mV": 0.0
     },
     "A2_prediction": {
-      "loom_alone_hit": 0.55,
-      "loom_plus_jo_hit": 0.2,
-      "loom_alone_depol_mV": 5.631917703413239,
-      "loom_plus_jo_depol_mV": 3.639005632182008,
-      "direction": "suppression",
+      "loom_alone_hit": 0.0,
+      "loom_plus_jo_hit": 0.075,
+      "loom_alone_depol_mV": 3.666914666997937,
+      "loom_plus_jo_depol_mV": 2.6635411968377065,
+      "direction": "facilitation",
       "note": "model prediction; in vivo direction not established in cited references"
     }
   },

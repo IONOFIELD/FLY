@@ -10,7 +10,7 @@
 - JO-B* -> DNp01 (ipsilateral, spikelet {'compound_mV': 3.0, 'at_hz': 150}): JON->GF electrical; Pezier & Blagburn 2013; Yorozu 2009
 
 ## Intrinsic overrides
-- DNp01.b_adapt_mV = 30.0: all-or-none GF response; von Reyn 2014; Ache 2019. Fitted: smallest value satisfying 1-2 spikes/response, <=2 on strong looms, P(response) 0.5-1, TTMn relay intact (benchmarks/fit_gf_adapt.py, 2026-09-08; 0 mV gives up to 8 spikes)
+- DNp01.b_adapt_mV = 15.0: all-or-none GF response; von Reyn 2014; Ache 2019. Fitted by pre-stated rule (smallest value giving 1-2 spikes/response, <=2 on strong looms, P(response) 0.5-1, TTMn relay intact; benchmarks/fit_gf_adapt.py). 30 mV under the ordinal loom tuning (2026-09-08), 15 mV under the measured Turner 2022 tuning (2026-09-08); 0 mV gives up to 8 spikes.
 - superclass:cb_motor.b_adapt_mV = 10.0: sustained MN rates < 100 Hz; Azevedo 2020; McKellar 2020
 
 ## Regional gain: SEZ x2.0 (fitted, benchmarks/fit_regional.py), other x1

@@ -8,4 +8,3 @@ data/meshes/
 results/**/*.parquet
 results/**/*.html
 overnight.log
-data/turner2022/
