@@ -9,14 +9,29 @@ authors' per-glomerulus loom dF/F replaces it.
 import os
 import numpy as np
 
-LOOM_TUNING = {
+LOOM_TUNING_ORDINAL = {
     "LC4": 1.0, "LPLC2": 1.0, "LC6": 1.0, "LC16": 0.8,
     "LC26": 0.6, "LPLC1": 0.6, "LC9": 0.5, "LC17": 0.5, "LC12": 0.4,
 }
+GAIN_SIGMA_DEFAULT = 0.5
+TUNING_SOURCE = "ordinal placeholder from Turner et al. 2022 Fig 3A groups"
+
+# Measured values, if fit/extract_turner_loom.py has been run on the Dryad data.
+import json
+from pathlib import Path
+_meas = Path("data/loom_tuning_measured.json")
+if _meas.exists():
+    _m = json.loads(_meas.read_text())
+    LOOM_TUNING = {k: v for k, v in _m["amplitude"].items() if v > 0.05}
+    GAIN_SIGMA_DEFAULT = float(_m.get("gain_sigma", GAIN_SIGMA_DEFAULT))
+    TUNING_SOURCE = f"MEASURED: {_m['source']} ({_m['n_flies']} flies, extracted {_m['extracted_on']})"
+else:
+    LOOM_TUNING = dict(LOOM_TUNING_ORDINAL)
 
 
 def loom_protocol(model, n_trials=20, peak_hz=5.0, burst_ms=60, gap_ms=300,
-                  gain_sigma=0.5, seed=None):
+                  gain_sigma=None, seed=None):
+    gain_sigma = GAIN_SIGMA_DEFAULT if gain_sigma is None else gain_sigma
     seed = int(os.environ.get("FLYCNS_SEED", "0")) if seed is None else seed
     """Run n_trials looms; return list of (onset_ms, gain)."""
     rng = np.random.default_rng(seed)

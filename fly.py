@@ -63,6 +63,7 @@ MENU = """
                 14  single neuron view  (current: {cell})     15  choose cell for neuron view
                 16  3D cascade (html, opens in browser)
   EXPORT        20  simulated sessions in brainsets/POYO+ layout (HDF5 with connectome unit features)
+  TIER 2        21  download Turner 2022 glomerulus data (Dryad, 22 GB)   22  extract measured loom tuning
   DOCS          17  results note      18  references      19  provenance of last run
                  q  quit
 """
@@ -110,6 +111,17 @@ while True:
     elif c == "16":
         run("viz/cascade_3d.py"); run("open", "results/gf_escape/cascade_3d.html")
     elif c == "20": run("export_brainsets.py", ask("trials per session", "40"))
+    elif c == "21":
+        Path("data/turner2022").mkdir(parents=True, exist_ok=True)
+        print("  downloading README, template_brain (0.7 GB) and datafiles (22 GB); resumable")
+        for fid, name in [("1861065", "README.rtf"), ("1861068", "template_brain.zip"), ("1860993", "datafiles.zip")]:
+            run("curl", "-L", "-C", "-", "-o", f"data/turner2022/{name}", f"https://datadryad.org/downloads/file_stream/{fid}")
+        run("bash", "-c", "cd data/turner2022 && unzip -n -q template_brain.zip && unzip -n -q datafiles.zip && ls")
+    elif c == "22":
+        run("bash", "-c", "pip show visanalysis >/dev/null 2>&1 || pip install -q git+https://github.com/ClandininLab/visanalysis")
+        run("fit/extract_turner_loom.py", "data/turner2022")
+        if Path("results/turner2022/loom_tuning.json").exists() and ask("activate measured tuning for benchmarks? (y/n)", "y") == "y":
+            import shutil; shutil.copy("results/turner2022/loom_tuning.json", "data/loom_tuning_measured.json"); print("  activated")
     elif c == "17": run("less", "RESULTS.md")
     elif c == "18": run("less", "REFERENCES.md")
     elif c == "19":

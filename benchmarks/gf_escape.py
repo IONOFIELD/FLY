@@ -18,7 +18,7 @@ import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from flycns import load_graph, rewire_null, CNSModel, LIFParams, loom_protocol
-from flycns.protocols import LOOM_TUNING
+from flycns.protocols import LOOM_TUNING, TUNING_SOURCE, GAIN_SIGMA_DEFAULT
 from flycns.graph import ELECTRICAL_SYNAPSES, INTRINSIC_OVERRIDES, SIGN_MAP
 from flycns import ascii as A
 
@@ -77,6 +77,7 @@ def run_arm(name, neurons, edges, electrical):
 
 neurons, edges = load_graph(DATA)
 A.sketch("gf_escape")
+print(f"loom tuning source: {TUNING_SOURCE}")
 report = {"benchmark": "gf_escape", "n_trials": N_TRIALS, "params": LIFParams().__dict__, "arms": {}}
 
 s, sp, m = run_arm("real_electrical", neurons, edges, True)
@@ -109,7 +110,7 @@ prov = ["# Provenance: gf_escape", "", "## Neurotransmitter sign map", str(SIGN_
 prov += [f"- {a} -> {b} ({'ipsilateral' if i else 'any side'}, spikelet {k}): {s}" for a, b, i, k, s in ELECTRICAL_SYNAPSES]
 prov += ["", "## Intrinsic overrides"] + [f"- {t}.{p} = {v}: {s}" for t, p, v, s in INTRINSIC_OVERRIDES]
 prov += ["", f"## Regional gain: SEZ x{LIFParams().region_gains['SEZ']} (fitted, benchmarks/fit_regional.py), other x1"]
-prov += ["", "## Loom tuning (PLACEHOLDER ordinal, Turner et al. 2022 Fig 3A)", str(LOOM_TUNING), "",
+prov += ["", f"## Loom tuning: {TUNING_SOURCE}; trial gain sigma {GAIN_SIGMA_DEFAULT}", str(LOOM_TUNING), "",
          "## Checks"] + [f"- {k}: {'PASS' if v else 'FAIL'}" for k, v in checks.items()]
 (OUT / "provenance.md").write_text("\n".join(prov))
 

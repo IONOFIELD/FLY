@@ -119,7 +119,13 @@ benchmark headers. 5% sign inversion costs 0-2 checks, 10% costs 4. Above w_scal
 failures are flood signatures (extra TTMn spikes, indirect JO->GF depolarisation, extra-SEZ
 activity); below it the suite holds to 0.25.
 
+## Tier 2: fitting to recordings
+The Turner, Krieger, Pang & Clandinin 2022 glomerulus imaging data are public (Dryad
+doi:10.5061/dryad.h44j0zpp8). Menu 21 downloads them, menu 22 extracts the measured per-glomerulus
+loom amplitudes and trial-gain distribution (`fit/extract_turner_loom.py`) and, when activated,
+`flycns/protocols.py` uses them instead of the ordinal placeholder; provenance records the switch.
+
 ## Known placeholders
-- Loom tuning weights are ordinal from Turner et al. 2022 Fig 3A; replace with per-glomerulus dF/F.
+- Loom tuning weights are ordinal until `fit/extract_turner_loom.py` has been run on the Dryad data.
 - dF/F to firing-rate mapping unknown; PEAK_HZ anchored to GF physiology.
 - Modulatory amines (DA, OA, 5-HT) are sign 0 and not modelled.
