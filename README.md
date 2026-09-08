@@ -91,7 +91,7 @@ Tanouye & Wyman, Allen, Augustin; the JON-GF synapse from Pezier & Blagburn; loo
 Turner, Krieger, Pang & Clandinin. Added here: the test harness with numeric criteria and nulls,
 one parameter set across independent circuits, a spiking sensory-to-motor cascade across the neck
 connective on MaleCNS, the documented negatives, and one testable prediction. Where the model
-disagrees with a measurement, the model is presumed wrong.
+disagrees with a published measurement, the model is presumed wrong.
 
 ## Known limits
 Single-neuron parameters are Shiu's central-brain values applied uniformly to brain and cord; no
