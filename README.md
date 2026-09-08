@@ -48,6 +48,8 @@ Without the menu, the same things are single commands: `./run_all.sh 20`, `pytho
                          --synapses draws arbors and lights transmission sites (run
                          viz/fetch_cascade_synapses.py first, pulls synapse xyz from neuprint)
     make_testdata.py     synthetic graph for smoke tests (no data required)
+    export_brainsets.py  simulated loom/sound/taste sessions as brainsets-style HDF5 for POYO+
+                         (units table carries connectome features to seed unit embeddings)
 
 ## Benchmarks
 | circuit | stimulus | readout | criteria | status |

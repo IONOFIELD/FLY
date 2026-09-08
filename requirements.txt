@@ -5,3 +5,4 @@ pandas
 pyarrow
 plotly
 cython
+h5py

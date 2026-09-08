@@ -62,6 +62,7 @@ MENU = """
   VISUALIZE     12  whole-CNS cascade (braille, terminal)     13  same, with synapse sites
                 14  single neuron view  (current: {cell})     15  choose cell for neuron view
                 16  3D cascade (html, opens in browser)
+  EXPORT        20  simulated sessions in brainsets/POYO+ layout (HDF5 with connectome unit features)
   DOCS          17  results note      18  references      19  provenance of last run
                  q  quit
 """
@@ -108,6 +109,7 @@ while True:
         state["cell"] = ask("cell type or bodyId (e.g. DNp01, TTMn, MN9, LC4, 10001)", state["cell"]); save()
     elif c == "16":
         run("viz/cascade_3d.py"); run("open", "results/gf_escape/cascade_3d.html")
+    elif c == "20": run("export_brainsets.py", ask("trials per session", "40"))
     elif c == "17": run("less", "RESULTS.md")
     elif c == "18": run("less", "REFERENCES.md")
     elif c == "19":
