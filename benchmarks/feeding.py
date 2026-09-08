@@ -11,7 +11,8 @@ Two declared drive arms, because MaleCNS does not annotate taste modality:
           the closest sugar-GRN proxy available; scored on F1/F2. Wiring-selected,
           not a modality annotation.
 Criteria (Shiu 2024; Gordon & Scott 2009; McKellar 2020):
-  F1 unilateral sugar GRN drive: contralateral MN9 > ipsilateral MN9
+  F1 unilateral sugar drive: contralateral MN9 > ipsilateral MN9, at the lowest
+     dose-curve rate where bilateral drive gives MN9 >= 1 spike/cell
   F2 MN9 response is monotonic in sugar GRN rate over 10-200 Hz
   F3 bitter GRN co-activation suppresses MN9 relative to sugar alone
   F4 each of Fdg/Bract/Roundup/Zorro alone at 50 Hz is sufficient to drive MN9
@@ -103,28 +104,6 @@ def build(stim_types, edge_df=edges):
     return CNSModel(neurons, edge_df, stim_types, LIFParams(), electrical=True)
 
 
-# ---------------------------------------------------------------- F1 laterality
-t0 = time.time()
-sugar_ids = neurons[neurons.type.isin(sugar)].copy()
-sugar_ids["side"] = infer_side(meta).loc[sugar_ids.bodyId].values
-left_sugar = sugar_ids[sugar_ids.side == "L"]
-print(f"sugar drive: {len(sugar_ids)} neurons, {len(left_sugar)} inferred left")
-m = build(sugar)
-rates = pd.Series(0.0, index=m.stim.bodyId.values)
-rates[left_sugar.bodyId.values] = 50.0
-onsets = []
-for _ in range(N_TRIALS):
-    m.run(300); onsets.append(m.t_ms); m.set_stim_rates(rates.loc[m.stim.bodyId].values); m.run(200)
-    m.set_stim_rates(np.zeros(len(m.stim)))
-m.run(300)
-lat = mn9(m, onsets)
-ipsi = lat[lat.side == "L"].spikes_per_cell.mean(); contra = lat[lat.side == "R"].spikes_per_cell.mean()
-report["arms"]["F1_left_sugar_50Hz"] = dict(MN9_ipsi_L=float(ipsi), MN9_contra_R=float(contra),
-                                            pop_rate_hz=float(m.population_rate_hz()), wall_s=round(time.time()-t0, 1))
-report["checks"]["F1_contra_gt_ipsi"] = bool(contra > ipsi > -1 and contra > 0)
-print(f"F1 left sugar 50 Hz: MN9 ipsi {ipsi:.2f}, contra {contra:.2f} spikes/cell  [{time.time()-t0:.0f}s]")
-lat.to_csv(OUT / "F1_laterality.csv", index=False)
-
 # ---------------------------------------------------------------- F2 dose response
 curve = []
 for hz in [10, 25, 50, 100, 200]:
@@ -163,6 +142,32 @@ if report_all_arm:
 report["arms"]["F2_dose"] = curve.to_dict("records")
 diffs = np.diff(curve.MN9_spikes_per_cell.values)
 report["checks"]["F2_monotonic"] = bool((diffs >= -1e-9).all() and curve.MN9_spikes_per_cell.iloc[-1] > 0)
+
+# ---------------------------------------------------------------- F1 laterality
+t0 = time.time()
+sugar_ids = neurons[neurons.type.isin(sugar)].copy()
+sugar_ids["side"] = infer_side(meta).loc[sugar_ids.bodyId].values
+left_sugar = sugar_ids[sugar_ids.side == "L"]
+print(f"sugar drive: {len(sugar_ids)} neurons, {len(left_sugar)} inferred left")
+m = build(sugar)
+rates = pd.Series(0.0, index=m.stim.bodyId.values)
+# rate: lowest dose-curve rate at which bilateral drive gave MN9 >= 1 spike/cell,
+# so a left/right ratio is measurable (unilateral drive is half the input)
+_ok = curve[curve.MN9_spikes_per_cell >= 1.0]
+F1_HZ = float(_ok.sugar_hz.iloc[0]) if len(_ok) else 100.0
+rates[left_sugar.bodyId.values] = F1_HZ
+onsets = []
+for _ in range(N_TRIALS):
+    m.run(300); onsets.append(m.t_ms); m.set_stim_rates(rates.loc[m.stim.bodyId].values); m.run(200)
+    m.set_stim_rates(np.zeros(len(m.stim)))
+m.run(300)
+lat = mn9(m, onsets)
+ipsi = lat[lat.side == "L"].spikes_per_cell.mean(); contra = lat[lat.side == "R"].spikes_per_cell.mean()
+report["arms"]["F1_left_sugar"] = dict(rate_hz=F1_HZ, MN9_ipsi_L=float(ipsi), MN9_contra_R=float(contra),
+                                            pop_rate_hz=float(m.population_rate_hz()), wall_s=round(time.time()-t0, 1))
+report["checks"]["F1_contra_gt_ipsi"] = bool(contra > ipsi > -1 and contra > 0)
+print(f"F1 left sugar {F1_HZ:.0f} Hz: MN9 ipsi {ipsi:.2f}, contra {contra:.2f} spikes/cell  [{time.time()-t0:.0f}s]")
+lat.to_csv(OUT / "F1_laterality.csv", index=False)
 
 # ---------------------------------------------------------------- F3 bitter suppression
 if bitter:

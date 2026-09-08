@@ -39,10 +39,10 @@ effective chemical kick per synapse: 0.0825 mV (Shiu 2024 unitary 0.275 mV x Mal
 | auditory | A3_declared_pairs_carry_jo_drive | PASS |
 | auditory | A4_null_silent | PASS |
 | auditory | A5_cns_quiet | PASS |
-| feeding | F1_contra_gt_ipsi | FAIL |
 | feeding | F2b_extra_SEZ_quiet | PASS |
 | feeding | F2c_motor_rate_physiological | PASS |
 | feeding | F2_monotonic | PASS |
+| feeding | F1_contra_gt_ipsi | FAIL |
 | feeding | F3_bitter_suppresses | SKIP |
 | feeding | F4_second_order_sufficient | PASS |
 | feeding | F5_null_silent | PASS |

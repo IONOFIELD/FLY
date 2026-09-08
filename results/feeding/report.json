@@ -25,12 +25,6 @@
     "MN8"
   ],
   "arms": {
-    "F1_left_sugar_50Hz": {
-      "MN9_ipsi_L": 0.0,
-      "MN9_contra_R": 0.0,
-      "pop_rate_hz": 0.0016164230002557408,
-      "wall_s": 20.4
-    },
     "F2b_nonSEZ_rate_hz": 0.005193226706444574,
     "F2c_motor_mean_hz": 71.39393939393939,
     "motor_types_active": {
@@ -78,6 +72,13 @@
         "pop_rate_hz": 0.11829115396028092
       }
     ],
+    "F1_left_sugar": {
+      "rate_hz": 100.0,
+      "MN9_ipsi_L": 0.8333333333333334,
+      "MN9_contra_R": 0.0,
+      "pop_rate_hz": 0.04236204489093601,
+      "wall_s": 22.0
+    },
     "F4_sufficiency": {
       "DNge062": 1.5,
       "GNG120": 2.0,
@@ -89,10 +90,10 @@
     }
   },
   "checks": {
-    "F1_contra_gt_ipsi": false,
     "F2b_extra_SEZ_quiet": true,
     "F2c_motor_rate_physiological": true,
     "F2_monotonic": true,
+    "F1_contra_gt_ipsi": false,
     "F3_bitter_suppresses": null,
     "F4_second_order_sufficient": true,
     "F5_null_silent": true
