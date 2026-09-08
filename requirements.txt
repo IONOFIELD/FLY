@@ -1,0 +1,7 @@
+neuprint-python
+navis
+brian2
+pandas
+pyarrow
+plotly
+cython

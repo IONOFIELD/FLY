@@ -1,0 +1,71 @@
+{
+  "benchmark": "feeding",
+  "n_trials": 6,
+  "sugar_types": [
+    "BM_Taste"
+  ],
+  "bitter_types": [],
+  "second_order_present": [
+    "DNge062",
+    "GNG015",
+    "GNG120",
+    "GNG095"
+  ],
+  "motor_present": [
+    "MN9",
+    "MN6",
+    "MN8"
+  ],
+  "arms": {
+    "F1_left_sugar_50Hz": {
+      "MN9_ipsi_L": 0.0,
+      "MN9_contra_R": 0.0,
+      "pop_rate_hz": 0.0,
+      "wall_s": 21.2
+    },
+    "F2_dose": [
+      {
+        "sugar_hz": 10,
+        "MN9_spikes_per_cell": 0.0,
+        "pop_rate_hz": 7.836913823336372e-05
+      },
+      {
+        "sugar_hz": 25,
+        "MN9_spikes_per_cell": 0.0,
+        "pop_rate_hz": 0.0006857299595419325
+      },
+      {
+        "sugar_hz": 50,
+        "MN9_spikes_per_cell": 0.0,
+        "pop_rate_hz": 0.002577275977810848
+      },
+      {
+        "sugar_hz": 100,
+        "MN9_spikes_per_cell": 0.0,
+        "pop_rate_hz": 0.007909939611235643
+      },
+      {
+        "sugar_hz": 200,
+        "MN9_spikes_per_cell": 0.0,
+        "pop_rate_hz": 0.0197917696374804
+      }
+    ],
+    "F4_sufficiency": {
+      "DNge062": 3.75,
+      "GNG015": 0.0,
+      "GNG120": 2.5,
+      "GNG095": 0.0
+    },
+    "F5_null": {
+      "MN9": 0.0
+    }
+  },
+  "checks": {
+    "F1_contra_gt_ipsi": false,
+    "F2_monotonic": false,
+    "F3_bitter_suppresses": null,
+    "F4_second_order_sufficient": false,
+    "F5_null_silent": true
+  },
+  "pass": false
+}

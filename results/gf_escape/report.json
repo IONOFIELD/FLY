@@ -1,0 +1,80 @@
+{
+  "benchmark": "gf_escape",
+  "n_trials": 20,
+  "params": {
+    "v_rest_mV": -52.0,
+    "v_thresh_mV": -45.0,
+    "v_reset_mV": -52.0,
+    "tau_m_ms": 20.0,
+    "tau_syn_ms": 5.0,
+    "refractory_ms": 2.2,
+    "w_syn_mV": 0.275,
+    "w_scale": 0.3,
+    "tau_adapt_ms": 100.0,
+    "gap_delay_ms": 0.8,
+    "chem_delay_ms": 1.8,
+    "dt_ms": 0.1,
+    "seed": 0
+  },
+  "arms": {
+    "real_electrical": {
+      "arm": "real_electrical",
+      "n_lif": 168279,
+      "n_chem_syn": 5916499,
+      "n_stim": 1896,
+      "pop_rate_hz": 0.0019380512918030983,
+      "gf_per_cell": 0.85,
+      "gf_hit": 0.8,
+      "gf_per_hit": 1.21875,
+      "gf_lat_ms": 29.237500000001322,
+      "ttmn_per_cell": 0.85,
+      "ttmn_lag_ms": 0.9000000000000448,
+      "psi_per_cell": 0.85,
+      "ttmn_to_gf_ratio": 1.0,
+      "wall_s": 47.0
+    },
+    "real_chemical_only": {
+      "arm": "real_chemical_only",
+      "n_lif": 168279,
+      "n_chem_syn": 5916499,
+      "n_stim": 1896,
+      "pop_rate_hz": 0.001885757184992385,
+      "gf_per_cell": 0.9,
+      "gf_hit": 0.85,
+      "gf_per_hit": 1.2058823529411764,
+      "gf_lat_ms": 28.188235294119046,
+      "ttmn_per_cell": 0.0,
+      "ttmn_lag_ms": NaN,
+      "psi_per_cell": 0.0,
+      "ttmn_to_gf_ratio": 0.0,
+      "wall_s": 45.2
+    },
+    "rewired_null": {
+      "arm": "rewired_null",
+      "n_lif": 168279,
+      "n_chem_syn": 5900828,
+      "n_stim": 1896,
+      "pop_rate_hz": 0.0,
+      "gf_per_cell": 0.0,
+      "gf_hit": 0.0,
+      "gf_per_hit": 0.0,
+      "gf_lat_ms": NaN,
+      "ttmn_per_cell": 0.0,
+      "ttmn_lag_ms": NaN,
+      "psi_per_cell": 0.0,
+      "ttmn_to_gf_ratio": NaN,
+      "wall_s": 46.7
+    }
+  },
+  "checks": {
+    "gf_spikes_per_response_1_to_2": true,
+    "gf_hit_ge_0.8": true,
+    "gf_latency_10_60ms": true,
+    "ttmn_one_to_one": true,
+    "ttmn_lag_0.5_1.5ms": true,
+    "cns_quiet": true,
+    "electrical_necessary": true,
+    "null_silent": true
+  },
+  "pass": true
+}
