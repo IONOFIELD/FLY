@@ -12,10 +12,12 @@ for t in ["LC4","LPLC2","LC6","LC16","LC26","LPLC1","LC9","LC17","LC12"]: add(t,
 add("DNp01", 2, "descending_neuron"); add("TTMn", 2, "vnc_motor"); add("PSI", 2, "vnc_intrinsic")
 add("JO-A1", 20, "cb_sensory"); add("JO-B1", 20, "cb_sensory")
 add("Gr64f_sugar_GRN", 20, "cb_sensory"); add("Gr66a_bitter_GRN", 10, "cb_sensory")
-add("Fdg", 4, "cb_intrinsic"); add("Bract", 4, "descending_neuron"); add("MN9", 2, "cb_motor")
+add("GNG001", 4, "cb_intrinsic"); add("Bract", 4, "descending_neuron"); add("MN9", 2, "cb_motor")
 add("JO-FV", 10, "cb_sensory"); add("aPhM2a", 5, "cb_sensory"); add("BM_Taste", 10, "cb_sensory")
 add("filler", 300, "cb_intrinsic")
 n = pd.DataFrame(rows)
+n["subclass"] = None
+n.loc[n.type=="aPhM2a", "subclass"] = "pharyngeal sensillum"; n.loc[n.type=="Gr64f_sugar_GRN", "subclass"] = "taste peg"
 n.loc[n.type.str.startswith("JO-") | n.type.str.contains("GRN"), "somaSide"] = None
 n["instance"] = n.type + "_" + n.somaSide.fillna(pd.Series(["L","R"]*(len(n)//2+1))[:len(n)].set_axis(n.index))
 n.loc[n.type.str.startswith("JO-"), "instance"] = None
@@ -28,7 +30,7 @@ def chain(pre_t, post_t, w, contra=False):
         for b in n[n.type==post_t].itertuples():
             if contra and a.somaSide == b.somaSide: continue
             e.append(dict(pre=a.bodyId, post=b.bodyId, weight=w, nt="acetylcholine"))
-chain("Gr64f_sugar_GRN", "Fdg", 120); chain("aPhM2a", "Fdg", 150); chain("BM_Taste", "Fdg", 60); chain("Fdg", "MN9", 400, contra=True); chain("Bract", "MN9", 400)
+chain("Gr64f_sugar_GRN", "GNG001", 120); chain("aPhM2a", "GNG001", 150); chain("BM_Taste", "GNG001", 60); chain("GNG001", "MN9", 400, contra=True); chain("Bract", "MN9", 400)
 for a in n[n.type=="Gr66a_bitter_GRN"].bodyId:
     for b in n[n.type=="Fdg"].bodyId: e.append(dict(pre=a, post=b, weight=40, nt="gaba"))
 for a in n[n.type=="JO-A1"].bodyId[:5]:

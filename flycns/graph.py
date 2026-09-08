@@ -34,6 +34,15 @@ TAU_M_S = 0.020   # for compound-potential calibration; must match LIFParams.tau
 G_GAP_RELAY = 0.2  # ohmic coupling (fraction of leak) for a 1:1 relay pair; population
                    # pairs share this budget so many resting partners cannot shunt the post cell
 
+# Gustatory afferents by ANATOMY (MaleCNS v1.0 `subclass`); modality is unannotated.
+GUSTATORY_SUBCLASSES = ["labellar bristle", "taste peg", "pharyngeal sensillum"]
+
+# Regional gain: synapses from neurons whose type begins with one of these
+# prefixes (subesophageal zone intrinsic neuropils) get their own multiplier.
+# Reading: SEZ local synapses are effectively stronger than synapse counts
+# imply (hypothesis to test in vivo), needed for taste -> MN9 propagation.
+SEZ_TYPE_PREFIXES = ("GNG", "SAD", "PRW", "FLA", "CAN")
+
 # Known feeding circuit types (Shiu et al. 2022 eLife; Shiu et al. 2024 Nature).
 # MaleCNS naming may differ; benchmarks/feeding.py discovers what is present.
 FEEDING_SECOND_ORDER = ["Fdg", "Clavicle", "Zorro", "Rattle", "Phantom", "Bract",
@@ -74,6 +83,20 @@ def pre_class(superclass):
     return "local"
 
 
+def type_region(t):
+    """Region tag from type prefix; 'SEZ' for subesophageal-zone intrinsic types."""
+    t = "" if t is None or t != t else str(t)
+    return "SEZ" if t.startswith(SEZ_TYPE_PREFIXES) else "other"
+
+
+def gustatory_afferents(neurons):
+    """Types whose subclass is anatomically gustatory (requires fetch_annotations.py)."""
+    if "subclass" not in neurons:
+        return []
+    m = neurons[neurons["subclass"].isin(GUSTATORY_SUBCLASSES)]
+    return sorted(m["type"].dropna().unique())
+
+
 def infer_side(meta):
     """somaSide, filled from instance suffix (_L/_R) then soma x relative to the
     midline of labelled neurons. Sensory neurons often lack soma coordinates."""
@@ -98,6 +121,20 @@ def pre_class(superclass):
     if "descending" in sc or "ascending" in sc:
         return "relay"
     return "local"
+
+
+def type_region(t):
+    """Region tag from type prefix; 'SEZ' for subesophageal-zone intrinsic types."""
+    t = "" if t is None or t != t else str(t)
+    return "SEZ" if t.startswith(SEZ_TYPE_PREFIXES) else "other"
+
+
+def gustatory_afferents(neurons):
+    """Types whose subclass is anatomically gustatory (requires fetch_annotations.py)."""
+    if "subclass" not in neurons:
+        return []
+    m = neurons[neurons["subclass"].isin(GUSTATORY_SUBCLASSES)]
+    return sorted(m["type"].dropna().unique())
 
 
 def infer_side(meta):

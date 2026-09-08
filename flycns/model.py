@@ -18,7 +18,7 @@ import pandas as pd
 from brian2 import (NeuronGroup, PoissonGroup, Synapses, SpikeMonitor, StateMonitor, Network,
                     ms, mV, Hz, second, defaultclock, prefs, seed as b2seed)
 
-from .graph import electrical_pairs, drop_mixed_chemical, pre_class, INTRINSIC_OVERRIDES
+from .graph import electrical_pairs, drop_mixed_chemical, pre_class, type_region, INTRINSIC_OVERRIDES
 
 
 @dataclass
@@ -38,6 +38,8 @@ class LIFParams:
     seed: int = 0
     # class-wise gain on top of w_scale, keyed by presynaptic class (graph.pre_class)
     class_gains: dict = field(default_factory=lambda: {"sensory": 1.0, "relay": 1.0, "local": 1.0})
+    # regional gain by presynaptic type prefix region (graph.type_region): SEZ vs other
+    region_gains: dict = field(default_factory=lambda: {"SEZ": 1.0, "other": 1.0})
 
 
 class CNSModel:
@@ -84,7 +86,8 @@ class CNSModel:
                 self.overrides_applied.append(dict(type=typ, parameter=par, value=val, source=src))
 
         w_unit = p.w_syn_mV * p.w_scale * mV
-        gain_of = self.meta["superclass"].map(pre_class).map(p.class_gains).fillna(1.0)
+        gain_of = (self.meta["superclass"].map(pre_class).map(p.class_gains).fillna(1.0)
+                   * self.meta["type"].map(type_region).map(p.region_gains).fillna(1.0))
         rec = edges[edges["pre"].isin(self.lif_index.index) & edges["post"].isin(self.lif_index.index)]
         S_rec = Synapses(G, G, "w : volt", on_pre="g_post += w")
         S_rec.connect(i=self.lif_index[rec["pre"]].values, j=self.lif_index[rec["post"]].values)

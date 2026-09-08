@@ -22,7 +22,7 @@ from flycns import load_graph, rewire_null, CNSModel, LIFParams
 from flycns.graph import (FEEDING_SECOND_ORDER, FEEDING_MOTOR, SUGAR_GRN_PATTERNS,
                           BITTER_GRN_PATTERNS, TASTE_SENSORY_FALLBACK)
 from flycns.bench import find_types, present_types, pulse_protocol, readout_rates
-from flycns.graph import infer_side
+from flycns.graph import infer_side, gustatory_afferents
 
 OUT = Path("results/feeding"); OUT.mkdir(parents=True, exist_ok=True)
 N_TRIALS = int(sys.argv[1]) if len(sys.argv) > 1 else 6
@@ -63,7 +63,10 @@ if "MN9" not in mn_have:
 # drive priority: explicit argv list > sugar-specific GRN types if annotated >
 # discovered MxLbN afferents onto MN9's excitatory inputs (GNG642, BM_Taste on v1.0)
 specific = [t for t in sugar_hits if not t.startswith("BM_")]
-sugar = SUGAR or specific or taste_afferents
+gust = gustatory_afferents(neurons)
+sugar = SUGAR or specific or gust or taste_afferents
+if gust and not SUGAR and not specific:
+    print(f"gustatory afferents by subclass (labellar bristle, taste peg, pharyngeal sensillum): {len(gust)} types")
 bitter = BITTER or list(bitter_hits)
 if not specific and not SUGAR:
     print(f"WARNING: no sugar-specific GRN type in this annotation; driving taste-region afferents "

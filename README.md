@@ -9,6 +9,7 @@ integrate-and-fire network, validated against published circuit physiology.
     pip install -r requirements.txt
     export NEUPRINT_TOKEN="..."         # neuprint.janelia.org account page
     python fetch_malecns.py              # ~5 min, writes data/*.parquet
+    python fetch_annotations.py          # adds subclass / entryNerve to neurons.parquet
     ./run_all.sh 20                      # benchmark + checks + 3D cascade
 
 ## Layout
@@ -31,7 +32,10 @@ sugar-driven MN9 activation. `benchmarks/screen_afferents.py` (a sufficiency scr
 Shiu 2024) shows no afferent type drives MN9 at w_scale 0.3, and at Shiu's 1.0 MN9 responds
 to auditory and vibration afferents as strongly as to taste while the CNS floods. Taste
 afferents suppress MN9 when co-applied at intermediate gain. `benchmarks/fit_gains.py`
-searches class-wise gains (sensory, relay, local) against all circuits at once.
+searched class-wise gains (sensory, relay, local): taste -> MN9 never activated even at 3x
+sensory gain, and the local gain feeding needs breaks the escape circuit. `benchmarks/fit_regional.py`
+scales only synapses from SEZ intrinsic types (GNG, SAD, PRW, FLA, CAN) and selects gustatory
+afferents by MaleCNS `subclass` (run `fetch_annotations.py` first).
 
 `benchmarks/summarize.py` writes `results/SUITE.md`: every check across every circuit under one declared parameter set.
 
