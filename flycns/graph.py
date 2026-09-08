@@ -47,6 +47,12 @@ SEZ_TYPE_PREFIXES = ("GNG", "SAD", "PRW", "FLA", "CAN")
 # control hold. Declared here so the whole suite runs under one parameter set.
 SEZ_GAIN_FITTED = 2.0
 
+# Screen-selected gustatory subset (benchmarks/screen_afferents.py at w_scale 1.0,
+# Sept 2026): the gustatory types that individually drive MN9. This is the closest
+# proxy for sugar GRNs the annotation permits; it is selected by wiring, NOT a
+# modality annotation, and is labelled as such wherever it is used.
+GUSTATORY_MN9_DRIVING = ["aPhM2a", "aPhM5", "PhG1c", "claw_tpGRN", "LB3a", "LB3b", "LB3c", "LB3d"]
+
 # Known feeding circuit types (Shiu et al. 2022 eLife; Shiu et al. 2024 Nature).
 # MaleCNS naming may differ; benchmarks/feeding.py discovers what is present.
 FEEDING_SECOND_ORDER = ["Fdg", "Clavicle", "Zorro", "Rattle", "Phantom", "Bract",

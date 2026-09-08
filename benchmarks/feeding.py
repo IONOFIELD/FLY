@@ -2,6 +2,14 @@
 Benchmark 2: feeding (sugar GRN -> second-order SEZ -> MN9), a port of the
 tests in Shiu et al. 2024 (Nature) from FlyWire to MaleCNS.
 
+Two declared drive arms, because MaleCNS does not annotate taste modality:
+  ALL     every anatomically gustatory afferent type (labellar bristle, taste peg,
+          pharyngeal sensillum; 42 types). Sensilla house sugar, bitter, water, salt
+          and mechanosensory neurons together, so this arm is "every tastant at once"
+          and is NOT expected to drive PER. Reported, not scored.
+  SUBSET  the screen-selected MN9-driving gustatory types (GUSTATORY_MN9_DRIVING),
+          the closest sugar-GRN proxy available; scored on F1/F2. Wiring-selected,
+          not a modality annotation.
 Criteria (Shiu 2024; Gordon & Scott 2009; McKellar 2020):
   F1 unilateral sugar GRN drive: contralateral MN9 > ipsilateral MN9
   F2 MN9 response is monotonic in sugar GRN rate over 10-200 Hz
@@ -24,7 +32,7 @@ from flycns import load_graph, rewire_null, CNSModel, LIFParams
 from flycns.graph import (FEEDING_SECOND_ORDER, FEEDING_MOTOR, SUGAR_GRN_PATTERNS,
                           BITTER_GRN_PATTERNS, TASTE_SENSORY_FALLBACK)
 from flycns.bench import find_types, present_types, pulse_protocol, readout_rates
-from flycns.graph import infer_side, gustatory_afferents
+from flycns.graph import infer_side, gustatory_afferents, GUSTATORY_MN9_DRIVING
 from flycns import ascii as A
 
 OUT = Path("results/feeding"); OUT.mkdir(parents=True, exist_ok=True)
@@ -68,7 +76,9 @@ if "MN9" not in mn_have:
 # discovered MxLbN afferents onto MN9's excitatory inputs (GNG642, BM_Taste on v1.0)
 specific = [t for t in sugar_hits if not t.startswith("BM_")]
 gust = gustatory_afferents(neurons)
-sugar = SUGAR or specific or gust or taste_afferents
+subset = [t for t in GUSTATORY_MN9_DRIVING if (neurons.type == t).any()]
+sugar = SUGAR or specific or subset or gust or taste_afferents
+report_all_arm = gust if (gust and not SUGAR and not specific) else None
 if gust and not SUGAR and not specific:
     print(f"gustatory afferents by subclass (labellar bristle, taste peg, pharyngeal sensillum): {len(gust)} types")
 bitter = BITTER or list(bitter_hits)
@@ -79,6 +89,7 @@ if not sugar:
     raise SystemExit("no usable sensory drive; supply type names as argv[3]")
 
 report = {"benchmark": "feeding", "n_trials": N_TRIALS, "sugar_types": sugar, "bitter_types": bitter,
+          "drive_arm": "explicit" if SUGAR else "annotated_sugar" if specific else "screen_selected_subset" if subset else "all_gustatory",
           "second_order_present": so_have, "motor_present": mn_have, "arms": {}, "checks": {}}
 WINDOW = 250
 
@@ -141,6 +152,14 @@ for hz in [10, 25, 50, 100, 200]:
         report["checks"]["F2b_extra_SEZ_quiet"] = bool(report["arms"]["F2b_nonSEZ_rate_hz"] < 0.02)
         report["checks"]["F2c_motor_rate_physiological"] = bool(0 < report["arms"]["F2c_motor_mean_hz"] < 100)
 curve = pd.DataFrame(curve); curve.to_csv(OUT / "F2_dose.csv", index=False)
+if report_all_arm:
+    m = build(report_all_arm)
+    on = pulse_protocol(m, {t: 50 for t in report_all_arm}, n_trials=N_TRIALS)
+    v_all = float(mn9(m, on).spikes_per_cell.mean())
+    report["arms"]["ALL_gustatory_50Hz"] = dict(n_types=len(report_all_arm), MN9_spikes_per_cell=v_all,
+                                              pop_rate_hz=float(m.population_rate_hz()))
+    print(f"ALL gustatory arm ({len(report_all_arm)} types, every tastant at once) at 50 Hz -> MN9 {v_all:.2f} "
+          f"spikes/cell (reported, not scored; expected ~0)")
 report["arms"]["F2_dose"] = curve.to_dict("records")
 diffs = np.diff(curve.MN9_spikes_per_cell.values)
 report["checks"]["F2_monotonic"] = bool((diffs >= -1e-9).all() and curve.MN9_spikes_per_cell.iloc[-1] > 0)
