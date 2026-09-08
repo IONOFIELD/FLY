@@ -63,7 +63,7 @@ MENU = """
                 14  single neuron view  (current: {cell})     15  choose cell for neuron view
                 16  3D cascade (html, opens in browser)
   EXPORT        20  simulated sessions in brainsets/POYO+ layout (HDF5 with connectome unit features)
-  TIER 2        21  download Turner 2022 glomerulus data (Dryad, 22 GB)   22  extract measured loom tuning
+  RECORDINGS    21  get Turner 2022 glomerulus data (Dryad, browser)   22  extract measured loom tuning
   DOCS          17  results note      18  references      19  provenance of last run
                  q  quit
 """

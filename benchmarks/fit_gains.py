@@ -1,5 +1,5 @@
 """
-Tier 2, step 1: class-wise synaptic gain fit.
+Class-wise synaptic gain fit.
 
 One network per candidate gain set (sensory, relay, local) on top of the shared
 w_scale = 0.3. Stimulus sets are swapped with store/restore, so each candidate

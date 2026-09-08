@@ -1,7 +1,7 @@
 """
-Tier 2, step 2: regional synaptic gain fit (SEZ intrinsic synapses).
+Regional synaptic gain fit (SEZ intrinsic synapses).
 
-Step 1 (class-wise gain, fit_gains.py) showed taste -> MN9 never activates
+The class-wise gain fit (fit_gains.py) showed taste -> MN9 never activates
 even at 3x sensory gain, while the local gain feeding needs (~3x) breaks the
 escape circuit. Here only synapses from SEZ intrinsic types (GNG, SAD, PRW,
 FLA, CAN prefixes) are scaled; everything else stays at unity.

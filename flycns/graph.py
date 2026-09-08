@@ -99,7 +99,7 @@ def load_graph(data_dir="data", min_weight=5):
 
 
 def pre_class(superclass):
-    """Three presynaptic classes for class-wise synaptic gain (tier 2 fitting)."""
+    """Three presynaptic classes for class-wise synaptic gain (regional fitting)."""
     sc = "" if superclass is None or superclass != superclass else str(superclass)
     if "sensory" in sc:
         return "sensory"
@@ -139,7 +139,7 @@ def infer_side(meta):
 
 
 def pre_class(superclass):
-    """Three presynaptic classes for class-wise synaptic gain (tier 2 fitting)."""
+    """Three presynaptic classes for class-wise synaptic gain (regional fitting)."""
     sc = "" if superclass is None or superclass != superclass else str(superclass)
     if "sensory" in sc:
         return "sensory"

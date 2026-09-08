@@ -51,7 +51,7 @@ JON-GF (calibrated to a 3 mV compound potential). The 679 EM synapses annotated 
 JON-GF contact are removed when the electrical model is on, so the contact is not counted twice.
 Monoamines are sign 0 by deliberate scope. Full list with citations: `flycns/graph.py`, `REFERENCES.md`.
 
-## Tier 2: fitting to recordings (in progress)
+## Fitting to recordings (in progress)
 
 The Turner, Krieger, Pang & Clandinin 2022 glomerulus imaging data are public (Dryad
 doi:10.5061/dryad.h44j0zpp8; Dryad blocks scripted downloads, so menu **21** gives browser
@@ -95,5 +95,5 @@ disagrees with a measurement, the model is presumed wrong.
 
 ## Known limits
 Single-neuron parameters are Shiu's central-brain values applied uniformly to brain and cord; no
-parameter is yet fitted to a recording (tier 2 above changes that); modulatory transmitters omitted;
+parameter is yet fitted to a recording (the fitting work above changes that); modulatory transmitters omitted;
 gap junctions only where documented.

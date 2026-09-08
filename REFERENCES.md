@@ -44,7 +44,7 @@ in a manuscript. This project builds on the work below; it does not contradict i
 ## Larval connectome (referenced in planning)
 - **Winding et al. 2023** — Winding M, Pedigo BD, Barnes CL, et al. The connectome of an insect brain. *Science* 379:eadd9330 (2023).
 
-## Decoding (planned tier 3)
+## Decoding (planned)
 - **Azabou et al. 2023** — Azabou M, Arora V, Ganesh V, et al. A unified, scalable framework for neural population decoding (POYO). *NeurIPS* (2023). arXiv:2310.16046.
 - **Azabou et al. 2025** — Azabou M, et al. Multi-session, multi-task neural decoding from distinct cell types and brain regions (POYO+). *ICLR* (2025).
 
