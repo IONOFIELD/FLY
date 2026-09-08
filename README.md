@@ -20,6 +20,8 @@ integrate-and-fire network, validated against published circuit physiology.
     viz/cascade_3d.py    animated 3D cascade from saved spikes (plotly, html)
     viz/explore.py       INTERACTIVE: pick a sensory group and rate, drive it, watch the cascade
                          (one build, then ~10 s per stimulation; --sez GAIN to use a fitted SEZ gain)
+    viz/neuron_ascii.py  one neuron's skeleton in braille (dorsal/side/front), with input and
+                         output synapses and synapses onto its top partner; skeletons cached
     viz/cascade_ascii.py braille dorsal-view animation of the cascade in the terminal;
                          --synapses draws arbors and lights transmission sites (run
                          viz/fetch_cascade_synapses.py first, pulls synapse xyz from neuprint)

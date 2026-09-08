@@ -74,7 +74,7 @@ while True:
     rates = m.stim["type"].isin(types).values * rate
     m.run(100); on = m.t_ms; m.set_stim_rates(rates); m.run(100); m.set_stim_rates(np.zeros(len(m.stim))); m.run(200)
     sp = m.spike_frame()
-    w = sp[sp.t_ms >= on]
+    w = sp[(sp.t_ms >= on) & (sp.t_ms < on + 300)]
     print(f"\n{grp} at {rate:.0f} Hz: {len(w)} spikes from {w.bodyId.nunique()} neurons in 300 ms; "
           f"whole-CNS {len(w)/len(m.lif_ids)/0.3:.4f} Hz/neuron")
     input("enter to play cascade...")

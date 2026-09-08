@@ -13,6 +13,19 @@ DIM, RESET = "\033[2;37m", "\033[0m"
 
 class Projector:
     def __init__(self, neurons, W=None, H=None, color=None, landscape=None, stretch=False):
+        self._args = dict(W=W, H=H, color=color, landscape=landscape, stretch=stretch)
+        self._neurons = neurons
+        self._build(neurons, W, H, color, landscape, stretch)
+
+    def refit(self):
+        """Re-measure the terminal; rebuild the projection if the window changed size."""
+        if not sys.stdout.isatty() or self._args["W"] or self._args["H"]:
+            return
+        ts = os.get_terminal_size()
+        if (min(ts.columns - 1, 240), max(ts.lines - 6, 20)) != (self.W, self.H):
+            self._build(self._neurons, None, None, self._args["color"], self._args["landscape"], self._args["stretch"])
+
+    def _build(self, neurons, W, H, color, landscape, stretch):
         tty = sys.stdout.isatty()
         if tty:
             ts = os.get_terminal_size()
@@ -49,8 +62,7 @@ class Projector:
         self.pos = n.set_index("bodyId")[["dx", "dy"]]
         self.meta = n.set_index("bodyId")
         dens = np.zeros((self.DH, self.DW), int); np.add.at(dens, (py, px), 1)
-        thr = np.quantile(dens[dens > 0], 0.35)
-        self.bg = dens >= thr
+        self.bg = dens >= 1        # every occupied dot: the shape of the CNS (no cell bodies in the neck)
 
     def project(self, xyz):
         u = (xyz - self.brain) @ self.lr; v = (xyz - self.brain) @ self.ap
@@ -59,6 +71,13 @@ class Projector:
         px = np.clip(((u - self.ulo) * self.sx).astype(int) + self.ox, 0, self.DW - 1)
         py = np.clip(((v - self.vlo) * self.sy).astype(int) + self.oy, 0, self.DH - 1)
         return px, py
+
+    def legend(self):
+        items = [("optic lobe", 36), ("visual projection (LC)", 96), ("central brain", 33), ("SEZ/brain sensory", 93),
+                 ("brain motor", 91), ("descending", 35), ("ascending", 95), ("VNC interneuron", 32),
+                 ("VNC motor", 31)]
+        parts = [self.col(c, "⣿ " + n) for n, c in items]
+        return " dim = all cell bodies (anatomy; neck has axons only)   bright = spiking now   " + "  ".join(parts)
 
     @property
     def view_label(self):
@@ -91,6 +110,8 @@ class Projector:
 
     def animate(self, spikes, onset, window_ms=200, bin_ms=5, fade=3, title="", base=None, links=None, delay=0.2):
         """spikes: DataFrame with t_ms, bodyId, type. Plays frames from onset."""
+        self.refit()
+        base = None if base is None else base
         w = spikes[(spikes.t_ms >= onset) & (spikes.t_ms < onset + window_ms) & spikes.bodyId.isin(self.pos.index)].copy()
         w["b"] = ((w.t_ms - onset) // bin_ms).astype(int)
         base = base or self.base_grid()
@@ -125,6 +146,7 @@ class Projector:
             if self.tty:
                 print("\033[H\033[J", end="")
             print(f" {title}  t={b*bin_ms:>3d} ms  {self.view_label}  [G GF  T TTMn  P PSI  M MN9]")
+            print(self.legend())
             for r in grid:
                 print("".join(r))
             sys.stdout.flush()
