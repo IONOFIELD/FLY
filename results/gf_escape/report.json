@@ -1,6 +1,6 @@
 {
   "benchmark": "gf_escape",
-  "n_trials": 20,
+  "n_trials": 40,
   "params": {
     "v_rest_mV": -52.0,
     "v_thresh_mV": -45.0,
@@ -14,7 +14,7 @@
     "gap_delay_ms": 0.8,
     "chem_delay_ms": 1.8,
     "dt_ms": 0.1,
-    "seed": 2,
+    "seed": 0,
     "class_gains": {
       "sensory": 1.0,
       "relay": 1.0,
@@ -28,55 +28,55 @@
   "arms": {
     "real_electrical": {
       "arm": "real_electrical",
-      "n_lif": 168279,
-      "n_chem_syn": 5916480,
-      "n_stim": 1896,
-      "pop_rate_hz": 0.00247050037933036,
-      "gf_per_cell": 0.925,
-      "gf_hit": 0.8,
+      "n_lif": 167649,
+      "n_chem_syn": 5837592,
+      "n_stim": 2526,
+      "pop_rate_hz": 0.0038089784524299453,
+      "gf_per_cell": 0.6125,
+      "gf_hit": 0.575,
       "gf_hit_ci95": [
-        0.5839782779742402,
-        0.9193436467288001
+        0.4219480043605999,
+        0.7149083147518411
       ],
-      "gf_per_hit": 1.3125,
-      "gf_lat_ms": 28.493750000001338,
-      "ttmn_per_cell": 0.75,
-      "ttmn_lag_ms": 0.8999999999999382,
-      "psi_per_cell": 0.925,
-      "ttmn_to_gf_ratio": 0.8108108108108109,
-      "wall_s": 47.4
+      "gf_per_hit": 1.2608695652173914,
+      "gf_lat_ms": 45.173913043476794,
+      "ttmn_per_cell": 0.6125,
+      "ttmn_lag_ms": 0.900000000000096,
+      "psi_per_cell": 0.6125,
+      "ttmn_to_gf_ratio": 1.0,
+      "wall_s": 91.6
     },
     "real_chemical_only": {
       "arm": "real_chemical_only",
-      "n_lif": 168279,
-      "n_chem_syn": 5916499,
-      "n_stim": 1896,
-      "pop_rate_hz": 0.0024182062725196466,
-      "gf_per_cell": 0.975,
-      "gf_hit": 0.85,
+      "n_lif": 167649,
+      "n_chem_syn": 5837611,
+      "n_stim": 2526,
+      "pop_rate_hz": 0.00377043014594429,
+      "gf_per_cell": 0.6375,
+      "gf_hit": 0.625,
       "gf_hit_ci95": [
-        0.6395767041130426,
-        0.9476322080405041
+        0.4703216005453191,
+        0.7577722646420829
       ],
-      "gf_per_hit": 1.2941176470588236,
-      "gf_lat_ms": 26.541176470589697,
+      "gf_per_hit": 1.24,
+      "gf_lat_ms": 41.755999999998636,
       "ttmn_per_cell": 0.0,
       "ttmn_lag_ms": NaN,
       "psi_per_cell": 0.0,
       "ttmn_to_gf_ratio": 0.0,
-      "wall_s": 45.0
+      "wall_s": 90.2
     },
     "rewired_null": {
       "arm": "rewired_null",
-      "n_lif": 168279,
-      "n_chem_syn": 5900828,
-      "n_stim": 1896,
-      "pop_rate_hz": 7.923349516774727e-07,
+      "n_lif": 167649,
+      "n_chem_syn": 5821202,
+      "n_stim": 2526,
+      "pop_rate_hz": 4.057716472174225e-07,
       "gf_per_cell": 0.0,
       "gf_hit": 0.0,
       "gf_hit_ci95": [
-        -1.1641658116749259e-17,
-        0.1611301254949332
+        -6.330876522670002e-18,
+        0.08762453925039232
       ],
       "gf_per_hit": 0.0,
       "gf_lat_ms": NaN,
@@ -84,7 +84,7 @@
       "ttmn_lag_ms": NaN,
       "psi_per_cell": 0.0,
       "ttmn_to_gf_ratio": NaN,
-      "wall_s": 47.2
+      "wall_s": 91.3
     }
   },
   "checks": {

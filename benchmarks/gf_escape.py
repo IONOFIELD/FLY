@@ -18,7 +18,7 @@ import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from flycns import load_graph, rewire_null, CNSModel, LIFParams, loom_protocol
-from flycns.protocols import LOOM_TUNING, TUNING_SOURCE, GAIN_SIGMA_DEFAULT
+from flycns.protocols import LOOM_TUNING, TUNING_SOURCE, GAIN_SIGMA_DEFAULT, PEAK_HZ_DEFAULT
 from flycns.graph import ELECTRICAL_SYNAPSES, INTRINSIC_OVERRIDES, SIGN_MAP
 from flycns import ascii as A
 
@@ -56,6 +56,7 @@ def run_arm(name, neurons, edges, electrical):
     m = CNSModel(neurons, edges, list(LOOM_TUNING), LIFParams(), electrical=electrical)
     trials = loom_protocol(m, n_trials=N_TRIALS)
     df, sp = score(m, trials)
+    print("  per trial GF/TTMn spikes:", " ".join(f"{int(g*2)}/{int(t*2)}" for g, t in zip(df.gf, df.ttmn)))
     A.raster(m, [t for t, _ in trials], ["DNp01", "TTMn"], meta=m.meta)
     A.region_bar(m, [t for t, _ in trials], window_ms=160)
     summ = dict(arm=name, n_lif=int(len(m.lif_ids)), n_chem_syn=int(m.n_chem),
@@ -77,7 +78,7 @@ def run_arm(name, neurons, edges, electrical):
 
 neurons, edges = load_graph(DATA)
 A.sketch("gf_escape")
-print(f"loom tuning source: {TUNING_SOURCE}")
+print(f"loom tuning source: {TUNING_SOURCE}; peak rate {PEAK_HZ_DEFAULT} Hz; gain sigma {GAIN_SIGMA_DEFAULT}")
 report = {"benchmark": "gf_escape", "n_trials": N_TRIALS, "params": LIFParams().__dict__, "arms": {}}
 
 s, sp, m = run_arm("real_electrical", neurons, edges, True)
@@ -110,7 +111,7 @@ prov = ["# Provenance: gf_escape", "", "## Neurotransmitter sign map", str(SIGN_
 prov += [f"- {a} -> {b} ({'ipsilateral' if i else 'any side'}, spikelet {k}): {s}" for a, b, i, k, s in ELECTRICAL_SYNAPSES]
 prov += ["", "## Intrinsic overrides"] + [f"- {t}.{p} = {v}: {s}" for t, p, v, s in INTRINSIC_OVERRIDES]
 prov += ["", f"## Regional gain: SEZ x{LIFParams().region_gains['SEZ']} (fitted, benchmarks/fit_regional.py), other x1"]
-prov += ["", f"## Loom tuning: {TUNING_SOURCE}; trial gain sigma {GAIN_SIGMA_DEFAULT}", str(LOOM_TUNING), "",
+prov += ["", f"## Loom tuning: {TUNING_SOURCE}; trial gain sigma {GAIN_SIGMA_DEFAULT}; peak rate {PEAK_HZ_DEFAULT} Hz (free dF/F->rate scale)", str(LOOM_TUNING), "",
          "## Checks"] + [f"- {k}: {'PASS' if v else 'FAIL'}" for k, v in checks.items()]
 (OUT / "provenance.md").write_text("\n".join(prov))
 

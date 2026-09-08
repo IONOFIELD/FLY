@@ -37,6 +37,16 @@ Auditory drive during a near-threshold loom **reduces** GF response probability 
 auditory pathways recruit inhibition onto GF that outweighs it. We found no in vivo
 measurement of this interaction in our references. It is a testable prediction.
 
+## Measured loom input (added 8 Sept 2026)
+The ordinal loom tuning has been replaced by amplitudes extracted from the public Turner,
+Krieger, Pang & Clandinin 2022 dataset (Dryad doi:10.5061/dryad.h44j0zpp8): 10 flies, 150 loom
+trials, 13 glomeruli, peak dF/F normalised to the strongest glomerulus (LC17 1.00, LC12 0.75,
+LC26 0.74, LPLC2 0.69, LPLC1 0.51, LC4 0.50, LC16 0.49, LC6 0.40; small-object types 0.29-0.37),
+and a measured trial-gain sigma of 0.38 (assumed 0.5 before). Under measured input, GF response
+probability falls from 0.80 to 0.50, still within von Reyn's range. The dF/F-to-rate scale
+(5 Hz for the strongest type) is the one remaining free parameter of the stimulus and is
+declared as such.
+
 ## What the model needed that the connectome does not contain
 - Electrical synapses (invisible to EM): GF to TTMn, GF to PSI, JON to GF. Documented
   anatomy, added with citations and calibrated to measured potentials.
@@ -47,7 +57,9 @@ measurement of this interaction in our references. It is a testable prediction.
 - Spike-frequency adaptation on GF and motor neurons. The GF increment (30 mV) is the
   smallest value satisfying von Reyn's constraints in a pre-specified sweep
   (`benchmarks/fit_gf_adapt.py`); without it GF fires up to 8 spikes per strong loom.
-  Motor neuron adaptation keeps sustained rates under 100 Hz (Azevedo 2020, McKellar 2020).
+  Motor neuron adaptation (proboscis pool only) keeps sustained rates under 100 Hz (Azevedo
+  2020, McKellar 2020); relay motor neurons (TTMn) are not adapted, as they follow GF 1:1
+  (Tanouye & Wyman 1980).
 - A rescale of Shiu's unitary weight to 0.3x, needed once the nerve cord and its hub
   neurons are included.
 

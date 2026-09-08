@@ -29,8 +29,14 @@ else:
     LOOM_TUNING = dict(LOOM_TUNING_ORDINAL)
 
 
-def loom_protocol(model, n_trials=20, peak_hz=5.0, burst_ms=60, gap_ms=300,
+# dF/F -> spikes/s scale for the most loom-sensitive type. The one free parameter of the
+# loom stimulus; anchored so GF fires 1-2 spikes with P(response) >= 0.5 (von Reyn 2014).
+PEAK_HZ_DEFAULT = float(os.environ.get("FLYCNS_PEAK_HZ", "5.0"))
+
+
+def loom_protocol(model, n_trials=20, peak_hz=None, burst_ms=60, gap_ms=300,
                   gain_sigma=None, seed=None):
+    peak_hz = PEAK_HZ_DEFAULT if peak_hz is None else peak_hz
     gain_sigma = GAIN_SIGMA_DEFAULT if gain_sigma is None else gain_sigma
     seed = int(os.environ.get("FLYCNS_SEED", "0")) if seed is None else seed
     """Run n_trials looms; return list of (onset_ms, gain)."""

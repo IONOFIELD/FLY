@@ -73,7 +73,9 @@ INTRINSIC_OVERRIDES = [
     # (leg MNs, Azevedo et al. 2020; proboscis MNs, McKellar et al. 2020). Without
     # adaptation the LIF motor pool pins at the 450 Hz refractory ceiling.
     ("superclass:cb_motor", "b_adapt_mV", 10.0, "sustained MN rates < 100 Hz; Azevedo 2020; McKellar 2020"),
-    ("superclass:vnc_motor", "b_adapt_mV", 10.0, "sustained MN rates < 100 Hz; Azevedo 2020"),
+    # vnc_motor deliberately NOT adapted: TTMn/DLMn follow GF spikes 1:1 up to 100 Hz
+    # (Tanouye & Wyman 1980); an adaptation term there blocked relay of GF doublets
+    # once measured loom tuning broadened the drive (2026-09-08).
 ]
 
 
