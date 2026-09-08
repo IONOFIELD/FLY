@@ -113,10 +113,15 @@ while True:
     elif c == "20": run("export_brainsets.py", ask("trials per session", "40"))
     elif c == "21":
         Path("data/turner2022").mkdir(parents=True, exist_ok=True)
-        print("  downloading README, template_brain (0.7 GB) and datafiles (22 GB); resumable")
-        for fid, name in [("1861065", "README.rtf"), ("1861068", "template_brain.zip"), ("1860993", "datafiles.zip")]:
-            run("curl", "-L", "-C", "-", "-o", f"data/turner2022/{name}", f"https://datadryad.org/downloads/file_stream/{fid}")
-        run("bash", "-c", "cd data/turner2022 && unzip -n -q template_brain.zip && unzip -n -q datafiles.zip && ls")
+        print("""
+  Dryad blocks scripted downloads (403). Use the browser:
+    1. open  https://doi.org/10.5061/dryad.h44j0zpp8
+    2. click README.rtf, template_brain.zip (0.7 GB), datafiles.zip (22 GB); keep the tab open
+    3. then run:
+       mv ~/Downloads/README.rtf ~/Downloads/template_brain.zip ~/Downloads/datafiles.zip data/turner2022/
+       cd data/turner2022 && unzip -q template_brain.zip && unzip -q datafiles.zip
+  Only those three files are needed (skip behavior_tracking, anatomical_brains, transforms, mean_brain).""")
+        run("open", "https://doi.org/10.5061/dryad.h44j0zpp8")
     elif c == "22":
         run("bash", "-c", "pip show visanalysis >/dev/null 2>&1 || pip install -q git+https://github.com/ClandininLab/visanalysis")
         run("fit/extract_turner_loom.py", "data/turner2022")
