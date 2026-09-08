@@ -42,6 +42,10 @@ GUSTATORY_SUBCLASSES = ["labellar bristle", "taste peg", "pharyngeal sensillum"]
 # Reading: SEZ local synapses are effectively stronger than synapse counts
 # imply (hypothesis to test in vivo), needed for taste -> MN9 propagation.
 SEZ_TYPE_PREFIXES = ("GNG", "SAD", "PRW", "FLA", "CAN")
+# Fitted value (benchmarks/fit_regional.py, Sept 2026): SEZ gain 2.0 is the smallest
+# value at which gustatory afferents drive MN9 while escape checks and the wind
+# control hold. Declared here so the whole suite runs under one parameter set.
+SEZ_GAIN_FITTED = 2.0
 
 # Known feeding circuit types (Shiu et al. 2022 eLife; Shiu et al. 2024 Nature).
 # MaleCNS naming may differ; benchmarks/feeding.py discovers what is present.
@@ -57,6 +61,11 @@ TASTE_SENSORY_FALLBACK = ["BM_Taste"]   # MaleCNS labellar taste population, mod
 # (von Reyn et al. 2014; Ache et al. 2019): spike-triggered adaptation.
 INTRINSIC_OVERRIDES = [
     ("DNp01", "b_adapt_mV", 30.0, "all-or-none GF response; von Reyn 2014; Ache 2019"),
+    # superclass-level: sustained fly motor neuron firing stays well under 100 Hz
+    # (leg MNs, Azevedo et al. 2020; proboscis MNs, McKellar et al. 2020). Without
+    # adaptation the LIF motor pool pins at the 450 Hz refractory ceiling.
+    ("superclass:cb_motor", "b_adapt_mV", 10.0, "sustained MN rates < 100 Hz; Azevedo 2020; McKellar 2020"),
+    ("superclass:vnc_motor", "b_adapt_mV", 10.0, "sustained MN rates < 100 Hz; Azevedo 2020"),
 ]
 
 

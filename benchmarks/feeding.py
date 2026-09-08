@@ -8,6 +8,8 @@ Criteria (Shiu 2024; Gordon & Scott 2009; McKellar 2020):
   F3 bitter GRN co-activation suppresses MN9 relative to sugar alone
   F4 each of Fdg/Bract/Roundup/Zorro alone at 50 Hz is sufficient to drive MN9
   F5 rewired null: MN9 silent
+  F2b activity outside the SEZ stays < 0.02 Hz/neuron during taste drive
+  F2c recruited motor neurons fire < 100 Hz on average (Azevedo 2020; McKellar 2020)
 Type discovery: sugar/bitter GRN names in MaleCNS are unverified; the script
 lists candidates and falls back to second-order neurons (Shiu: Fdg sufficient).
 Writes results/feeding/{report.json, provenance.md, *.csv}
@@ -122,6 +124,22 @@ for hz in [10, 25, 50, 100, 200]:
     if hz == 50:
         A.raster(m, on, ["MN9"], window_ms=250, bin_ms=8, max_trials=2); A.region_bar(m, on)
     print(f"F2 sugar {hz:>3} Hz -> MN9 {v:.2f} spikes/cell, CNS {m.population_rate_hz():.4f} Hz")
+    if hz == 50:
+        from flycns.graph import type_region
+        spf = m.spike_frame(); scc = spf["superclass"].fillna("")
+        in_sez = (spf["type"].map(type_region) == "SEZ") | scc.isin(["cb_motor", "cb_sensory", "cb_sensory_tbc"])
+        dur = m.t_ms / 1000.0
+        report["arms"]["F2b_nonSEZ_rate_hz"] = float((~in_sez).sum() / len(m.lif_ids) / dur)
+        mot = spf[scc == "cb_motor"]
+        stim_s = N_TRIALS * 0.25
+        per_cell = mot.groupby("bodyId").size() / stim_s
+        report["arms"]["F2c_motor_mean_hz"] = float(per_cell.mean()) if len(per_cell) else 0.0
+        n_types = m.meta.loc[m.lif_ids][m.meta.loc[m.lif_ids, "superclass"] == "cb_motor"].type.nunique()
+        report["arms"]["motor_types_active"] = {t: int(v) for t, v in mot.groupby("type").size().sort_values(ascending=False).head(12).items()}
+        print(f"  outside-SEZ rate {report['arms']['F2b_nonSEZ_rate_hz']:.4f} Hz | recruited motor mean {report['arms']['F2c_motor_mean_hz']:.1f} Hz "
+              f"| {mot.type.nunique()} of {n_types} cb_motor types active: {list(report['arms']['motor_types_active'])[:8]}")
+        report["checks"]["F2b_extra_SEZ_quiet"] = bool(report["arms"]["F2b_nonSEZ_rate_hz"] < 0.02)
+        report["checks"]["F2c_motor_rate_physiological"] = bool(0 < report["arms"]["F2c_motor_mean_hz"] < 100)
 curve = pd.DataFrame(curve); curve.to_csv(OUT / "F2_dose.csv", index=False)
 report["arms"]["F2_dose"] = curve.to_dict("records")
 diffs = np.diff(curve.MN9_spikes_per_cell.values)

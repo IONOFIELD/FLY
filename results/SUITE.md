@@ -1,6 +1,6 @@
 # MaleCNS v1.0 LIF benchmark suite
 
-**15/17 checks pass under ONE parameter set** (same LIFParams for every circuit).
+**17/19 checks pass under ONE parameter set** (same LIFParams for every circuit).
 
 ## Parameters
 ```
@@ -17,7 +17,16 @@
   "gap_delay_ms": 0.8,
   "chem_delay_ms": 1.8,
   "dt_ms": 0.1,
-  "seed": 0
+  "seed": 0,
+  "class_gains": {
+    "sensory": 1.0,
+    "relay": 1.0,
+    "local": 1.0
+  },
+  "region_gains": {
+    "SEZ": 2.0,
+    "other": 1.0
+  }
 }
 ```
 effective chemical kick per synapse: 0.0825 mV (Shiu 2024 unitary 0.275 mV x MaleCNS rescale 0.3)
@@ -31,6 +40,8 @@ effective chemical kick per synapse: 0.0825 mV (Shiu 2024 unitary 0.275 mV x Mal
 | auditory | A4_null_silent | PASS |
 | auditory | A5_cns_quiet | PASS |
 | feeding | F1_contra_gt_ipsi | FAIL |
+| feeding | F2b_extra_SEZ_quiet | PASS |
+| feeding | F2c_motor_rate_physiological | PASS |
 | feeding | F2_monotonic | FAIL |
 | feeding | F3_bitter_suppresses | SKIP |
 | feeding | F4_second_order_sufficient | PASS |
@@ -46,4 +57,4 @@ effective chemical kick per synapse: 0.0825 mV (Shiu 2024 unitary 0.275 mV x Mal
 
 Declared deviations from the raw connectome: see each results/*/provenance.md and flycns/graph.py.
 
-## Citation check: 21/21 tags resolve in REFERENCES.md
+## Citation check: 25/25 tags resolve in REFERENCES.md

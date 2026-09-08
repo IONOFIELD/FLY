@@ -34,6 +34,9 @@ in a manuscript. This project builds on the work below; it does not contradict i
 - **Turner, Krieger, Pang & Clandinin 2022** — Turner MH, Krieger A, Pang MM, Clandinin TR. Visual and motor signatures of locomotion dynamically shape a population code for feature detection in Drosophila. *eLife* 11:e82587 (2022). Pan-glomerulus imaging; loom-responsive LC types; shared trial gain.
 - **Krieger 2023** — Krieger A. How do neuropeptides shape sensory processing in Drosophila. PhD thesis, Stanford University (2023).
 
+## Motor neuron physiology
+- **Azevedo et al. 2020** — Azevedo AW, Dickinson ES, Gurung P, et al. A size principle for recruitment of Drosophila leg motor neurons. *eLife* 9:e56754 (2020). Sustained MN firing rates and recruitment order.
+
 ## Feeding circuit
 - **Gordon & Scott 2009** — Gordon MD, Scott K. Motor control in a Drosophila taste circuit. *Neuron* 61:373–384 (2009). MN9 necessary and sufficient for proboscis extension.
 - **McKellar et al. 2020** — McKellar CE, Siwanowicz I, Dickson BJ, Simpson JH. Controlling motor neurons of every muscle for fly proboscis reaching. *eLife* 9:e54978 (2020).

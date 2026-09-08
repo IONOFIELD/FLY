@@ -2,9 +2,48 @@
   "benchmark": "feeding",
   "n_trials": 6,
   "sugar_types": [
-    "LN-DN1",
-    "BM",
-    "GNG654"
+    "LB1a",
+    "LB1b",
+    "LB1c",
+    "LB1d",
+    "LB1e",
+    "LB2a",
+    "LB2b",
+    "LB2c",
+    "LB2d",
+    "LB3",
+    "LB3a",
+    "LB3b",
+    "LB3c",
+    "LB3d",
+    "LB4a",
+    "LB4b",
+    "PhG10",
+    "PhG11",
+    "PhG12",
+    "PhG13",
+    "PhG14",
+    "PhG15",
+    "PhG16",
+    "PhG1a",
+    "PhG1b",
+    "PhG1c",
+    "PhG2",
+    "PhG3",
+    "PhG4",
+    "PhG5",
+    "PhG6",
+    "PhG7",
+    "PhG8",
+    "PhG9",
+    "aPhM1",
+    "aPhM2a",
+    "aPhM2b",
+    "aPhM3",
+    "aPhM4",
+    "aPhM5",
+    "claw_tpGRN",
+    "dorsal_tpGRN"
   ],
   "bitter_types": [],
   "second_order_present": [
@@ -22,41 +61,47 @@
     "F1_left_sugar_50Hz": {
       "MN9_ipsi_L": 0.0,
       "MN9_contra_R": 0.0,
-      "pop_rate_hz": 0.003032048863373598,
-      "wall_s": 21.8
+      "pop_rate_hz": 0.003789016027858902,
+      "wall_s": 23.1
+    },
+    "F2b_nonSEZ_rate_hz": 0.0011078055335689162,
+    "F2c_motor_mean_hz": 0.8333333333333333,
+    "motor_types_active": {
+      "MN2Db": 3,
+      "MN2Da": 2
     },
     "F2_dose": [
       {
         "sugar_hz": 10,
         "MN9_spikes_per_cell": 0.0,
-        "pop_rate_hz": 0.00019239793022582177
+        "pop_rate_hz": 0.0005476590963054062
       },
       {
         "sugar_hz": 25,
-        "MN9_spikes_per_cell": 0.08333333333333333,
-        "pop_rate_hz": 0.0020201782673711284
+        "MN9_spikes_per_cell": 0.0,
+        "pop_rate_hz": 0.0035785151374222958
       },
       {
         "sugar_hz": 50,
         "MN9_spikes_per_cell": 0.0,
-        "pop_rate_hz": 0.1632318291734407
+        "pop_rate_hz": 0.010569642168109223
       },
       {
         "sugar_hz": 100,
         "MN9_spikes_per_cell": 0.0,
-        "pop_rate_hz": 0.1848872850977471
+        "pop_rate_hz": 0.02774330379720416
       },
       {
         "sugar_hz": 200,
-        "MN9_spikes_per_cell": 21.5,
-        "pop_rate_hz": 0.26105548791936967
+        "MN9_spikes_per_cell": 0.0,
+        "pop_rate_hz": 0.06835213659295747
       }
     ],
     "F4_sufficiency": {
-      "DNge062": 3.75,
-      "GNG120": 2.5,
-      "GNG117": 2.5833333333333335,
-      "GNG108": 2.8333333333333335
+      "DNge062": 1.5,
+      "GNG120": 2.0,
+      "GNG117": 1.5,
+      "GNG108": 3.0
     },
     "F5_null": {
       "MN9": 0.0
@@ -64,6 +109,8 @@
   },
   "checks": {
     "F1_contra_gt_ipsi": false,
+    "F2b_extra_SEZ_quiet": true,
+    "F2c_motor_rate_physiological": true,
     "F2_monotonic": false,
     "F3_bitter_suppresses": null,
     "F4_second_order_sufficient": true,

@@ -46,6 +46,12 @@ afferents by MaleCNS `subclass` (run `fetch_annotations.py` first).
 
 `benchmarks/summarize.py` writes `results/SUITE.md`: every check across every circuit under one declared parameter set.
 
+## Declared parameter set (v0.4)
+Shiu 2024 LIF parameters; chemical kick 0.275 x 0.3 mV; SEZ intrinsic synapses x2.0 (fitted,
+`benchmarks/fit_regional.py`); GF adaptation 30 mV (all-or-none, von Reyn 2014); motor neuron
+adaptation 10 mV (sustained MN rates < 100 Hz, Azevedo 2020, McKellar 2020); electrical
+synapses as listed. Every benchmark runs under this one set; `results/SUITE.md` reports it.
+
 ## Every deviation from the raw connectome is declared
 See `flycns/graph.py` (SIGN_MAP, ELECTRICAL_SYNAPSES, INTRINSIC_OVERRIDES) and
 `results/*/provenance.md`. Effective chemical kick is 0.275 mV (Shiu 2024 unitary

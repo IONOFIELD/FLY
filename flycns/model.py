@@ -18,7 +18,7 @@ import pandas as pd
 from brian2 import (NeuronGroup, PoissonGroup, Synapses, SpikeMonitor, StateMonitor, Network,
                     ms, mV, Hz, second, defaultclock, prefs, seed as b2seed)
 
-from .graph import electrical_pairs, drop_mixed_chemical, pre_class, type_region, INTRINSIC_OVERRIDES
+from .graph import electrical_pairs, drop_mixed_chemical, pre_class, type_region, INTRINSIC_OVERRIDES, SEZ_GAIN_FITTED
 
 
 @dataclass
@@ -39,7 +39,7 @@ class LIFParams:
     # class-wise gain on top of w_scale, keyed by presynaptic class (graph.pre_class)
     class_gains: dict = field(default_factory=lambda: {"sensory": 1.0, "relay": 1.0, "local": 1.0})
     # regional gain by presynaptic type prefix region (graph.type_region): SEZ vs other
-    region_gains: dict = field(default_factory=lambda: {"SEZ": 1.0, "other": 1.0})
+    region_gains: dict = field(default_factory=lambda: {"SEZ": SEZ_GAIN_FITTED, "other": 1.0})
 
 
 class CNSModel:
@@ -79,8 +79,11 @@ class CNSModel:
         G.b_adapt = 0 * mV
         self.overrides_applied = []
         for typ, par, val, src in INTRINSIC_OVERRIDES:
-            idx = [self.lif_index[b] for b in self.meta.index[self.meta["type"] == typ]
-                   if b in self.lif_index.index]
+            if typ.startswith("superclass:"):
+                sel = self.meta.index[self.meta["superclass"] == typ.split(":", 1)[1]]
+            else:
+                sel = self.meta.index[self.meta["type"] == typ]
+            idx = [self.lif_index[b] for b in sel if b in self.lif_index.index]
             if par == "b_adapt_mV" and idx:
                 G.b_adapt[idx] = val * mV
                 self.overrides_applied.append(dict(type=typ, parameter=par, value=val, source=src))

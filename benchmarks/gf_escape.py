@@ -96,6 +96,7 @@ prov = ["# Provenance: gf_escape", "", "## Neurotransmitter sign map", str(SIGN_
         "## Electrical synapses added (invisible to EM)"]
 prov += [f"- {a} -> {b} ({'ipsilateral' if i else 'any side'}, spikelet {k}): {s}" for a, b, i, k, s in ELECTRICAL_SYNAPSES]
 prov += ["", "## Intrinsic overrides"] + [f"- {t}.{p} = {v}: {s}" for t, p, v, s in INTRINSIC_OVERRIDES]
+prov += ["", f"## Regional gain: SEZ x{LIFParams().region_gains['SEZ']} (fitted, benchmarks/fit_regional.py), other x1"]
 prov += ["", "## Loom tuning (PLACEHOLDER ordinal, Turner et al. 2022 Fig 3A)", str(LOOM_TUNING), "",
          "## Checks"] + [f"- {k}: {'PASS' if v else 'FAIL'}" for k, v in checks.items()]
 (OUT / "provenance.md").write_text("\n".join(prov))

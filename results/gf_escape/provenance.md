@@ -11,6 +11,10 @@
 
 ## Intrinsic overrides
 - DNp01.b_adapt_mV = 30.0: all-or-none GF response; von Reyn 2014; Ache 2019
+- superclass:cb_motor.b_adapt_mV = 10.0: sustained MN rates < 100 Hz; Azevedo 2020; McKellar 2020
+- superclass:vnc_motor.b_adapt_mV = 10.0: sustained MN rates < 100 Hz; Azevedo 2020
+
+## Regional gain: SEZ x2.0 (fitted, benchmarks/fit_regional.py), other x1
 
 ## Loom tuning (PLACEHOLDER ordinal, Turner et al. 2022 Fig 3A)
 {'LC4': 1.0, 'LPLC2': 1.0, 'LC6': 1.0, 'LC16': 0.8, 'LC26': 0.6, 'LPLC1': 0.6, 'LC9': 0.5, 'LC17': 0.5, 'LC12': 0.4}
