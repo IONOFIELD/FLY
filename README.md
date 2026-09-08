@@ -33,8 +33,9 @@ group and watch what fires, **14** for one neuron's skeleton and synapses, **6**
 | auditory to GF | JO-A/JO-B at 150 Hz | DNp01 membrane V | sound alone subthreshold, pathway carried by the declared JON-GF contact, null silent, CNS quiet |
 | feeding | pharyngeal/labellar gustatory afferents | proboscis motor neurons | monotonic dose response, MN rates < 100 Hz, activity confined to SEZ, unilateral drive matches 73:1 structural laterality, second-order sufficiency, null silent |
 
-Recorded but not scored: **the model predicts auditory drive suppresses GF response to a
-near-threshold loom (0.55 to 0.20-0.40)**; not established in vivo in our references. Not
+Recorded but not scored: the effect of auditory drive on GF's response to a near-threshold loom,
+measured at a working point calibrated per run (the direction depends on where the loom sits
+relative to threshold, so a fixed gain gave opposite answers under different tunings). Not
 applicable with this annotation: bitter suppression and Shiu's labellar-sugar contralateral bias
 (MaleCNS does not annotate taste modality).
 
@@ -91,7 +92,7 @@ Tanouye & Wyman, Allen, Augustin; the JON-GF synapse from Pezier & Blagburn; loo
 Turner, Krieger, Pang & Clandinin. Added here: the test harness with numeric criteria and nulls,
 one parameter set across independent circuits, a spiking sensory-to-motor cascade across the neck
 connective on MaleCNS, the documented negatives, and one testable prediction. Where the model
-disagrees with a published measurement, the model is presumed wrong.
+disagrees with a measurement, the model is presumed wrong.
 
 ## Known limits
 Single-neuron parameters are Shiu's central-brain values applied uniformly to brain and cord; no

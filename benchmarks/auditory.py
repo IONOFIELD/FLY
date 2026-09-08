@@ -8,13 +8,16 @@ subthreshold and summates with visual drive (von Reyn 2014). That yields
 ablation predictions with opposite signs to the GF->TTMn case:
 
   A1 JO-A/B drive alone (pulse-song rates): GF response probability low, <= 0.3
-  A2 REPORTED, NOT SCORED (since 2026-09-08): effect of JO drive on GF response to a
-     near-threshold loom (gain 0.6). The model predicts SUPPRESSION (0.55 -> 0.20 hit
-     rate, 5.6 -> 3.6 mV): chemical auditory pathways recruit inhibition onto GF that
-     outweighs the ~1 mV net electrical drive. The in vivo direction is not established
-     in our references (von Reyn 2014 tested visual-visual integration; Pezier & Blagburn
-     2013 measured the JON-evoked GF potential in isolation), so this is recorded as a
-     model prediction. Earlier versions scored it as facilitation on an assumption.
+  A2 REPORTED, NOT SCORED: effect of JO drive on GF response to a NEAR-THRESHOLD loom.
+     The working point is calibrated per run (sweep of loom gain; take the largest gain
+     with GF hit rate <= 0.3 and mean depolarisation >= 2 mV), because the direction of
+     the effect depends on where the loom sits relative to threshold: with a loom that
+     already fires GF there is only room to suppress, with one that never depolarises GF
+     only room to facilitate. Earlier runs reported both directions at fixed gains (0.55
+     -> 0.20 with the ordinal tuning at gain 0.6; 0.00 -> 0.07 with the measured tuning
+     at the same gain) before this calibration existed; neither is quotable. The in vivo
+     direction is not established in our references (von Reyn 2014 tested visual-visual
+     integration; Pezier & Blagburn 2013 measured the JON-evoked GF potential alone).
   A3 pathway ablation: MaleCNS EM annotates the mixed JON-GF contact as
      chemical (679 synapses). Removing BOTH the electrical model and those
      EM edges must abolish the JO-evoked GF depolarisation (measured from GF
@@ -45,7 +48,7 @@ OUT = Path("results/auditory"); OUT.mkdir(parents=True, exist_ok=True)
 N_TRIALS = int(sys.argv[1]) if len(sys.argv) > 1 else 10
 DATA = sys.argv[2] if len(sys.argv) > 2 else "data"
 JO_HZ = 150
-SUB_LOOM_GAIN = 0.6     # subthreshold loom for the summation test
+SUB_LOOM_GAIN = None    # calibrated per run: largest gain with hit rate <= 0.3 and GF depolarised
 
 neurons, edges = load_graph(DATA)
 A.sketch("auditory")
@@ -104,6 +107,23 @@ def run(label, stim_types, electrical=True, edge_df=edges, jo=True, loom=False):
     return s
 
 
+# ---- calibrate the near-threshold loom working point
+CAL_GAINS = [0.4, 0.6, 0.8, 1.0, 1.3]
+cal = []
+for g in CAL_GAINS:
+    SUB_LOOM_GAIN = g
+    globals()["SUB_LOOM_GAIN"] = g
+    c = run(f"cal_loom_gain_{g}", list(LOOM_TUNING), electrical=True, jo=False, loom=True)
+    cal.append((g, c["gf_hit"], c["gf_depol_mV"]))
+    print(f"  calibration: loom gain {g} -> GF hit {c['gf_hit']:.2f}, depol {c['gf_depol_mV']:.2f} mV")
+ok = [(g, h, d) for g, h, d in cal if h <= 0.3 and d >= 2.0]
+SUB_LOOM_GAIN = max(g for g, _, _ in ok) if ok else CAL_GAINS[0]
+globals()["SUB_LOOM_GAIN"] = SUB_LOOM_GAIN
+report["arms"]["A2_calibration"] = dict(gains=[dict(gain=g, hit=h, depol_mV=d) for g, h, d in cal],
+                                        chosen_gain=SUB_LOOM_GAIN,
+                                        rule="largest gain with GF hit <= 0.3 and depol >= 2 mV")
+print(f"A2 working point: loom gain {SUB_LOOM_GAIN}")
+
 a1 = run("A1_jo_alone_electrical", jo_types, electrical=True)
 a3 = run("A3_jo_alone_no_electrical_no_mixed_edges", jo_types, electrical=False,
          edge_df=drop_mixed_chemical(edges, neurons))
@@ -120,11 +140,11 @@ report["checks"] = {
     "A4_null_silent": a4["gf_hit"] < 0.1 and a4["gf_depol_mV"] < 0.5,
     "A5_cns_quiet": max(a1["pop_rate_hz"], a2["pop_rate_hz"]) < 0.05,
 }
-report["arms"]["A2_prediction"] = dict(
+report["arms"]["A2_prediction"] = dict(loom_gain=SUB_LOOM_GAIN,
     loom_alone_hit=lo["gf_hit"], loom_plus_jo_hit=a2["gf_hit"],
     loom_alone_depol_mV=lo["gf_depol_mV"], loom_plus_jo_depol_mV=a2["gf_depol_mV"],
     direction="suppression" if a2["gf_hit"] < lo["gf_hit"] else "facilitation" if a2["gf_hit"] > lo["gf_hit"] else "none",
-    note="model prediction; in vivo direction not established in cited references")
+    note="model prediction at a calibrated near-threshold working point; in vivo direction not established in cited references")
 print(f"A2 (reported): JO drive changes GF response to near-threshold loom {lo['gf_hit']:.2f} -> {a2['gf_hit']:.2f} "
       f"({report['arms']['A2_prediction']['direction']})")
 report["pass"] = all(v for v in report["checks"].values() if v is not None)

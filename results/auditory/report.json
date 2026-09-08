@@ -16,12 +16,83 @@
   ],
   "jo_hz": 150,
   "arms": {
+    "cal_loom_gain_0.4": {
+      "gf_per_cell": 0.0,
+      "gf_hit": 0.0,
+      "gf_lat_ms": NaN,
+      "pop_rate_hz": 0.0008638878369258926,
+      "wall_s": 98.0,
+      "gf_depol_mV": 2.591223068511245
+    },
+    "cal_loom_gain_0.6": {
+      "gf_per_cell": 0.0,
+      "gf_hit": 0.0,
+      "gf_lat_ms": NaN,
+      "pop_rate_hz": 0.0015581631253149025,
+      "wall_s": 103.0,
+      "gf_depol_mV": 3.666914666997937
+    },
+    "cal_loom_gain_0.8": {
+      "gf_per_cell": 0.0625,
+      "gf_hit": 0.125,
+      "gf_lat_ms": 41.919999999999234,
+      "pop_rate_hz": 0.0023997335216438373,
+      "wall_s": 100.9,
+      "gf_depol_mV": 4.593810282925104
+    },
+    "cal_loom_gain_1.0": {
+      "gf_per_cell": 0.4,
+      "gf_hit": 0.5,
+      "gf_lat_ms": 47.01499999999991,
+      "pop_rate_hz": 0.0034981573706613996,
+      "wall_s": 110.9,
+      "gf_depol_mV": 5.953735222561198
+    },
+    "cal_loom_gain_1.3": {
+      "gf_per_cell": 1.4875,
+      "gf_hit": 0.975,
+      "gf_lat_ms": 42.694871794871624,
+      "pop_rate_hz": 0.00532737595631754,
+      "wall_s": 106.4,
+      "gf_depol_mV": 6.853097849306906
+    },
+    "A2_calibration": {
+      "gains": [
+        {
+          "gain": 0.4,
+          "hit": 0.0,
+          "depol_mV": 2.591223068511245
+        },
+        {
+          "gain": 0.6,
+          "hit": 0.0,
+          "depol_mV": 3.666914666997937
+        },
+        {
+          "gain": 0.8,
+          "hit": 0.125,
+          "depol_mV": 4.593810282925104
+        },
+        {
+          "gain": 1.0,
+          "hit": 0.5,
+          "depol_mV": 5.953735222561198
+        },
+        {
+          "gain": 1.3,
+          "hit": 0.975,
+          "depol_mV": 6.853097849306906
+        }
+      ],
+      "chosen_gain": 0.8,
+      "rule": "largest gain with GF hit <= 0.3 and depol >= 2 mV"
+    },
     "A1_jo_alone_electrical": {
       "gf_per_cell": 0.0125,
       "gf_hit": 0.025,
       "gf_lat_ms": 49.0,
       "pop_rate_hz": 0.0031321979105908056,
-      "wall_s": 100.5,
+      "wall_s": 106.3,
       "gf_depol_mV": 1.353369959855701
     },
     "A3_jo_alone_no_electrical_no_mixed_edges": {
@@ -29,7 +100,7 @@
       "gf_hit": 0.0,
       "gf_lat_ms": NaN,
       "pop_rate_hz": 0.00313099798800981,
-      "wall_s": 102.1,
+      "wall_s": 99.9,
       "gf_depol_mV": 0.31909966261034517
     },
     "ref_jo_alone_chem_only_EM_as_annotated": {
@@ -37,40 +108,41 @@
       "gf_hit": 1.0,
       "gf_lat_ms": 11.192499999999587,
       "pop_rate_hz": 0.0031737952267319684,
-      "wall_s": 95.1,
+      "wall_s": 100.6,
       "gf_depol_mV": 3.640484432536142
     },
     "subthreshold_loom_alone": {
-      "gf_per_cell": 0.0,
-      "gf_hit": 0.0,
-      "gf_lat_ms": NaN,
-      "pop_rate_hz": 0.0015581631253149025,
-      "wall_s": 104.9,
-      "gf_depol_mV": 3.666914666997937
+      "gf_per_cell": 0.0625,
+      "gf_hit": 0.125,
+      "gf_lat_ms": 41.919999999999234,
+      "pop_rate_hz": 0.0023997335216438373,
+      "wall_s": 108.6,
+      "gf_depol_mV": 4.593810282925104
     },
     "A2_loom_plus_jo": {
-      "gf_per_cell": 0.0375,
-      "gf_hit": 0.075,
-      "gf_lat_ms": 44.13333333333139,
-      "pop_rate_hz": 0.0047242641185197476,
-      "wall_s": 103.3,
-      "gf_depol_mV": 2.6635411968377065
+      "gf_per_cell": 0.15,
+      "gf_hit": 0.3,
+      "gf_lat_ms": 36.658333333331804,
+      "pop_rate_hz": 0.005554136571102626,
+      "wall_s": 110.6,
+      "gf_depol_mV": 3.074763799193131
     },
     "A4_jo_rewired_null_chem": {
       "gf_per_cell": 0.0,
       "gf_hit": 0.0,
       "gf_lat_ms": NaN,
       "pop_rate_hz": 0.0002415844129736747,
-      "wall_s": 98.2,
+      "wall_s": 105.6,
       "gf_depol_mV": 0.0
     },
     "A2_prediction": {
-      "loom_alone_hit": 0.0,
-      "loom_plus_jo_hit": 0.075,
-      "loom_alone_depol_mV": 3.666914666997937,
-      "loom_plus_jo_depol_mV": 2.6635411968377065,
+      "loom_gain": 0.8,
+      "loom_alone_hit": 0.125,
+      "loom_plus_jo_hit": 0.3,
+      "loom_alone_depol_mV": 4.593810282925104,
+      "loom_plus_jo_depol_mV": 3.074763799193131,
       "direction": "facilitation",
-      "note": "model prediction; in vivo direction not established in cited references"
+      "note": "model prediction at a calibrated near-threshold working point; in vivo direction not established in cited references"
     }
   },
   "checks": {

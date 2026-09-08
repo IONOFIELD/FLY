@@ -31,11 +31,15 @@ input rate, at motor rates of ~70 Hz, with the rest of the CNS silent and a wind
 control population producing nothing. Unilateral drive produces ipsilateral MN9 output,
 matching the 73:1 structural bias in the wiring.
 
-## What the model predicts (not scored)
-Auditory drive during a near-threshold loom **reduces** GF response probability from 0.55 to
-0.20-0.40 (three seeds). The electrical JON to GF path is excitatory but small; chemical
-auditory pathways recruit inhibition onto GF that outweighs it. We found no in vivo
-measurement of this interaction in our references. It is a testable prediction.
+## Multisensory interaction at GF (reported, direction withdrawn)
+Whether auditory drive raises or lowers GF's response to a loom depends entirely on where the
+loom sits relative to threshold, and earlier runs reported both directions at a fixed loom gain
+(suppression 0.55 to 0.20 under the ordinal tuning; facilitation 0.00 to 0.07 under the measured
+tuning at the same gain). Neither is quotable. The auditory benchmark now calibrates a
+near-threshold working point per run (largest loom gain with GF hit rate <= 0.3 and mean
+depolarisation >= 2 mV) and reports the effect there; the value is in
+`results/auditory/report.json` under `A2_prediction` with its calibration table. The in vivo
+direction is not established in our references.
 
 ## Measured loom input (added 8 Sept 2026)
 The ordinal loom tuning has been replaced by amplitudes extracted from the public Turner,
