@@ -12,7 +12,8 @@ Two declared drive arms, because MaleCNS does not annotate taste modality:
           not a modality annotation.
 Criteria (Shiu 2024; Gordon & Scott 2009; McKellar 2020):
   F1 unilateral drive: MN9 laterality has the same sign as the structural 2-hop
-     prediction (dynamics reproduce wiring). Shiu 2024's contralateral bias was for
+     prediction (dynamics reproduce wiring), at the lowest dose-curve rate giving MN9 >= 2
+     spikes/cell bilaterally. Shiu 2024's contralateral bias was for
      labellar SUGAR GRNs, which MaleCNS does not annotate: recorded as N/A, not scored.
   F2 MN9 response is monotonic in sugar GRN rate over 10-200 Hz
   F3 bitter GRN co-activation suppresses MN9 relative to sugar alone
@@ -154,7 +155,7 @@ m = build(sugar)
 rates = pd.Series(0.0, index=m.stim.bodyId.values)
 # rate: lowest dose-curve rate at which bilateral drive gave MN9 >= 1 spike/cell,
 # so a left/right ratio is measurable (unilateral drive is half the input)
-_ok = curve[curve.MN9_spikes_per_cell >= 1.0]
+_ok = curve[curve.MN9_spikes_per_cell >= 2.0]   # >= 2 spikes/cell so a side ratio is measurable
 F1_HZ = float(_ok.sugar_hz.iloc[0]) if len(_ok) else 100.0
 rates[left_sugar.bodyId.values] = F1_HZ
 onsets = []

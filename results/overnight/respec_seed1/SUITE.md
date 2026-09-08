@@ -1,8 +1,8 @@
-# MaleCNS v1.0 LIF benchmark suite
+# MaleCNS v1.0 LIF benchmark suite  [respec_seed1]
 
-env: FLYCNS_SEED=0 FLYCNS_SIGNFLIP=0 FLYCNS_WSCALE=0.3
+env: FLYCNS_SEED=1 FLYCNS_SIGNFLIP=0 FLYCNS_WSCALE=0.3
 
-**18/18 checks pass under ONE parameter set** (same LIFParams for every circuit).
+**18/19 checks pass under ONE parameter set** (same LIFParams for every circuit).
 
 ## Parameters
 ```
@@ -19,7 +19,7 @@ env: FLYCNS_SEED=0 FLYCNS_SIGNFLIP=0 FLYCNS_WSCALE=0.3
   "gap_delay_ms": 0.8,
   "chem_delay_ms": 1.8,
   "dt_ms": 0.1,
-  "seed": 0,
+  "seed": 1,
   "class_gains": {
     "sensory": 1.0,
     "relay": 1.0,
@@ -37,7 +37,7 @@ effective chemical kick per synapse: 0.0825 mV (Shiu 2024 unitary 0.275 mV x Mal
 | benchmark | check | result |
 |---|---|---|
 | auditory | A1_jo_alone_mostly_subthreshold | PASS |
-| auditory | A2_jo_effect_on_near_threshold_loom_REPORTED | SKIP |
+| auditory | A2_summation_with_subthreshold_loom | FAIL |
 | auditory | A3_declared_pairs_carry_jo_drive | PASS |
 | auditory | A4_null_silent | PASS |
 | auditory | A5_cns_quiet | PASS |
