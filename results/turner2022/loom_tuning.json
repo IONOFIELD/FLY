@@ -1,0 +1,136 @@
+{
+  "amplitude": {
+    "LC17": 1.0,
+    "LC12": 0.754,
+    "LC26": 0.7355,
+    "LPLC2": 0.6926,
+    "LC15": 0.614,
+    "LPLC1": 0.5118,
+    "LC4": 0.498,
+    "LC16": 0.4865,
+    "LC6": 0.3981,
+    "LC21": 0.3724,
+    "LC18": 0.3608,
+    "LC9": 0.3048,
+    "LC11": 0.2883
+  },
+  "amplitude_sem_normalised": {
+    "LC4": 0.0325,
+    "LC6": 0.0318,
+    "LC9": 0.0303,
+    "LC11": 0.0119,
+    "LC12": 0.054,
+    "LC15": 0.0313,
+    "LC16": 0.0448,
+    "LC17": 0.1339,
+    "LC18": 0.0139,
+    "LC21": 0.0256,
+    "LC26": 0.053,
+    "LPLC1": 0.0336,
+    "LPLC2": 0.0533
+  },
+  "mean_peak_dff": {
+    "LC4": 0.2084,
+    "LC6": 0.1666,
+    "LC9": 0.1276,
+    "LC11": 0.1207,
+    "LC12": 0.3156,
+    "LC15": 0.257,
+    "LC16": 0.2037,
+    "LC17": 0.4186,
+    "LC18": 0.151,
+    "LC21": 0.1559,
+    "LC26": 0.3079,
+    "LPLC1": 0.2142,
+    "LPLC2": 0.2899
+  },
+  "gain_sigma": 0.3834,
+  "gain_n_trials": 150,
+  "n_series": 10,
+  "n_flies": 10,
+  "series": [
+    {
+      "file": "2021-08-04.hdf5",
+      "fly": "Fly1",
+      "series": "series_001",
+      "protocol": "PanGlomSuite",
+      "loom_trials": 15,
+      "gloms": 13
+    },
+    {
+      "file": "2021-08-04.hdf5",
+      "fly": "Fly2",
+      "series": "series_004",
+      "protocol": "PanGlomSuite",
+      "loom_trials": 15,
+      "gloms": 13
+    },
+    {
+      "file": "2021-08-04.hdf5",
+      "fly": "Fly3",
+      "series": "series_007",
+      "protocol": "PanGlomSuite",
+      "loom_trials": 15,
+      "gloms": 13
+    },
+    {
+      "file": "2021-08-11.hdf5",
+      "fly": "Fly1",
+      "series": "series_001",
+      "protocol": "PanGlomSuite",
+      "loom_trials": 15,
+      "gloms": 13
+    },
+    {
+      "file": "2021-08-11.hdf5",
+      "fly": "Fly3",
+      "series": "series_007",
+      "protocol": "PanGlomSuite",
+      "loom_trials": 15,
+      "gloms": 13
+    },
+    {
+      "file": "2021-08-20.hdf5",
+      "fly": "Fly1",
+      "series": "series_002",
+      "protocol": "PanGlomSuite",
+      "loom_trials": 15,
+      "gloms": 13
+    },
+    {
+      "file": "2021-08-25.hdf5",
+      "fly": "Fly1",
+      "series": "series_001",
+      "protocol": "PanGlomSuite",
+      "loom_trials": 15,
+      "gloms": 13
+    },
+    {
+      "file": "2021-08-25.hdf5",
+      "fly": "Fly3",
+      "series": "series_009",
+      "protocol": "PanGlomSuite",
+      "loom_trials": 15,
+      "gloms": 13
+    },
+    {
+      "file": "2021-11-29.hdf5",
+      "fly": "Fly1",
+      "series": "series_002",
+      "protocol": "PanGlomSuite",
+      "loom_trials": 15,
+      "gloms": 13
+    },
+    {
+      "file": "2021-11-29.hdf5",
+      "fly": "Fly3",
+      "series": "series_008",
+      "protocol": "PanGlomSuite",
+      "loom_trials": 15,
+      "gloms": 13
+    }
+  ],
+  "method": "photodiode epoch onsets; dF/F vs 1 s pre; peak in 3 s stim window",
+  "source": "Turner, Krieger, Pang & Clandinin 2022, eLife 11:e82587; Dryad doi:10.5061/dryad.h44j0zpp8",
+  "extracted_on": "2026-09-08"
+}
