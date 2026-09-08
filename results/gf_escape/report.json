@@ -31,40 +31,40 @@
       "n_lif": 167649,
       "n_chem_syn": 5837592,
       "n_stim": 2526,
-      "pop_rate_hz": 0.0038089784524299453,
-      "gf_per_cell": 0.6125,
+      "pop_rate_hz": 0.0038280497198491643,
+      "gf_per_cell": 0.7625,
       "gf_hit": 0.575,
       "gf_hit_ci95": [
         0.4219480043605999,
         0.7149083147518411
       ],
-      "gf_per_hit": 1.2608695652173914,
-      "gf_lat_ms": 45.173913043476794,
-      "ttmn_per_cell": 0.6125,
-      "ttmn_lag_ms": 0.900000000000096,
-      "psi_per_cell": 0.6125,
+      "gf_per_hit": 1.5217391304347827,
+      "gf_lat_ms": 43.539130434781384,
+      "ttmn_per_cell": 0.7625,
+      "ttmn_lag_ms": 0.8999999999999476,
+      "psi_per_cell": 0.7625,
       "ttmn_to_gf_ratio": 1.0,
-      "wall_s": 91.6
+      "wall_s": 91.4
     },
     "real_chemical_only": {
       "arm": "real_chemical_only",
       "n_lif": 167649,
       "n_chem_syn": 5837611,
       "n_stim": 2526,
-      "pop_rate_hz": 0.00377043014594429,
-      "gf_per_cell": 0.6375,
-      "gf_hit": 0.625,
+      "pop_rate_hz": 0.003780980208771943,
+      "gf_per_cell": 0.8375,
+      "gf_hit": 0.65,
       "gf_hit_ci95": [
-        0.4703216005453191,
-        0.7577722646420829
+        0.4950559699353738,
+        0.7786566682895085
       ],
-      "gf_per_hit": 1.24,
-      "gf_lat_ms": 41.755999999998636,
+      "gf_per_hit": 1.5192307692307692,
+      "gf_lat_ms": 40.873076923075615,
       "ttmn_per_cell": 0.0,
       "ttmn_lag_ms": NaN,
       "psi_per_cell": 0.0,
       "ttmn_to_gf_ratio": 0.0,
-      "wall_s": 90.2
+      "wall_s": 87.9
     },
     "rewired_null": {
       "arm": "rewired_null",
@@ -84,7 +84,7 @@
       "ttmn_lag_ms": NaN,
       "psi_per_cell": 0.0,
       "ttmn_to_gf_ratio": NaN,
-      "wall_s": 91.3
+      "wall_s": 91.1
     }
   },
   "checks": {
