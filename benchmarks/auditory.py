@@ -33,6 +33,7 @@ from flycns import load_graph, rewire_null, CNSModel, LIFParams, loom_protocol
 from flycns.graph import drop_mixed_chemical
 from flycns.protocols import LOOM_TUNING
 from flycns.bench import find_types, pulse_protocol
+from flycns import ascii as A
 
 OUT = Path("results/auditory"); OUT.mkdir(parents=True, exist_ok=True)
 N_TRIALS = int(sys.argv[1]) if len(sys.argv) > 1 else 10
@@ -40,6 +41,7 @@ DATA = sys.argv[2] if len(sys.argv) > 2 else "data"
 JO_HZ = 150
 
 neurons, edges = load_graph(DATA)
+A.sketch("auditory")
 meta = neurons.set_index("bodyId")
 jo_types = [t for t in find_types(neurons, [r"^JO-A", r"^JO-B"]) if not t.endswith("unclear")]
 print("JO vibration types:", jo_types)
@@ -82,6 +84,7 @@ def run(label, stim_types, electrical=True, edge_df=edges, jo=True, loom=False):
     else:
         onsets = pulse_protocol(m, {t: JO_HZ for t in stim_types}, n_trials=N_TRIALS, pulse_ms=60)
     s = gf_stats(m, onsets); s["wall_s"] = round(time.time() - t0, 1)
+    A.raster(m, onsets, ["DNp01"], window_ms=100, max_trials=2)
     s["gf_depol_mV"] = float(np.nanmean(m.peak_depolarization_mV(onsets, 100)))
     print(f"[{label}] GF {s['gf_per_cell']:.2f}/cell hit {s['gf_hit']:.2f} lat {s['gf_lat_ms']:.1f} ms "
           f"depol {s['gf_depol_mV']:.2f} mV | CNS {s['pop_rate_hz']:.4f} Hz | {s['wall_s']}s")

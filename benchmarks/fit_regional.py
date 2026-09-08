@@ -36,6 +36,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from flycns import load_graph, CNSModel, LIFParams
 from flycns.protocols import LOOM_TUNING, loom_protocol
 from flycns.bench import pulse_protocol, readout_rates, find_types
+from flycns import ascii as A
 
 N = int(sys.argv[1]) if len(sys.argv) > 1 else 6
 DATA = sys.argv[2] if len(sys.argv) > 2 else "data"
@@ -100,7 +101,8 @@ for gsez in SEZ_GRID:
         m.run(300); on.append(m.t_ms); m.set_stim_rates(tuning * 5.0); m.run(60); m.set_stim_rates(np.zeros(len(m.stim)))
     m.run(300); L0 = gf_metrics(m, on); m.restore()
     # feeding and specificity
-    on = pulse_protocol(m, {t: 50 for t in taste}, n_trials=N); F = mn9_metrics(m, on); m.restore()
+    on = pulse_protocol(m, {t: 50 for t in taste}, n_trials=N); F = mn9_metrics(m, on)
+    A.raster(m, on, ["MN9"], window_ms=250, bin_ms=8, max_trials=1); A.region_bar(m, on); m.restore()
     on = pulse_protocol(m, {t: 50 for t in control}, n_trials=N); S = mn9_metrics(m, on); m.restore()
 
     checks = dict(

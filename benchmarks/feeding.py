@@ -23,6 +23,7 @@ from flycns.graph import (FEEDING_SECOND_ORDER, FEEDING_MOTOR, SUGAR_GRN_PATTERN
                           BITTER_GRN_PATTERNS, TASTE_SENSORY_FALLBACK)
 from flycns.bench import find_types, present_types, pulse_protocol, readout_rates
 from flycns.graph import infer_side, gustatory_afferents
+from flycns import ascii as A
 
 OUT = Path("results/feeding"); OUT.mkdir(parents=True, exist_ok=True)
 N_TRIALS = int(sys.argv[1]) if len(sys.argv) > 1 else 6
@@ -31,6 +32,7 @@ SUGAR = sys.argv[3].split(",") if len(sys.argv) > 3 else None   # override type 
 BITTER = sys.argv[4].split(",") if len(sys.argv) > 4 else None
 
 neurons, edges = load_graph(DATA)
+A.sketch("feeding")
 meta = neurons.set_index("bodyId")
 
 # ---------------------------------------------------------------- discovery
@@ -117,6 +119,8 @@ for hz in [10, 25, 50, 100, 200]:
     on = pulse_protocol(m, {t: hz for t in sugar}, n_trials=N_TRIALS)
     v = mn9(m, on).spikes_per_cell.mean()
     curve.append(dict(sugar_hz=hz, MN9_spikes_per_cell=float(v), pop_rate_hz=float(m.population_rate_hz())))
+    if hz == 50:
+        A.raster(m, on, ["MN9"], window_ms=250, bin_ms=8, max_trials=2); A.region_bar(m, on)
     print(f"F2 sugar {hz:>3} Hz -> MN9 {v:.2f} spikes/cell, CNS {m.population_rate_hz():.4f} Hz")
 curve = pd.DataFrame(curve); curve.to_csv(OUT / "F2_dose.csv", index=False)
 report["arms"]["F2_dose"] = curve.to_dict("records")

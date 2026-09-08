@@ -17,6 +17,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from flycns import load_graph, rewire_null, CNSModel, LIFParams, loom_protocol
 from flycns.protocols import LOOM_TUNING
 from flycns.graph import ELECTRICAL_SYNAPSES, INTRINSIC_OVERRIDES, SIGN_MAP
+from flycns import ascii as A
 
 OUT = Path("results/gf_escape"); OUT.mkdir(parents=True, exist_ok=True)
 N_TRIALS = int(sys.argv[1]) if len(sys.argv) > 1 else 20
@@ -45,6 +46,8 @@ def run_arm(name, neurons, edges, electrical):
     m = CNSModel(neurons, edges, list(LOOM_TUNING), LIFParams(), electrical=electrical)
     trials = loom_protocol(m, n_trials=N_TRIALS)
     df, sp = score(m, trials)
+    A.raster(m, [t for t, _ in trials], ["DNp01", "TTMn"], meta=m.meta)
+    A.region_bar(m, [t for t, _ in trials], window_ms=160)
     summ = dict(arm=name, n_lif=int(len(m.lif_ids)), n_chem_syn=int(m.n_chem),
                 n_stim=int(len(m.stim)), pop_rate_hz=float(m.population_rate_hz()),
                 gf_per_cell=float(df.gf.mean()), gf_hit=float((df.gf > 0).mean()),
@@ -61,6 +64,7 @@ def run_arm(name, neurons, edges, electrical):
 
 
 neurons, edges = load_graph(DATA)
+A.sketch("gf_escape")
 report = {"benchmark": "gf_escape", "n_trials": N_TRIALS, "params": LIFParams().__dict__, "arms": {}}
 
 s, sp, m = run_arm("real_electrical", neurons, edges, True)
