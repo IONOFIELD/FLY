@@ -4,4 +4,4 @@ cd "$(dirname "$0")"
 [ -d .venv ] || { echo "no .venv here; run: python3 -m venv .venv && source .venv/bin/activate && pip install -r requirements.txt"; exit 1; }
 source .venv/bin/activate
 [ -f ~/.neuprint_token ] && export NEUPRINT_TOKEN="$(tr -d '[:space:]' < ~/.neuprint_token)"
-exec .venv/bin/python fly.py "$@"
+exec python fly.py "$@"

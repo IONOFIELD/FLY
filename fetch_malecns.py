@@ -62,6 +62,14 @@ def _xyz(v):
 xyz = neurons["somaLocation"].apply(_xyz).tolist()
 neurons[["x", "y", "z"]] = pd.DataFrame(xyz, index=neurons.index)
 neurons = neurons.drop(columns=["somaLocation"])
+# preserve annotation columns from a previous fetch_annotations.py run
+_old = OUT / "neurons.parquet"
+if _old.exists():
+    prev = pd.read_parquet(_old)
+    keep = [c for c in ["subclass", "entryNerve", "exitNerve"] if c in prev]
+    if keep:
+        neurons = neurons.merge(prev[["bodyId"] + keep], on="bodyId", how="left")
+        print("preserved annotation columns:", keep)
 neurons.to_parquet(OUT / "neurons.parquet", index=False)
 print("wrote", OUT / "neurons.parquet")
 
