@@ -1,16 +1,38 @@
-# flycns: connectome-constrained LIF benchmarks on the Drosophila MaleCNS
+# flycns: benchmarked spiking simulation of the Drosophila central nervous system
 
 One-command, repeatable simulation of the Janelia FlyEM male CNS connectome
 (v1.0, 166,700 neurons, brain + ventral nerve cord) as a signed leaky
 integrate-and-fire network, validated against published circuit physiology.
 
-## Quick start
+## Launch
+
+    ./fly
+
+That is the whole interface: it activates the environment, loads your neuprint token from
+`~/.neuprint_token`, and opens the menu. To run it from anywhere: `alias flycns=~/flycns/fly` in
+your shell profile.
+
+First time, from a fresh clone (macOS or Linux, Python 3.10 or newer):
+
+    git clone https://github.com/IONOFIELD/flycns.git && cd flycns
     python3 -m venv .venv && source .venv/bin/activate
     pip install -r requirements.txt
-    export NEUPRINT_TOKEN="..."         # neuprint.janelia.org account page
-    python fetch_malecns.py              # ~5 min, writes data/*.parquet
-    python fetch_annotations.py          # adds subclass / entryNerve to neurons.parquet
-    ./run_all.sh 20                      # benchmark + checks + 3D cascade
+    echo "PASTE_YOUR_NEUPRINT_TOKEN" > ~/.neuprint_token      # from neuprint.janelia.org, account page
+    ./fly
+
+`./fly` opens the menu. On first run choose **1** (fetch connectome, ~5 min) and **2** (fetch
+sensory annotations), then **4** (run the full suite, ~25 min). After that:
+
+    16   3D cascade with real neuron morphology (opens in your browser)
+    12   the same cascade drawn in the terminal
+    11   interactive: choose a sensory group, stimulate it, watch what fires
+    14   one neuron's skeleton and synapses in the terminal
+     6   suite summary: every check, one parameter set
+
+Every later session: `./fly` (or just `flycns` with the alias).
+
+Without the menu, the same things are single commands: `./run_all.sh 20`, `python viz/cascade_3d.py`,
+`python viz/explore.py --sez 2.0`, `python viz/neuron_ascii.py DNp01 --synapses`.
 
 ## Layout
     flycns/graph.py      load, NT signing, electrical synapses, intrinsic overrides, null model

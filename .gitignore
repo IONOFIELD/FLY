@@ -1,5 +1,10 @@
 .venv/
-data/*.parquet
 __pycache__/
+*.pyc
+.flycns_state.json
+data/*.parquet
+data/skeletons/
+data/meshes/
 results/**/*.parquet
 results/**/*.html
+overnight.log
