@@ -1,6 +1,6 @@
 # Results note: MaleCNS v1.0 as a signed leaky integrate-and-fire network
 
-*Status v0.4.2, 8 September 2026. A working note, not a manuscript. Everything here is
+*Status v0.6, 9 September 2026. A working note, not a manuscript. Everything here is
 reproducible from `./run_all.sh` and `./overnight.sh`; numbers are from `results/`.*
 
 ## What was done
@@ -107,6 +107,10 @@ carry **3.5% of total synaptic weight**, and low-confidence neurons (mean < 0.6)
 random 5%/10% flips and is included in the robustness battery (`fit/synapse_nt.py`).
 
 ## Robustness
+Escape passes 8/8 unchanged when every neuron whose per-T-bar transmitter predictions disagree
+with its aggregate label is sign-inverted (132,680 edges, 2.0% of synaptic weight): the circuit
+does not rest on any uncertain transmitter call.
+
 Benchmarks now default to 40 trials: at 20, GF response probability (criterion 0.5) failed on
 the two runs where it sat at the floor with a confidence interval spanning it, which is a
 resolution limit rather than a model result. Full suite at seeds 0-2: 18/18. Inverting 5% of neurotransmitter signs at random costs
