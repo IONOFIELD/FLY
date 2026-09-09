@@ -27,25 +27,25 @@ F2 sugar  25 Hz -> MN9 0.00 spikes/cell, CNS 0.0024 Hz
   cb_motor               ######################################## 43.047
   descending_neuron      ########                                 9.675
   vnc_efferent           #####                                    6.181
+  vnc_motor              #                                        1.886
   visual_centrifugal     #                                        1.570
   cb_intrinsic           #                                        1.570
   ascending_neuron                                                0.685
-  vnc_motor                                                       0.586
   efferent_ascending                                              0.250
   cb_sensory                                                      0.169
   vnc_intrinsic                                                   0.133
-F2 sugar  50 Hz -> MN9 7.30 spikes/cell, CNS 0.0632 Hz
-  outside-SEZ rate 0.0189 Hz | recruited motor mean 31.5 Hz | 29 of 43 cb_motor types active: ['MN11D', 'MNx01', 'MN9', 'MN11V', 'MN10', 'GNG650', 'MN4b', 'GNG668']
+F2 sugar  50 Hz -> MN9 7.30 spikes/cell, CNS 0.0640 Hz
+  outside-SEZ rate 0.0197 Hz | recruited motor mean 31.5 Hz | 29 of 43 cb_motor types active: ['MN11D', 'MNx01', 'MN9', 'MN11V', 'MN10', 'GNG650', 'MN4b', 'GNG668']
 [graph] removed 679 EM chemical synapses on declared mixed pairs (modelled as electrical)
-F2 sugar 100 Hz -> MN9 13.20 spikes/cell, CNS 0.1171 Hz
+F2 sugar 100 Hz -> MN9 13.20 spikes/cell, CNS 0.1187 Hz
 [graph] removed 679 EM chemical synapses on declared mixed pairs (modelled as electrical)
-F2 sugar 200 Hz -> MN9 19.12 spikes/cell, CNS 0.1779 Hz
+F2 sugar 200 Hz -> MN9 19.12 spikes/cell, CNS 0.1803 Hz
 [graph] removed 679 EM chemical synapses on declared mixed pairs (modelled as electrical)
 ALL gustatory arm (42 types, every tastant at once) at 50 Hz -> MN9 0.00 spikes/cell (reported, not scored; expected ~0)
 sugar drive: 140 neurons, 69 inferred left
 [graph] removed 679 EM chemical synapses on declared mixed pairs (modelled as electrical)
    structural 2-hop drive from left afferents: MN9-L 25,650 vs MN9-R 350; functional ipsi dominant -> matches wiring
-F1 left sugar 50 Hz: MN9 ipsi 0.15, contra 0.00 spikes/cell  [59s]
+F1 left sugar 50 Hz: MN9 ipsi 0.15, contra 0.00 spikes/cell  [65s]
 F3 skipped: no bitter GRN type resolved
 [graph] removed 679 EM chemical synapses on declared mixed pairs (modelled as electrical)
 F4 DNge062 50 Hz -> MN9 1.35
