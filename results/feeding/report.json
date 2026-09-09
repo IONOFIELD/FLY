@@ -1,6 +1,6 @@
 {
   "benchmark": "feeding",
-  "n_trials": 6,
+  "n_trials": 20,
   "sugar_types": [
     "aPhM2a",
     "aPhM5",
@@ -25,75 +25,76 @@
     "MN8"
   ],
   "arms": {
-    "F2b_nonSEZ_rate_hz": 0.005405304255540973,
-    "F2c_motor_mean_hz": 71.39393939393939,
+    "F2b_nonSEZ_rate_hz": 0.09467439741846409,
+    "F2c_motor_mean_hz": 57.76206896551723,
     "motor_types_active": {
-      "MN11D": 1359,
-      "MNx01": 501,
-      "MN10": 267,
-      "MN11V": 177,
-      "MN2Da": 19,
-      "MN9": 9,
-      "MN2Db": 4,
-      "GNG314": 3,
-      "MN4b": 2,
-      "MN7": 1,
-      "MNx05": 1
+      "MN11D": 7771,
+      "MNx01": 3720,
+      "MN10": 1830,
+      "MN11V": 1260,
+      "MN9": 450,
+      "GNG648": 315,
+      "GNG641": 207,
+      "MN2Da": 154,
+      "MN4b": 136,
+      "GNG314": 102,
+      "GNG283": 84,
+      "GNG653": 80
     },
     "ALL_gustatory_50Hz": {
       "n_types": 42,
-      "MN9_spikes_per_cell": 0.0,
-      "pop_rate_hz": 0.010569642168109223
+      "MN9_spikes_per_cell": 0.375,
+      "pop_rate_hz": 0.018975787567198414
     },
     "F2_dose": [
       {
         "sugar_hz": 10,
-        "MN9_spikes_per_cell": 0.0,
-        "pop_rate_hz": 0.00015683045647464742
+        "MN9_spikes_per_cell": 0.425,
+        "pop_rate_hz": 0.08312394849604064
       },
       {
         "sugar_hz": 25,
-        "MN9_spikes_per_cell": 0.0,
-        "pop_rate_hz": 0.0020548354126735053
+        "MN9_spikes_per_cell": 5.725,
+        "pop_rate_hz": 0.14180404319955828
       },
       {
         "sugar_hz": 50,
-        "MN9_spikes_per_cell": 0.75,
-        "pop_rate_hz": 0.0410539363107952
+        "MN9_spikes_per_cell": 11.075,
+        "pop_rate_hz": 0.18002404416452236
       },
       {
         "sugar_hz": 100,
-        "MN9_spikes_per_cell": 3.9166666666666665,
-        "pop_rate_hz": 0.06694343677905887
+        "MN9_spikes_per_cell": 14.025,
+        "pop_rate_hz": 0.2121830428401234
       },
       {
         "sugar_hz": 200,
-        "MN9_spikes_per_cell": 5.083333333333333,
-        "pop_rate_hz": 0.11947985753378763
+        "MN9_spikes_per_cell": 15.0,
+        "pop_rate_hz": 0.2502237546181954
       }
     ],
     "F1_left_sugar": {
-      "rate_hz": 100.0,
-      "MN9_ipsi_L": 0.8333333333333334,
+      "rate_hz": 25.0,
+      "MN9_ipsi_L": 0.7,
       "MN9_contra_R": 0.0,
-      "pop_rate_hz": 0.04247610340473575,
-      "wall_s": 25.4,
+      "pop_rate_hz": 0.10319006281116878,
+      "wall_s": 61.9,
       "structural_2hop_L": 25650.0,
       "structural_2hop_R": 350.0,
       "note": "Shiu 2024 contralateral prediction concerns labellar sugar GRNs; not testable without a modality annotation"
     },
     "F4_sufficiency": {
-      "DNge062": 1.5,
-      "GNG120": 2.0,
-      "GNG117": 1.5,
-      "GNG108": 3.0
+      "DNge062": 1.9,
+      "GNG120": 2.275,
+      "GNG117": 0.375,
+      "GNG108": 4.375
     },
     "F5_null": {
       "MN9": 0.0
     }
   },
   "checks": {
-    "F2b_extra_SEZ_quiet": true,
+    "F2b_extra_SEZ_quiet": false,
     "F2c_motor_rate_physiological": true,
     "F2_monotonic": true,
     "F1_laterality_matches_wiring": true,
@@ -102,5 +103,5 @@
     "F4_second_order_sufficient": true,
     "F5_null_silent": true
   },
-  "pass": true
+  "pass": false
 }

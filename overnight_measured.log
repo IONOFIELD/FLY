@@ -1,0 +1,37 @@
+=== 16:27 start seed1 (seed 1, signflip 0, wscale 0.3)
+**18/18 checks pass under ONE parameter set** (same LIFParams for every circuit).
+=== 16:53 done  seed1
+=== 16:53 start seed2 (seed 2, signflip 0, wscale 0.3)
+**17/18 checks pass under ONE parameter set** (same LIFParams for every circuit).
+=== 17:17 done  seed2
+=== 17:17 start signflip05_a (seed 0, signflip 0.05, wscale 0.3)
+**18/18 checks pass under ONE parameter set** (same LIFParams for every circuit).
+=== 17:41 done  signflip05_a
+=== 17:41 start signflip05_b (seed 1, signflip 0.05, wscale 0.3)
+**18/18 checks pass under ONE parameter set** (same LIFParams for every circuit).
+=== 18:05 done  signflip05_b
+=== 18:05 start signflip10 (seed 0, signflip 0.10, wscale 0.3)
+**15/18 checks pass under ONE parameter set** (same LIFParams for every circuit).
+=== 18:29 done  signflip10
+=== 18:29 start wscale025 (seed 0, signflip 0, wscale 0.25)
+**17/18 checks pass under ONE parameter set** (same LIFParams for every circuit).
+=== 18:53 done  wscale025
+=== 18:53 start wscale035 (seed 0, signflip 0, wscale 0.35)
+**15/18 checks pass under ONE parameter set** (same LIFParams for every circuit).
+=== 19:16 done  wscale035
+=== 19:16 start wscale040 (seed 0, signflip 0, wscale 0.40)
+**15/18 checks pass under ONE parameter set** (same LIFParams for every circuit).
+=== 19:40 done  wscale040
+
+SUMMARY
+respec_seed0     18/19 checks pass
+respec_seed1     18/19 checks pass
+respec_seed2     17/19 checks pass
+seed1            18/18 checks pass
+seed2            17/18 checks pass
+signflip05_a     18/18 checks pass
+signflip05_b     18/18 checks pass
+signflip10       15/18 checks pass
+wscale025        17/18 checks pass
+wscale035        15/18 checks pass
+wscale040        15/18 checks pass

@@ -19,7 +19,7 @@
 {'LC17': 1.0, 'LC12': 0.754, 'LC26': 0.7355, 'LPLC2': 0.6926, 'LC15': 0.614, 'LPLC1': 0.5118, 'LC4': 0.498, 'LC16': 0.4865, 'LC6': 0.3981, 'LC21': 0.3724, 'LC18': 0.3608, 'LC9': 0.3048, 'LC11': 0.2883}
 
 ## Checks
-- gf_spikes_per_response_1_to_2: PASS
+- gf_spikes_per_response_1_to_2: FAIL
 - gf_response_prob_0.5_to_1: PASS
 - gf_latency_10_60ms: PASS
 - ttmn_one_to_one: PASS
