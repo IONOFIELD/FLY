@@ -11,40 +11,40 @@ motor present: ['MN9', 'MN6', 'MN8']  missing: ['MN11']
 gustatory afferents by subclass (labellar bristle, taste peg, pharyngeal sensillum): 42 types
 WARNING: no sugar-specific GRN type in this annotation; driving taste-region afferents ['aPhM2a', 'aPhM5', 'PhG1c', 'claw_tpGRN', 'LB3a', 'LB3b', 'LB3c', 'LB3d'] (F3 bitter test skipped; F1/F2/F5 test taste -> MN9 wiring)
 [graph] removed 679 EM chemical synapses on declared mixed pairs (modelled as electrical)
-F2 sugar  10 Hz -> MN9 0.00 spikes/cell, CNS 0.0379 Hz
+F2 sugar  10 Hz -> MN9 0.00 spikes/cell, CNS 0.0386 Hz
 [graph] removed 679 EM chemical synapses on declared mixed pairs (modelled as electrical)
-F2 sugar  25 Hz -> MN9 1.27 spikes/cell, CNS 0.0614 Hz
+F2 sugar  25 Hz -> MN9 1.27 spikes/cell, CNS 0.0623 Hz
 [graph] removed 679 EM chemical synapses on declared mixed pairs (modelled as electrical)
   raster: 8 ms/char, 250 ms from onset   (| spike, # multiple)
   t0  MN9    ..........#||#||.|........#|#..
-  t0  CNS    .355566555678777766667777877777   (log2 spikes/bin, 9 = flood)
+  t0  CNS    .355566555678877766667777877777   (log2 spikes/bin, 9 = flood)
 
   t1  MN9    .........|##||||||.|..#.#......
-  t1  CNS    6666777777778888888777778777667   (log2 spikes/bin, 9 = flood)
+  t1  CNS    6666777777778888888777788777667   (log2 spikes/bin, 9 = flood)
 
   region activity (spikes per neuron over 20 stimulus windows):
   cb_motor               ######################################## 71.113
   cb_sensory_tbc         ##########################               46.556
   descending_neuron      #######                                  12.817
   efferent_ascending     ######                                   11.625
+  vnc_motor              ##                                       4.884
   visual_centrifugal     ##                                       3.863
   cb_intrinsic           #                                        2.303
-  vnc_motor                                                       1.663
   ascending_neuron                                                1.087
   vnc_intrinsic                                                   0.453
   cb_sensory                                                      0.225
-F2 sugar  50 Hz -> MN9 6.25 spikes/cell, CNS 0.0942 Hz
-  outside-SEZ rate 0.0285 Hz | recruited motor mean 54.5 Hz | 24 of 43 cb_motor types active: ['MN11D', 'MNx01', 'MN10', 'MN11V', 'MN9', 'GNG648', 'MN2Da', 'GNG641']
+F2 sugar  50 Hz -> MN9 6.25 spikes/cell, CNS 0.0960 Hz
+  outside-SEZ rate 0.0302 Hz | recruited motor mean 54.5 Hz | 24 of 43 cb_motor types active: ['MN11D', 'MNx01', 'MN10', 'MN11V', 'MN9', 'GNG648', 'MN2Da', 'GNG641']
 [graph] removed 679 EM chemical synapses on declared mixed pairs (modelled as electrical)
-F2 sugar 100 Hz -> MN9 9.28 spikes/cell, CNS 0.1277 Hz
+F2 sugar 100 Hz -> MN9 9.28 spikes/cell, CNS 0.1300 Hz
 [graph] removed 679 EM chemical synapses on declared mixed pairs (modelled as electrical)
-F2 sugar 200 Hz -> MN9 10.12 spikes/cell, CNS 0.1722 Hz
+F2 sugar 200 Hz -> MN9 10.12 spikes/cell, CNS 0.1751 Hz
 [graph] removed 679 EM chemical synapses on declared mixed pairs (modelled as electrical)
 ALL gustatory arm (42 types, every tastant at once) at 50 Hz -> MN9 0.03 spikes/cell (reported, not scored; expected ~0)
 sugar drive: 140 neurons, 69 inferred left
 [graph] removed 679 EM chemical synapses on declared mixed pairs (modelled as electrical)
-   structural 2-hop drive from left afferents: MN9-L 25,650 vs MN9-R 350; functional contra dominant -> does NOT match wiring
-F1 left sugar 25 Hz: MN9 ipsi 0.00, contra 0.00 spikes/cell  [59s]
+   structural 2-hop drive from left afferents: MN9-L 25,650 vs MN9-R 350; functional ipsi dominant -> matches wiring
+F1 left sugar 50 Hz: MN9 ipsi 0.75, contra 0.00 spikes/cell  [63s]
 F3 skipped: no bitter GRN type resolved
 [graph] removed 679 EM chemical synapses on declared mixed pairs (modelled as electrical)
 F4 DNge062 50 Hz -> MN9 1.57
@@ -60,7 +60,7 @@ CHECKS
   FAIL  F2b_extra_SEZ_quiet
   PASS  F2c_motor_rate_physiological
   PASS  F2_monotonic
-  FAIL  F1_laterality_matches_wiring
+  PASS  F1_laterality_matches_wiring
   SKIP  F1_shiu_contralateral_bias
   SKIP  F3_bitter_suppresses
   PASS  F4_second_order_sufficient
