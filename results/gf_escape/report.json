@@ -35,20 +35,20 @@
       "n_lif": 167649,
       "n_chem_syn": 5837592,
       "n_stim": 2526,
-      "pop_rate_hz": 0.004410737805253384,
-      "gf_per_cell": 0.7,
-      "gf_hit": 0.675,
+      "pop_rate_hz": 0.004084497400890575,
+      "gf_per_cell": 0.45,
+      "gf_hit": 0.575,
       "gf_hit_ci95": [
-        0.52017458088898,
-        0.7991568303733828
+        0.4219480043605999,
+        0.7149083147518411
       ],
-      "gf_per_hit": 1.2037037037037037,
-      "gf_lat_ms": 37.25185185185097,
-      "ttmn_per_cell": 0.7,
-      "ttmn_lag_ms": 0.8999999999999604,
-      "psi_per_cell": 0.7,
+      "gf_per_hit": 1.0434782608695652,
+      "gf_lat_ms": 38.6391304347813,
+      "ttmn_per_cell": 0.45,
+      "ttmn_lag_ms": 0.9000000000001577,
+      "psi_per_cell": 0.45,
       "ttmn_to_gf_ratio": 1.0,
-      "wall_s": 95.3
+      "wall_s": 106.2
     },
     "real_chemical_only": {
       "arm": "real_chemical_only",
@@ -56,20 +56,20 @@
       "n_lif": 167649,
       "n_chem_syn": 5837611,
       "n_stim": 2526,
-      "pop_rate_hz": 0.004367726010648336,
-      "gf_per_cell": 0.775,
-      "gf_hit": 0.775,
+      "pop_rate_hz": 0.004056904928879791,
+      "gf_per_cell": 0.5,
+      "gf_hit": 0.65,
       "gf_hit_ci95": [
-        0.6249660359590695,
-        0.8768404674532148
+        0.4950559699353738,
+        0.7786566682895085
       ],
-      "gf_per_hit": 1.1935483870967742,
-      "gf_lat_ms": 36.79032258064399,
+      "gf_per_hit": 1.0384615384615385,
+      "gf_lat_ms": 36.51153846153785,
       "ttmn_per_cell": 0.0,
       "ttmn_lag_ms": NaN,
       "psi_per_cell": 0.0,
       "ttmn_to_gf_ratio": 0.0,
-      "wall_s": 96.1
+      "wall_s": 102.5
     },
     "rewired_null": {
       "arm": "rewired_null",
@@ -90,7 +90,7 @@
       "ttmn_lag_ms": NaN,
       "psi_per_cell": 0.0,
       "ttmn_to_gf_ratio": NaN,
-      "wall_s": 101.3
+      "wall_s": 105.8
     }
   },
   "checks": {
@@ -105,8 +105,13 @@
   },
   "pass": true,
   "provenance": {
-    "written_at": "2026-09-09T12:50:09",
-    "git_commit": "08cf15f",
-    "env": {}
+    "written_at": "2026-09-09T15:06:59",
+    "git_commit": "00a6afb",
+    "env": {
+      "FLYCNS_SEED": "0",
+      "FLYCNS_RUN_TAG": "signflip05_a",
+      "FLYCNS_SIGNFLIP": "0.05",
+      "FLYCNS_WSCALE": "0.3"
+    }
   }
 }

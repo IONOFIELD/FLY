@@ -25,13 +25,20 @@ ELECTRICAL_SYNAPSES = [
     ("DNp01", "PSI",  True, 9.0, "shakB gap junction, 1:1 relay; Allen et al. 2006; Phelan et al. 2008"),
     # calibrated: population drive at 150 Hz yields a compound GF potential of
     # ~3 mV (Pezier & Blagburn 2013 sound-evoked GF response, subthreshold)
-    ("JO-A*", "DNp01", True, {"compound_mV": 3.0, "at_hz": 150}, "JON->GF electrical; Pezier & Blagburn 2013; Yorozu 2009"),
-    ("JO-B*", "DNp01", True, {"compound_mV": 3.0, "at_hz": 150}, "JON->GF electrical; Pezier & Blagburn 2013; Yorozu 2009"),
+    # The JON->GF mixed synapse is on specific afferents, not the whole organ. In MaleCNS
+    # v1.0 the only JO types with chemical contacts onto DNp01 are JO-B1_a (541 synapses,
+    # 13 cells) and JO-B1_c (138, 6), both annotated subclass "auditory"; JO-A* contributes
+    # zero. Earlier versions applied this to all JO-A*/JO-B*, which included ~30 wind_gravity
+    # cells. Note the naming difference from Kamikouchi et al. 2009, who place the GF dendrite
+    # in AMMC zone A: MaleCNS's A/B type split is not the modality split (JO-B2/B3/B4 are
+    # mostly wind_gravity), so the labels are not directly comparable across datasets.
+    ("JO-B1_a", "DNp01", True, {"compound_mV": 3.0, "at_hz": 150}, "JON->GF electrical; Pezier & Blagburn 2013; Yorozu 2009; contact set from MaleCNS v1.0"),
+    ("JO-B1_c", "DNp01", True, {"compound_mV": 3.0, "at_hz": 150}, "JON->GF electrical; Pezier & Blagburn 2013; Yorozu 2009; contact set from MaleCNS v1.0"),
 ]
 # Mixed synapses that EM annotated as chemical: MaleCNS v1.0 has 679 direct
 # JO-A/B -> DNp01 "chemical" synapses. When the electrical model is on, these
 # direct edges are removed so the same contact is not counted twice.
-MIXED_IN_EM = [("JO-A*", "DNp01"), ("JO-B*", "DNp01")]
+MIXED_IN_EM = [("JO-B1_a", "DNp01"), ("JO-B1_c", "DNp01")]
 TAU_M_S = 0.020   # for compound-potential calibration; must match LIFParams.tau_m_ms
 G_GAP_RELAY = 0.2  # ohmic coupling (fraction of leak) for a 1:1 relay pair; population
                    # pairs share this budget so many resting partners cannot shunt the post cell
@@ -127,6 +134,31 @@ CORD_PARAMS: dict = {}
 # fast/slow assignment exists. Values in MOhm; Azevedo et al. 2020 Fig. 3E.
 MN_INPUT_RESISTANCE_MOHM = {"fast": 150.0, "intermediate": 300.0, "slow": 700.0}
 
+# ---------------------------------------------------------------- peptidergic modulation
+# Neuropeptides act through receptors rather than synapses, so a connectome cannot show them:
+# the source, the receptor-expressing targets and the effect all have to be declared from
+# published work. Each entry is (source type, receptor-expressing target types, gain applied to
+# the targets' synaptic input when the source is active, decay time constant in seconds,
+# citation). OFF by default (LIFParams.peptide_gain_scale = 0) so the declared parameter set
+# stays synaptic; set it to 1.0 to enable the table.
+#
+# Note for the AstA entry: Pm3 also inhibits Mi1 conventionally (18,394 GABAergic synapses in
+# MaleCNS v1.0), so the peptidergic and synaptic channels run between the same cells. That is
+# precisely why the biology needed perfusion and receptor knockdown to separate them, and it is
+# what makes the separation a usable model experiment.
+PEPTIDE_MODULATION = [
+    dict(peptide="AstA", source="Pm3",
+         targets=["L1", "L2", "L3", "L4", "L5", "C2", "Mi1", "Mi15", "Dm9", "Tm2", "TmY3", "T2"],
+         gain=0.5, tau_s=2.0,
+         source_note="AstA is expressed by a single visual-system cell type, Pm3 (SPARC single-cell labelling)",
+         effect_note=("AstA perfusion and optogenetic Pm3 activation increase the peak-to-trough dynamic range "
+                      "of Mi1 responses to light flashes; AstA-R1 knockdown in Mi1 blocks the increase and "
+                      "reduces the hyperpolarising phase of its response"),
+         citation="Krieger 2023, PhD thesis (Stanford), Ch. 2 Figs 1-4; AstA-R2 additionally in L2",
+         caveat=("the measured signal is a graded biphasic calcium response; a spiking LIF cannot reproduce "
+                 "peak-to-trough waveform, so any model criterion must be a spike-count analogue")),
+]
+
 # Per-type intrinsic overrides. (type, parameter, value, citation)
 # GF fires 1 to 2 spikes per loom regardless of input strength
 # (von Reyn et al. 2014; Ache et al. 2019): spike-triggered adaptation.
@@ -211,6 +243,18 @@ def region_of(neurons, data_dir="data"):
     return idx["type"].map(type_region), "type-name prefix fallback"
 
 
+def afferents_by_subclass(neurons, subclasses, type_prefix=None):
+    """Sensory types selected by MaleCNS `subclass` (modality), optionally within a type prefix.
+    MaleCNS annotates JO neurons as auditory / wind_gravity / grooming, which does NOT follow
+    the JO-A/JO-B type split, so modality must come from the annotation."""
+    if "subclass" not in neurons:
+        return []
+    m = neurons[neurons["subclass"].isin(subclasses)]
+    if type_prefix:
+        m = m[m["type"].fillna("").str.startswith(type_prefix)]
+    return sorted(m["type"].dropna().unique())
+
+
 def gustatory_afferents(neurons):
     """Types whose subclass is anatomically gustatory (requires fetch_annotations.py)."""
     if "subclass" not in neurons:
@@ -260,6 +304,18 @@ def region_of(neurons, data_dir="data"):
         r.loc[list(bodies & set(idx.index))] = "SEZ"
         return r, f"anatomical (roiInfo, {len(bodies):,} SEZ-intrinsic neurons)"
     return idx["type"].map(type_region), "type-name prefix fallback"
+
+
+def afferents_by_subclass(neurons, subclasses, type_prefix=None):
+    """Sensory types selected by MaleCNS `subclass` (modality), optionally within a type prefix.
+    MaleCNS annotates JO neurons as auditory / wind_gravity / grooming, which does NOT follow
+    the JO-A/JO-B type split, so modality must come from the annotation."""
+    if "subclass" not in neurons:
+        return []
+    m = neurons[neurons["subclass"].isin(subclasses)]
+    if type_prefix:
+        m = m[m["type"].fillna("").str.startswith(type_prefix)]
+    return sorted(m["type"].dropna().unique())
 
 
 def gustatory_afferents(neurons):

@@ -42,6 +42,7 @@ from flycns import load_graph, rewire_null, CNSModel, LIFParams, loom_protocol
 from flycns.graph import drop_mixed_chemical
 from flycns.protocols import LOOM_TUNING
 from flycns.bench import find_types, pulse_protocol
+from flycns.graph import afferents_by_subclass
 from flycns.bench import provenance
 from flycns import ascii as A
 
@@ -58,8 +59,15 @@ SUB_LOOM_GAIN = None    # calibrated per run: largest gain with hit rate <= 0.3 
 neurons, edges = load_graph(DATA)
 A.sketch("auditory")
 meta = neurons.set_index("bodyId")
-jo_types = [t for t in find_types(neurons, [r"^JO-A", r"^JO-B"]) if not t.endswith("unclear")]
-print("JO vibration types:", jo_types)
+# Modality from the connectome's own annotation, not the A/B type names: MaleCNS labels JO
+# neurons auditory / wind_gravity / grooming, and JO-B2, B3 and B4 are mostly wind_gravity.
+jo_types = afferents_by_subclass(neurons, ["auditory"], "JO-") or \
+           [t for t in find_types(neurons, [r"^JO-A", r"^JO-B"]) if not t.endswith("unclear")]
+jo_types = [t for t in jo_types if not t.endswith("unclear")]
+wind_types = afferents_by_subclass(neurons, ["wind_gravity"], "JO-") or ["JO-FV"]
+n_jo = int(neurons.type.isin(jo_types).sum())
+print(f"auditory JO types ({len(jo_types)}, {n_jo} neurons): {jo_types}")
+print(f"wind/gravity control types ({len(wind_types)}): {wind_types[:6]}{'...' if len(wind_types) > 6 else ''}")
 if not jo_types:
     raise SystemExit("no JO-A/JO-B types found")
 report = {"benchmark": "auditory", "n_trials": N_TRIALS, "jo_types": jo_types, "jo_hz": JO_HZ,

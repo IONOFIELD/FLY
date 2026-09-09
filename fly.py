@@ -60,6 +60,7 @@ MENU = """
   FITS           8  GF adaptation sweep       9  SEZ regional gain sweep      10  afferent screen
                 26  tonic baseline sweep      27  why feeding fails: measured mechanism
                 28  cord parameter sensitivity (do brain values distort the nerve cord?)
+  MODULATION    29  AstA: separate Pm3's synaptic and peptidergic effects (exploratory)
   EXPLORE       11  interactive: pick a sensory group, stimulate, watch the cascade
   VISUALIZE     12  whole-CNS cascade (braille, terminal)     13  same, with synapse sites
                 14  single neuron view  (current: {cell})     15  choose cell for neuron view
@@ -140,6 +141,7 @@ while True:
     elif c == "26": run("benchmarks/fit_baseline.py", ask("trials", "6"))
     elif c == "27": run("benchmarks/feeding_mechanism.py")
     elif c == "28": run("benchmarks/sensitivity_cord.py", ask("trials", "20"))
+    elif c == "29": run("benchmarks/peptide_asta.py", ask("trials", "10"))
     elif c == "17": run("less", "RESULTS.md")
     elif c == "18": run("less", "REFERENCES.md")
     elif c == "19":

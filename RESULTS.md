@@ -50,6 +50,17 @@ them: `results/feeding/mechanism.json`. What the feeding benchmark still scores:
 excitatory second-order inputs drives it when stimulated directly, MN9 is silent on a rewired
 null, activity stays inside the SEZ, and motor rates stay physiological.
 
+## Auditory input to GF: contact set corrected from the connectome's own annotation
+MaleCNS annotates JO neurons by modality (`subclass`: auditory / wind_gravity / grooming), and
+that annotation does not follow the JO-A/JO-B type split: JO-B2, B3 and B4 are mostly
+wind_gravity. The only JO types with chemical contacts onto DNp01 are JO-B1_a (541 synapses,
+13 cells) and JO-B1_c (138, 6), both auditory; JO-A contributes none. The declared JON-GF
+electrical synapse and the benchmark's stimulus sets now follow the modality annotation rather
+than type-name prefixes, which previously mixed ~30 wind_gravity cells into the "sound" drive.
+Kamikouchi et al. 2009 place the GF dendrite in AMMC zone A; since MaleCNS's A/B labels are not
+the modality split, the two are not directly comparable and this is recorded as a naming
+difference between datasets rather than a contradiction.
+
 ## Multisensory interaction at GF (reported, currently unresolved)
 Whether auditory drive raises or lowers GF's response to a loom depends entirely on where the
 loom sits relative to threshold, and earlier runs reported both directions at a fixed loom gain
@@ -84,6 +95,48 @@ and a measured trial-gain sigma of 0.38 (assumed 0.5 before). Under measured inp
 probability falls from 0.80 to 0.50, still within von Reyn's range. The dF/F-to-rate scale
 (5 Hz for the strongest type) is the one remaining free parameter of the stimulus and is
 declared as such.
+
+## A general limitation: this model class cannot express disinhibition
+Three independent circuits in this connectome turn out to work by sign inversion, and a network
+with no spontaneous activity cannot represent any of them:
+- **Taste to MN9**: signed path products negative at two hops, positive at three to five.
+- **Lamina to Mi1 (the canonical ON pathway)**: Mi1's largest input is L1 with 141,873
+  glutamatergic (inhibitory) synapses. The ON response is a double inversion, light depolarising
+  photoreceptors, histamine inhibiting L1, L1 releasing less glutamate and Mi1 being released.
+- **AstA release**: Pm3 is GABAergic, so activating it in a silent network produces nothing at
+  all, in the model or in principle.
+This is why the feeding failure is not a quirk of one pathway. Any circuit whose output is
+carried by the removal of inhibition is invisible to a zero-baseline LIF, and a uniform baseline
+does not fix it (it destroys stimulus specificity and abolishes escape;
+`benchmarks/fit_baseline.py`). The missing ingredient is cell-specific spontaneous activity,
+which is measured for at least one motor pool (slow leg MNs fire at tens of Hz at rest,
+cholinergically maintained; Azevedo et al. 2020).
+
+## Peptidergic modulation, declared (AstA/Pm3/AstA-R1)
+The feeding result concludes that the missing mechanism is cell-specific modulation. One instance
+is fully specified in the literature and visible in this connectome: Krieger 2023 (PhD thesis,
+Stanford, Ch. 2) shows AstA is released by a single visual cell type, Pm3, that AstA-R1 is
+expressed by L1-L5, C2, Mi1, Mi15, Dm9, Tm2, TmY3 and T2, that AstA perfusion or optogenetic Pm3
+activation increases the peak-to-trough dynamic range of Mi1's light response, and that AstA-R1
+knockdown in Mi1 blocks it while leaving conventional transmission intact. All 12 receptor-
+expressing types and 69 Pm3 cells are present in MaleCNS v1.0, where Pm3 also inhibits Mi1 with
+18,394 GABAergic synapses: the two channels run between the same cells, which is why the biology
+needed perfusion and knockdown to separate them. `flycns/graph.py` declares this as
+`PEPTIDE_MODULATION` (source, receptor-expressing targets, gain, timescale, citation), off by
+default, and `benchmarks/peptide_asta.py` runs the model mirror of the genetic experiment
+(synaptic only / plus AstA / AstA with Mi1 excluded). The result: **not testable in this model class.** Mi1 fires
+0.0006 spikes per cell per flash under 100 Hz drive to its largest cholinergic inputs, so a
+multiplicative gain has nothing to act on and all three modulated arms are identical. Mi1 is
+disinhibition-driven (363,509 inhibitory against 132,350 excitatory synapses; its largest input
+is inhibitory L1), and Pm3 is GABAergic, so activating it in a silent network can do nothing
+even in principle. The layer is kept as declared, cited infrastructure, and the arms are not
+tuned to make Mi1 fire. Beyond that, the measured effect is a change in a graded biphasic calcium
+waveform, and every cell in this model spikes, so even a working version could only offer a
+spike-count analogue.
+
+**One blocking item now accounts for three separate results.** Feeding, the ON pathway and AstA
+modulation all fail because the same ingredient is missing: cell-specific spontaneous activity.
+That makes it the next thing to build, ahead of any fourth circuit.
 
 ## What the model needed that the connectome does not contain
 - Electrical synapses (invisible to EM): GF to TTMn, GF to PSI, JON to GF. Documented

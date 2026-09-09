@@ -49,6 +49,17 @@ loom, at a working point calibrated per run. At 40 trials per arm the difference
 estimate. Not applicable with this annotation: bitter suppression and Shiu's labellar-sugar
 contralateral bias (MaleCNS does not annotate taste modality).
 
+## A general limitation, stated plainly
+Three independent circuits in this connectome carry their output by removing inhibition: taste to
+MN9 (signed path products negative at two hops, positive at three to five), the canonical ON
+pathway (Mi1's largest input is L1 with 141,873 glutamatergic synapses; the ON response is a
+double inversion), and AstA release (Pm3 is GABAergic, so activating it in a silent network does
+nothing). A zero-baseline LIF cannot represent any of them, and a uniform tonic baseline does not
+help: it destroys stimulus specificity and abolishes the escape response. Cell-specific
+spontaneous activity is the single missing ingredient behind all three, and it is measured for at
+least one motor pool (Azevedo et al. 2020). `benchmarks/feeding_mechanism.py` and
+`benchmarks/peptide_asta.py` document the two cases in detail.
+
 ## Robustness
 
 - Escape is **invariant** to cord single-neuron parameters: sweeping tau_m 5-40 ms, threshold gap

@@ -20,154 +20,154 @@
       "gf_per_cell": 0.0,
       "gf_hit": 0.0,
       "gf_lat_ms": NaN,
-      "pop_rate_hz": 0.000992923220741033,
-      "wall_s": 104.6,
-      "n_trials": 40,
-      "gf_depol_mV": 3.1370286001317966
-    },
-    "cal_loom_gain_0.6": {
-      "gf_per_cell": 0.05,
-      "gf_hit": 0.1,
-      "gf_lat_ms": 46.00000000000202,
-      "pop_rate_hz": 0.0018085242316480522,
-      "wall_s": 103.6,
-      "n_trials": 40,
-      "gf_depol_mV": 4.323161158052335
-    },
-    "cal_loom_gain_0.8": {
-      "gf_per_cell": 0.1875,
-      "gf_hit": 0.375,
-      "gf_lat_ms": 44.5866666666663,
-      "pop_rate_hz": 0.0028075340270973465,
-      "wall_s": 104.7,
-      "n_trials": 40,
-      "gf_depol_mV": 5.3839896174644455
-    },
-    "cal_loom_gain_1.0": {
-      "gf_per_cell": 0.65,
-      "gf_hit": 0.9,
-      "gf_lat_ms": 45.55277777777709,
-      "pop_rate_hz": 0.004056499157232573,
-      "wall_s": 106.5,
-      "n_trials": 40,
-      "gf_depol_mV": 6.515106458702715
-    },
-    "cal_loom_gain_1.3": {
-      "gf_per_cell": 1.375,
-      "gf_hit": 1.0,
-      "gf_lat_ms": 35.33499999999954,
-      "pop_rate_hz": 0.0062492891387955244,
+      "pop_rate_hz": 0.0008967553403505038,
       "wall_s": 107.0,
       "n_trials": 40,
-      "gf_depol_mV": 6.9589491083051955
+      "gf_depol_mV": 2.8799175785062587
+    },
+    "cal_loom_gain_0.6": {
+      "gf_per_cell": 0.0375,
+      "gf_hit": 0.075,
+      "gf_lat_ms": 42.2000000000024,
+      "pop_rate_hz": 0.0016673156984163891,
+      "wall_s": 106.1,
+      "n_trials": 40,
+      "gf_depol_mV": 3.921661527893613
+    },
+    "cal_loom_gain_0.8": {
+      "gf_per_cell": 0.125,
+      "gf_hit": 0.225,
+      "gf_lat_ms": 42.8888888888876,
+      "pop_rate_hz": 0.002635081077029942,
+      "wall_s": 107.1,
+      "n_trials": 40,
+      "gf_depol_mV": 4.992013426733574
+    },
+    "cal_loom_gain_1.0": {
+      "gf_per_cell": 0.425,
+      "gf_hit": 0.625,
+      "gf_lat_ms": 43.075999999999205,
+      "pop_rate_hz": 0.0038195285152575983,
+      "wall_s": 110.5,
+      "n_trials": 40,
+      "gf_depol_mV": 6.047882167347886
+    },
+    "cal_loom_gain_1.3": {
+      "gf_per_cell": 0.95,
+      "gf_hit": 1.0,
+      "gf_lat_ms": 36.339999999999506,
+      "pop_rate_hz": 0.005747349611187573,
+      "wall_s": 107.6,
+      "n_trials": 40,
+      "gf_depol_mV": 6.775828396027753
     },
     "A2_calibration": {
       "gains": [
         {
           "gain": 0.4,
           "hit": 0.0,
-          "depol_mV": 3.1370286001317966
+          "depol_mV": 2.8799175785062587
         },
         {
           "gain": 0.6,
-          "hit": 0.1,
-          "depol_mV": 4.323161158052335
+          "hit": 0.075,
+          "depol_mV": 3.921661527893613
         },
         {
           "gain": 0.8,
-          "hit": 0.375,
-          "depol_mV": 5.3839896174644455
+          "hit": 0.225,
+          "depol_mV": 4.992013426733574
         },
         {
           "gain": 1.0,
-          "hit": 0.9,
-          "depol_mV": 6.515106458702715
+          "hit": 0.625,
+          "depol_mV": 6.047882167347886
         },
         {
           "gain": 1.3,
           "hit": 1.0,
-          "depol_mV": 6.9589491083051955
+          "depol_mV": 6.775828396027753
         }
       ],
-      "chosen_gain": 0.6,
+      "chosen_gain": 0.8,
       "rule": "largest gain with GF hit <= 0.3 and depol >= 2 mV"
     },
     "A1_jo_alone_electrical": {
       "gf_per_cell": 0.0,
       "gf_hit": 0.0,
       "gf_lat_ms": NaN,
-      "pop_rate_hz": 0.0034713760268187464,
-      "wall_s": 106.9,
+      "pop_rate_hz": 0.003287387897732835,
+      "wall_s": 108.6,
       "n_trials": 40,
-      "gf_depol_mV": 1.0494754364434475
+      "gf_depol_mV": 1.0443575343467324
     },
     "A3_jo_alone_no_electrical_no_mixed_edges": {
       "gf_per_cell": 0.0,
       "gf_hit": 0.0,
       "gf_lat_ms": NaN,
-      "pop_rate_hz": 0.0034713760268187464,
-      "wall_s": 105.1,
+      "pop_rate_hz": 0.003287387897732835,
+      "wall_s": 104.1,
       "n_trials": 40,
-      "gf_depol_mV": 0.053591476849007516
+      "gf_depol_mV": 0.012807796914271918
     },
     "ref_jo_alone_chem_only_EM_as_annotated": {
-      "gf_per_cell": 0.7875,
+      "gf_per_cell": 0.5125,
       "gf_hit": 1.0,
-      "gf_lat_ms": 11.31749999999954,
-      "pop_rate_hz": 0.003501374091343623,
-      "wall_s": 102.3,
+      "gf_lat_ms": 14.447499999999502,
+      "pop_rate_hz": 0.003305386736447761,
+      "wall_s": 103.2,
       "n_trials": 40,
-      "gf_depol_mV": 3.638390017302671
+      "gf_depol_mV": 3.656962701970996
     },
     "subthreshold_loom_alone": {
-      "gf_per_cell": 0.05,
-      "gf_hit": 0.1,
-      "gf_lat_ms": 46.00000000000202,
-      "pop_rate_hz": 0.0018085242316480522,
-      "wall_s": 104.7,
+      "gf_per_cell": 0.125,
+      "gf_hit": 0.225,
+      "gf_lat_ms": 42.8888888888876,
+      "pop_rate_hz": 0.002635081077029942,
+      "wall_s": 106.9,
       "n_trials": 40,
-      "gf_depol_mV": 4.323161158052335
+      "gf_depol_mV": 4.992013426733574
     },
     "A2_loom_plus_jo": {
-      "gf_per_cell": 0.025,
-      "gf_hit": 0.05,
-      "gf_lat_ms": 25.30000000000109,
-      "pop_rate_hz": 0.005348698478633478,
-      "wall_s": 105.4,
+      "gf_per_cell": 0.0,
+      "gf_hit": 0.0,
+      "gf_lat_ms": NaN,
+      "pop_rate_hz": 0.005962576731229032,
+      "wall_s": 106.9,
       "n_trials": 40,
-      "gf_depol_mV": 2.7150297579031126
+      "gf_depol_mV": 2.7461649270036497
     },
     "A4_jo_rewired_null_chem": {
       "gf_per_cell": 0.0,
       "gf_hit": 0.0,
       "gf_lat_ms": NaN,
-      "pop_rate_hz": 0.0002419843871673397,
-      "wall_s": 101.6,
+      "pop_rate_hz": 0.00023918456781168456,
+      "wall_s": 112.2,
       "n_trials": 40,
       "gf_depol_mV": 0.0
     },
     "A2_prediction": {
-      "loom_gain": 0.6,
+      "loom_gain": 0.8,
       "n_trials_per_arm": 40,
-      "loom_alone_hit": 0.1,
+      "loom_alone_hit": 0.225,
       "loom_alone_ci95": [
-        0.03957888759557486,
-        0.230520743804739
+        0.12315953254678531,
+        0.3750339640409305
       ],
-      "loom_plus_jo_hit": 0.05,
+      "loom_plus_jo_hit": 0.0,
       "loom_plus_jo_ci95": [
-        0.013820377146101093,
-        0.165041708179252
+        -6.330876522670002e-18,
+        0.08762453925039232
       ],
-      "difference": -0.05,
+      "difference": -0.225,
       "difference_ci95": [
-        -0.3046892015721657,
-        0.21546700237983818
+        -0.48832321491742037,
+        0.06906656952022369
       ],
       "resolved": false,
       "direction": "UNRESOLVED",
-      "loom_alone_depol_mV": 4.323161158052335,
-      "loom_plus_jo_depol_mV": 2.7150297579031126,
+      "loom_alone_depol_mV": 4.992013426733574,
+      "loom_plus_jo_depol_mV": 2.7461649270036497,
       "note": "model measurement at a calibrated near-threshold working point; in vivo direction not established in cited references. With few trials the difference is not resolvable: set FLYCNS_A2_TRIALS>=120 for a usable estimate."
     }
   },
@@ -180,8 +180,13 @@
   },
   "pass": true,
   "provenance": {
-    "written_at": "2026-09-09T13:09:25",
-    "git_commit": "08cf15f",
-    "env": {}
+    "written_at": "2026-09-09T15:26:42",
+    "git_commit": "00a6afb",
+    "env": {
+      "FLYCNS_SEED": "0",
+      "FLYCNS_RUN_TAG": "signflip05_a",
+      "FLYCNS_SIGNFLIP": "0.05",
+      "FLYCNS_WSCALE": "0.3"
+    }
   }
 }

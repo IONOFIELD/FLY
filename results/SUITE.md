@@ -1,6 +1,6 @@
-# MaleCNS v1.0 LIF benchmark suite
+# MaleCNS v1.0 LIF benchmark suite  [signflip05_a]
 
-env: FLYCNS_SEED=0 FLYCNS_SIGNFLIP=0 FLYCNS_WSCALE=0.3
+env: FLYCNS_SEED=0 FLYCNS_SIGNFLIP=0.05 FLYCNS_WSCALE=0.3
 
 **16/16 checks pass under ONE parameter set** (same LIFParams for every circuit).
 
@@ -30,6 +30,8 @@ env: FLYCNS_SEED=0 FLYCNS_SIGNFLIP=0 FLYCNS_WSCALE=0.3
     "other": 1.0
   },
   "superclass_params": {},
+  "peptide_gain_scale": 0.0,
+  "peptide_exclude": [],
   "baseline_depol_mV": 0.0,
   "baseline_noise_mV": 0.0
 }
@@ -63,12 +65,15 @@ effective chemical kick per synapse: 0.0825 mV (Shiu 2024 unitary 0.275 mV x Mal
 
 Declared deviations from the raw connectome: see each results/*/provenance.md and flycns/graph.py.
 
+**WARNING: reports more than an hour older than the newest are included: gf_escape. Rerun the suite (`./run_all.sh`) before quoting this table.**
+
 ## Report provenance
 | benchmark | written | commit | env |
 |---|---|---|---|
-| auditory | 2026-09-09T13:09:25 | 08cf15f | - |
-| feeding | 2026-09-09T13:14:25 | 08cf15f | - |
-| gf_escape | 2026-09-09T12:50:09 | 08cf15f | - |
+| auditory | 2026-09-09T15:26:42 | 00a6afb | {'FLYCNS_SEED': '0', 'FLYCNS_RUN_TAG': 'signflip05_a', 'FLYCNS_SIGNFLIP': '0.05', 'FLYCNS_WSCALE': '0.3'} |
+| feeding | 2026-09-09T16:19:24 | 00a6afb | {'FLYCNS_SEED': '0', 'FLYCNS_RUN_TAG': 'signflip05_a', 'FLYCNS_SIGNFLIP': '0.05', 'FLYCNS_WSCALE': '0.3'} |
+| gf_escape | 2026-09-09T15:06:59 | 00a6afb | {'FLYCNS_SEED': '0', 'FLYCNS_RUN_TAG': 'signflip05_a', 'FLYCNS_SIGNFLIP': '0.05', 'FLYCNS_WSCALE': '0.3'} |
+| peptide_asta | 2026-09-09T15:43:57 | 00a6afb | - |
 
-## Citation check: 26/27 tags resolve in REFERENCES.md
+## Citation check: 27/28 tags resolve in REFERENCES.md
 Unresolved: Burrows 1998

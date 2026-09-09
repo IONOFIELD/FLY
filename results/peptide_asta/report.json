@@ -1,0 +1,132 @@
+{
+  "benchmark": "peptide_asta",
+  "drive": [
+    "L3",
+    "L5"
+  ],
+  "drive_hz": 100.0,
+  "n_trials": 10,
+  "declared": {
+    "peptide": "AstA",
+    "source": "Pm3",
+    "targets": [
+      "L1",
+      "L2",
+      "L3",
+      "L4",
+      "L5",
+      "C2",
+      "Mi1",
+      "Mi15",
+      "Dm9",
+      "Tm2",
+      "TmY3",
+      "T2"
+    ],
+    "gain": 0.5,
+    "tau_s": 2.0,
+    "source_note": "AstA is expressed by a single visual-system cell type, Pm3 (SPARC single-cell labelling)",
+    "effect_note": "AstA perfusion and optogenetic Pm3 activation increase the peak-to-trough dynamic range of Mi1 responses to light flashes; AstA-R1 knockdown in Mi1 blocks the increase and reduces the hyperpolarising phase of its response",
+    "citation": "Krieger 2023, PhD thesis (Stanford), Ch. 2 Figs 1-4; AstA-R2 additionally in L2",
+    "caveat": "the measured signal is a graded biphasic calcium response; a spiking LIF cannot reproduce peak-to-trough waveform, so any model criterion must be a spike-count analogue"
+  },
+  "arms": {
+    "flash_only": {
+      "arm": "flash_only",
+      "peptide_gain_scale": 0.0,
+      "excluded": [],
+      "spikes_per_cell_per_flash": {
+        "L1": 0.0,
+        "L2": 0.0,
+        "L4": 0.0,
+        "C2": 0.0,
+        "Mi1": 0.0006,
+        "Mi15": 0.0,
+        "Dm9": 1.5539,
+        "Tm2": 0.0,
+        "TmY3": 0.0,
+        "T2": 0.0001
+      },
+      "pop_rate_hz": 0.11169621980176314,
+      "peptide_applied": [],
+      "wall_s": 99
+    },
+    "flash_plus_Pm3_synaptic": {
+      "arm": "flash_plus_Pm3_synaptic",
+      "peptide_gain_scale": 0.0,
+      "excluded": [],
+      "spikes_per_cell_per_flash": {
+        "L1": 0.0001,
+        "L2": 0.0,
+        "L4": 0.0,
+        "C2": 0.0,
+        "Mi1": 0.0002,
+        "Mi15": 0.0,
+        "Dm9": 1.5498,
+        "Tm2": 0.0,
+        "TmY3": 0.0,
+        "T2": 0.0
+      },
+      "pop_rate_hz": 0.11155103704082171,
+      "peptide_applied": [],
+      "wall_s": 96
+    },
+    "flash_plus_Pm3_AstA": {
+      "arm": "flash_plus_Pm3_AstA",
+      "peptide_gain_scale": 1.0,
+      "excluded": [],
+      "spikes_per_cell_per_flash": {
+        "L1": 0.0001,
+        "L2": 0.0,
+        "L4": 0.0,
+        "C2": 0.0,
+        "Mi1": 0.0002,
+        "Mi15": 0.0,
+        "Dm9": 1.5498,
+        "Tm2": 0.0,
+        "TmY3": 0.0,
+        "T2": 0.0
+      },
+      "pop_rate_hz": 0.11155103704082171,
+      "peptide_applied": [],
+      "wall_s": 98
+    },
+    "AstA_minus_Mi1": {
+      "arm": "AstA_minus_Mi1",
+      "peptide_gain_scale": 1.0,
+      "excluded": [
+        "Mi1"
+      ],
+      "spikes_per_cell_per_flash": {
+        "L1": 0.0001,
+        "L2": 0.0,
+        "L4": 0.0,
+        "C2": 0.0,
+        "Mi1": 0.0002,
+        "Mi15": 0.0,
+        "Dm9": 1.5498,
+        "Tm2": 0.0,
+        "TmY3": 0.0,
+        "T2": 0.0
+      },
+      "pop_rate_hz": 0.11155103704082171,
+      "peptide_applied": [],
+      "wall_s": 101
+    }
+  },
+  "comparison": {
+    "Mi1_flash_only": 0.0006,
+    "Mi1_flash_plus_Pm3_synaptic": 0.0002,
+    "Mi1_flash_plus_Pm3_AstA": 0.0002,
+    "Mi1_receptor_knockdown": 0.0002,
+    "Pm3_synaptic_effect": 0.333,
+    "AstA_effect_over_synaptic": 1.0,
+    "knockdown_returns_to_synaptic": 1.0,
+    "note": "published effect is an increase in the peak-to-trough dynamic range of a graded biphasic calcium response, blocked by AstA-R1 knockdown in Mi1; this is a spike-count analogue in a model with no graded compartment, reported and never scored"
+  },
+  "provenance": {
+    "written_at": "2026-09-09T15:43:57",
+    "git_commit": "00a6afb",
+    "env": {}
+  }
+}
