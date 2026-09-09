@@ -1,6 +1,6 @@
 {
   "benchmark": "gf_escape",
-  "n_trials": 20,
+  "n_trials": 40,
   "params": {
     "v_rest_mV": -52.0,
     "v_thresh_mV": -45.0,
@@ -21,62 +21,68 @@
       "local": 1.0
     },
     "region_gains": {
-      "SEZ": 2.0,
+      "SEZ": 1.0,
       "other": 1.0
-    }
+    },
+    "superclass_params": {},
+    "baseline_depol_mV": 0.0,
+    "baseline_noise_mV": 0.0
   },
   "arms": {
     "real_electrical": {
       "arm": "real_electrical",
+      "region_source": "anatomical (roiInfo, 3,519 SEZ-intrinsic neurons)",
       "n_lif": 167649,
       "n_chem_syn": 5837592,
       "n_stim": 2526,
-      "pop_rate_hz": 0.0037809152853083947,
-      "gf_per_cell": 0.725,
-      "gf_hit": 0.55,
+      "pop_rate_hz": 0.004859115475428635,
+      "gf_per_cell": 1.1875,
+      "gf_hit": 0.7,
       "gf_hit_ci95": [
-        0.34208200830759966,
-        0.741804979142907
+        0.545696893456796,
+        0.819253290843047
       ],
-      "gf_per_hit": 1.4090909090909092,
-      "gf_lat_ms": 45.06363636363711,
-      "ttmn_per_cell": 0.725,
-      "ttmn_lag_ms": 0.9000000000000082,
-      "psi_per_cell": 0.725,
+      "gf_per_hit": 1.8214285714285714,
+      "gf_lat_ms": 38.74285714285635,
+      "ttmn_per_cell": 1.1875,
+      "ttmn_lag_ms": 0.8999999999997925,
+      "psi_per_cell": 1.1875,
       "ttmn_to_gf_ratio": 1.0,
-      "wall_s": 48.6
+      "wall_s": 135.2
     },
     "real_chemical_only": {
       "arm": "real_chemical_only",
+      "region_source": "anatomical (roiInfo, 3,519 SEZ-intrinsic neurons)",
       "n_lif": 167649,
       "n_chem_syn": 5837611,
       "n_stim": 2526,
-      "pop_rate_hz": 0.0037371731017383568,
-      "gf_per_cell": 0.8,
-      "gf_hit": 0.7,
+      "pop_rate_hz": 0.004784047720693412,
+      "gf_per_cell": 1.2375,
+      "gf_hit": 0.775,
       "gf_hit_ci95": [
-        0.4810232237710205,
-        0.8545247260310062
+        0.6249660359590695,
+        0.8768404674532148
       ],
-      "gf_per_hit": 1.3214285714285714,
-      "gf_lat_ms": 44.60714285714371,
+      "gf_per_hit": 1.7419354838709677,
+      "gf_lat_ms": 37.41290322580543,
       "ttmn_per_cell": 0.0,
       "ttmn_lag_ms": NaN,
       "psi_per_cell": 0.0,
       "ttmn_to_gf_ratio": 0.0,
-      "wall_s": 49.0
+      "wall_s": 136.2
     },
     "rewired_null": {
       "arm": "rewired_null",
+      "region_source": "anatomical (roiInfo, 3,519 SEZ-intrinsic neurons)",
       "n_lif": 167649,
       "n_chem_syn": 5821202,
       "n_stim": 2526,
-      "pop_rate_hz": 7.953124285461496e-07,
+      "pop_rate_hz": 2.434629883304535e-06,
       "gf_per_cell": 0.0,
       "gf_hit": 0.0,
       "gf_hit_ci95": [
-        -1.1641658116749259e-17,
-        0.1611301254949332
+        -6.330876522670002e-18,
+        0.08762453925039232
       ],
       "gf_per_hit": 0.0,
       "gf_lat_ms": NaN,
@@ -84,7 +90,7 @@
       "ttmn_lag_ms": NaN,
       "psi_per_cell": 0.0,
       "ttmn_to_gf_ratio": NaN,
-      "wall_s": 51.4
+      "wall_s": 140.8
     }
   },
   "checks": {
