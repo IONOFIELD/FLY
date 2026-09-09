@@ -111,13 +111,23 @@ def try_meshes():
         except Exception:
             continue
     return got
-if not try_meshes():
+def try_local_meshes():
+    got = 0
+    for f in sorted(MESH.glob("*.npz")):
+        d = np.load(f); v, fc = d["v"], d["f"]
+        outline_traces.append(go.Mesh3d(x=v[:, 0], y=v[:, 1], z=v[:, 2], i=fc[:, 0], j=fc[:, 1], k=fc[:, 2],
+                                        color="#8899aa", opacity=0.07, name=f.stem, hoverinfo="skip", showlegend=False))
+        got += 1
+    return got
+
+
+if not (try_local_meshes() or try_meshes()):
     bg = neurons.dropna(subset=["x", "y", "z"]).sample(min(30000, len(neurons)), random_state=0)
     outline_traces.append(go.Scatter3d(x=bg.x, y=bg.y, z=bg.z, mode="markers", name="all somas",
                                        marker=dict(size=1, color="#8899aa", opacity=0.12), hoverinfo="skip", showlegend=False))
     print("  outline: soma cloud (no ROI meshes available)")
 else:
-    print("  outline: neuropil meshes")
+    print(f"  outline: neuropil meshes ({len(outline_traces)})")
 
 # ---------------------------------------------------------------- synapses between active neurons
 links = None

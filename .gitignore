@@ -9,3 +9,5 @@ results/**/*.parquet
 results/**/*.html
 overnight.log
 data/turner2022/
+data/bulk/
+data/meshes/

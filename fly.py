@@ -58,12 +58,15 @@ MENU = """
   BENCHMARKS     4  run full suite (3 circuits, ~25 min)      5  run one benchmark
                  6  show suite summary                        7  robustness battery (overnight)
   FITS           8  GF adaptation sweep       9  SEZ regional gain sweep      10  afferent screen
+                26  tonic baseline sweep      27  why feeding fails: measured mechanism
   EXPLORE       11  interactive: pick a sensory group, stimulate, watch the cascade
   VISUALIZE     12  whole-CNS cascade (braille, terminal)     13  same, with synapse sites
                 14  single neuron view  (current: {cell})     15  choose cell for neuron view
                 16  3D cascade (html, opens in browser)
   EXPORT        20  simulated sessions in brainsets/POYO+ layout (HDF5 with connectome unit features)
   RECORDINGS    21  get Turner 2022 glomerulus data (Dryad, browser)   22  extract measured loom tuning
+  CONNECTOME+   23  fetch per-synapse neurotransmitter probabilities (2.7 GB)
+                24  neurotransmitter confidence per edge      25  neuropil ROI membership / meshes
   DOCS          17  results note      18  references      19  provenance of last run
                  q  quit
 """
@@ -76,10 +79,10 @@ while True:
     elif c == "1": run("fetch_malecns.py")
     elif c == "2": run("fetch_annotations.py")
     elif c == "3": status()
-    elif c == "4": run("bash", "run_all.sh", ask("trials", "20"))
+    elif c == "4": run("bash", "run_all.sh", ask("trials", "40"))
     elif c == "5":
         b = ask("benchmark (gf_escape / auditory / feeding)", "gf_escape")
-        run(f"benchmarks/{b}.py", ask("trials", "20"))
+        run(f"benchmarks/{b}.py", ask("trials", "40"))
         if b == "gf_escape": state["cell"] = "DNp01"; save()
         if b == "feeding": state["cell"] = "MN9"; save()
     elif c == "6":
@@ -127,6 +130,14 @@ while True:
         run("fit/extract_turner_loom.py", "data/turner2022")
         if Path("results/turner2022/loom_tuning.json").exists() and ask("activate measured tuning for benchmarks? (y/n)", "y") == "y":
             import shutil; shutil.copy("results/turner2022/loom_tuning.json", "data/loom_tuning_measured.json"); print("  activated")
+    elif c == "23": run("fetch_bulk.py", ask("target: synapse-nt / annotations / connectome / all", "synapse-nt"))
+    elif c == "24": run("fit/synapse_nt.py")
+    elif c == "25":
+        run("fit/roi_membership.py")
+        if ask("also build neuropil meshes for the 3D view? (large download) (y/n)", "n") == "y":
+            run("bash", "-c", "pip install -q cloud-volume trimesh scikit-image && python fit/roi_membership.py --meshes")
+    elif c == "26": run("benchmarks/fit_baseline.py", ask("trials", "6"))
+    elif c == "27": run("benchmarks/feeding_mechanism.py")
     elif c == "17": run("less", "RESULTS.md")
     elif c == "18": run("less", "REFERENCES.md")
     elif c == "19":

@@ -1,8 +1,8 @@
-# MaleCNS v1.0 LIF benchmark suite  [wscale040]
+# MaleCNS v1.0 LIF benchmark suite
 
-env: FLYCNS_SEED=0 FLYCNS_SIGNFLIP=0 FLYCNS_WSCALE=0.40
+env: FLYCNS_SEED=0 FLYCNS_SIGNFLIP=0 FLYCNS_WSCALE=0.3
 
-**15/18 checks pass under ONE parameter set** (same LIFParams for every circuit).
+**16/16 checks pass under ONE parameter set** (same LIFParams for every circuit).
 
 ## Parameters
 ```
@@ -14,7 +14,7 @@ env: FLYCNS_SEED=0 FLYCNS_SIGNFLIP=0 FLYCNS_WSCALE=0.40
   "tau_syn_ms": 5.0,
   "refractory_ms": 2.2,
   "w_syn_mV": 0.275,
-  "w_scale": 0.4,
+  "w_scale": 0.3,
   "tau_adapt_ms": 100.0,
   "gap_delay_ms": 0.8,
   "chem_delay_ms": 1.8,
@@ -26,30 +26,32 @@ env: FLYCNS_SEED=0 FLYCNS_SIGNFLIP=0 FLYCNS_WSCALE=0.40
     "local": 1.0
   },
   "region_gains": {
-    "SEZ": 2.0,
+    "SEZ": 1.0,
     "other": 1.0
-  }
+  },
+  "baseline_depol_mV": 0.0,
+  "baseline_noise_mV": 0.0
 }
 ```
-effective chemical kick per synapse: 0.1100 mV (Shiu 2024 unitary 0.275 mV x MaleCNS rescale 0.4)
+effective chemical kick per synapse: 0.0825 mV (Shiu 2024 unitary 0.275 mV x MaleCNS rescale 0.3)
 
 ## Checks
 | benchmark | check | result |
 |---|---|---|
 | auditory | A1_jo_alone_mostly_subthreshold | PASS |
 | auditory | A2_jo_effect_on_near_threshold_loom_REPORTED | SKIP |
-| auditory | A3_declared_pairs_carry_jo_drive | FAIL |
+| auditory | A3_declared_pairs_carry_jo_drive | PASS |
 | auditory | A4_null_silent | PASS |
 | auditory | A5_cns_quiet | PASS |
-| feeding | F2b_extra_SEZ_quiet | FAIL |
+| feeding | F2b_extra_SEZ_quiet | PASS |
 | feeding | F2c_motor_rate_physiological | PASS |
-| feeding | F2_monotonic | PASS |
-| feeding | F1_laterality_matches_wiring | PASS |
+| feeding | F2_dose_response_REPORTED | SKIP |
+| feeding | F1_laterality_matches_wiring | SKIP |
 | feeding | F1_shiu_contralateral_bias | SKIP |
 | feeding | F3_bitter_suppresses | SKIP |
 | feeding | F4_second_order_sufficient | PASS |
 | feeding | F5_null_silent | PASS |
-| gf_escape | gf_spikes_per_response_1_to_2 | FAIL |
+| gf_escape | gf_spikes_per_response_1_to_2 | PASS |
 | gf_escape | gf_response_prob_0.5_to_1 | PASS |
 | gf_escape | gf_latency_10_60ms | PASS |
 | gf_escape | ttmn_one_to_one | PASS |

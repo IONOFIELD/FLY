@@ -32,7 +32,7 @@ JO-A and JO-B are the vibration-sensitive subgroups (Kamikouchi et al. 2009);
 pulse song drives them at ~100-200 Hz burst rates.
 Writes results/auditory/{report.json, provenance.md, *.csv}
 """
-import json, sys, time
+import json, os, sys, time
 from pathlib import Path
 import numpy as np
 import pandas as pd
@@ -45,7 +45,11 @@ from flycns.bench import find_types, pulse_protocol
 from flycns import ascii as A
 
 OUT = Path("results/auditory"); OUT.mkdir(parents=True, exist_ok=True)
-N_TRIALS = int(sys.argv[1]) if len(sys.argv) > 1 else 10
+N_TRIALS = int(sys.argv[1]) if len(sys.argv) > 1 else 40
+# A2 compares two response probabilities, so it needs far more trials than the pass/fail
+# checks: 20 trials cannot separate 0.15 from 0.30 (3 vs 6 events). Set FLYCNS_A2_TRIALS
+# to run it properly (>=120 per arm); with fewer, A2 reports "unresolved".
+A2_TRIALS = int(os.environ.get("FLYCNS_A2_TRIALS", str(N_TRIALS)))
 DATA = sys.argv[2] if len(sys.argv) > 2 else "data"
 JO_HZ = 150
 SUB_LOOM_GAIN = None    # calibrated per run: largest gain with hit rate <= 0.3 and GF depolarised
@@ -74,16 +78,34 @@ def gf_stats(model, onsets, window_ms=160):
                 gf_lat_ms=float(df.lat.mean()), pop_rate_hz=float(model.population_rate_hz()))
 
 
-def run(label, stim_types, electrical=True, edge_df=edges, jo=True, loom=False):
+def wilson(k, n, z=1.96):
+    if n == 0:
+        return (0.0, 0.0)
+    p = k / n; d = 1 + z * z / n; c = p + z * z / (2 * n)
+    h = z * np.sqrt(p * (1 - p) / n + z * z / (4 * n * n))
+    return ((c - h) / d, (c + h) / d)
+
+
+def two_prop_ci(k1, n1, k2, n2, z=1.96):
+    """95% CI on p2 - p1 (Newcombe hybrid score interval)."""
+    l1, u1 = wilson(k1, n1); l2, u2 = wilson(k2, n2)
+    d = k2 / n2 - k1 / n1
+    lo = d - z * np.sqrt((k1 / n1 - l1) ** 2 / z ** 2 * z ** 2 + (u2 - k2 / n2) ** 2 / z ** 2 * z ** 2)
+    hi = d + z * np.sqrt((u1 - k1 / n1) ** 2 / z ** 2 * z ** 2 + (k2 / n2 - l2) ** 2 / z ** 2 * z ** 2)
+    return d, lo, hi
+
+
+def run(label, stim_types, electrical=True, edge_df=edges, jo=True, loom=False, n_trials=None):
     t0 = time.time()
     m = CNSModel(neurons, edge_df, stim_types, LIFParams(), electrical=electrical,
                  monitor_types=("DNp01",))
+    N = N_TRIALS if n_trials is None else n_trials
     if loom and jo:
         # loom protocol drives LC types; add JO at fixed rate during each loom burst
         tuning = m.stim["type"].map(LOOM_TUNING).fillna(0).values
         is_jo = m.stim["type"].isin(jo_types).values
         onsets = []
-        for _ in range(N_TRIALS):
+        for _ in range(N):
             m.run(300); onsets.append(m.t_ms)
             m.set_stim_rates(tuning * 5.0 * SUB_LOOM_GAIN + is_jo * JO_HZ); m.run(60)
             m.set_stim_rates(np.zeros(len(m.stim)))
@@ -91,14 +113,14 @@ def run(label, stim_types, electrical=True, edge_df=edges, jo=True, loom=False):
     elif loom:
         tuning = m.stim["type"].map(LOOM_TUNING).fillna(0).values
         onsets = []
-        for _ in range(N_TRIALS):
+        for _ in range(N):
             m.run(300); onsets.append(m.t_ms)
             m.set_stim_rates(tuning * 5.0 * SUB_LOOM_GAIN); m.run(60)
             m.set_stim_rates(np.zeros(len(m.stim)))
         m.run(300)
     else:
-        onsets = pulse_protocol(m, {t: JO_HZ for t in stim_types}, n_trials=N_TRIALS, pulse_ms=60)
-    s = gf_stats(m, onsets); s["wall_s"] = round(time.time() - t0, 1)
+        onsets = pulse_protocol(m, {t: JO_HZ for t in stim_types}, n_trials=N, pulse_ms=60)
+    s = gf_stats(m, onsets); s["wall_s"] = round(time.time() - t0, 1); s["n_trials"] = len(onsets)
     A.raster(m, onsets, ["DNp01"], window_ms=100, max_trials=2)
     s["gf_depol_mV"] = float(np.nanmean(m.peak_depolarization_mV(onsets, 100)))
     print(f"[{label}] GF {s['gf_per_cell']:.2f}/cell hit {s['gf_hit']:.2f} lat {s['gf_lat_ms']:.1f} ms "
@@ -128,8 +150,8 @@ a1 = run("A1_jo_alone_electrical", jo_types, electrical=True)
 a3 = run("A3_jo_alone_no_electrical_no_mixed_edges", jo_types, electrical=False,
          edge_df=drop_mixed_chemical(edges, neurons))
 ref = run("ref_jo_alone_chem_only_EM_as_annotated", jo_types, electrical=False)
-lo = run("subthreshold_loom_alone", list(LOOM_TUNING), electrical=True, jo=False, loom=True)
-a2 = run("A2_loom_plus_jo", list(LOOM_TUNING) + jo_types, electrical=True, jo=True, loom=True)
+lo = run("subthreshold_loom_alone", list(LOOM_TUNING), electrical=True, jo=False, loom=True, n_trials=A2_TRIALS)
+a2 = run("A2_loom_plus_jo", list(LOOM_TUNING) + jo_types, electrical=True, jo=True, loom=True, n_trials=A2_TRIALS)
 a4 = run("A4_jo_rewired_null_chem", jo_types, electrical=False,
          edge_df=rewire_null(drop_mixed_chemical(edges, neurons)))
 
@@ -140,13 +162,21 @@ report["checks"] = {
     "A4_null_silent": a4["gf_hit"] < 0.1 and a4["gf_depol_mV"] < 0.5,
     "A5_cns_quiet": max(a1["pop_rate_hz"], a2["pop_rate_hz"]) < 0.05,
 }
-report["arms"]["A2_prediction"] = dict(loom_gain=SUB_LOOM_GAIN,
-    loom_alone_hit=lo["gf_hit"], loom_plus_jo_hit=a2["gf_hit"],
+k1, n1 = int(round(lo["gf_hit"] * lo["n_trials"])), lo["n_trials"]
+k2, n2 = int(round(a2["gf_hit"] * a2["n_trials"])), a2["n_trials"]
+d, dlo, dhi = two_prop_ci(k1, n1, k2, n2)
+resolved = (dlo > 0) or (dhi < 0)
+direction = ("facilitation" if d > 0 else "suppression" if d < 0 else "none") if resolved else "UNRESOLVED"
+report["arms"]["A2_prediction"] = dict(loom_gain=SUB_LOOM_GAIN, n_trials_per_arm=n1,
+    loom_alone_hit=lo["gf_hit"], loom_alone_ci95=list(wilson(k1, n1)),
+    loom_plus_jo_hit=a2["gf_hit"], loom_plus_jo_ci95=list(wilson(k2, n2)),
+    difference=d, difference_ci95=[dlo, dhi], resolved=bool(resolved), direction=direction,
     loom_alone_depol_mV=lo["gf_depol_mV"], loom_plus_jo_depol_mV=a2["gf_depol_mV"],
-    direction="suppression" if a2["gf_hit"] < lo["gf_hit"] else "facilitation" if a2["gf_hit"] > lo["gf_hit"] else "none",
-    note="model prediction at a calibrated near-threshold working point; in vivo direction not established in cited references")
-print(f"A2 (reported): JO drive changes GF response to near-threshold loom {lo['gf_hit']:.2f} -> {a2['gf_hit']:.2f} "
-      f"({report['arms']['A2_prediction']['direction']})")
+    note=("model measurement at a calibrated near-threshold working point; in vivo direction not "
+          "established in cited references. With few trials the difference is not resolvable: "
+          "set FLYCNS_A2_TRIALS>=120 for a usable estimate."))
+print(f"A2 (reported, {n1} trials/arm): loom alone {lo['gf_hit']:.2f} -> with JO {a2['gf_hit']:.2f}; "
+      f"difference {d:+.2f} (95% CI {dlo:+.2f} to {dhi:+.2f}) -> {direction}")
 report["pass"] = all(v for v in report["checks"].values() if v is not None)
 (OUT / "report.json").write_text(json.dumps(report, indent=2, default=float))
 prov = ["# Provenance: auditory (JON -> GF)", "", f"JO types: {jo_types} at {JO_HZ} Hz",

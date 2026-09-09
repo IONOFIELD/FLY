@@ -19,7 +19,7 @@ import pandas as pd
 from brian2 import (NeuronGroup, PoissonGroup, Synapses, SpikeMonitor, StateMonitor, Network,
                     ms, mV, Hz, second, defaultclock, prefs, seed as b2seed)
 
-from .graph import electrical_pairs, drop_mixed_chemical, pre_class, type_region, INTRINSIC_OVERRIDES, SEZ_GAIN_FITTED
+from .graph import electrical_pairs, drop_mixed_chemical, pre_class, region_of, INTRINSIC_OVERRIDES, SEZ_GAIN_FITTED
 
 
 @dataclass
@@ -39,8 +39,18 @@ class LIFParams:
     seed: int = int(os.environ.get("FLYCNS_SEED", "0"))
     # class-wise gain on top of w_scale, keyed by presynaptic class (graph.pre_class)
     class_gains: dict = field(default_factory=lambda: {"sensory": 1.0, "relay": 1.0, "local": 1.0})
-    # regional gain by presynaptic type prefix region (graph.type_region): SEZ vs other
+    # regional gain by presynaptic region (graph.region_of): SEZ vs other
     region_gains: dict = field(default_factory=lambda: {"SEZ": SEZ_GAIN_FITTED, "other": 1.0})
+    # Tonic background drive (Hz per neuron). Shiu et al. 2024 ran at 0 Hz baseline and
+    # noted that inhibitory neurons therefore cannot show activation phenotypes. The
+    # MaleCNS taste -> MN9 path is net inhibitory at two hops and net EXCITATORY at three
+    # to five (signed path products), i.e. it works by disinhibition, which a silent
+    # network cannot express. Set > 0 to give inhibitory cells something to suppress.
+    # Tonic depolarisation and membrane noise, in mV. Poisson background cannot reach
+    # threshold at plausible rates (200 Hz of 1.2 mV kicks gives ~1.2 mV against a 7 mV
+    # gap), so the baseline is a current plus an Ornstein-Uhlenbeck-style noise term.
+    baseline_depol_mV: float = float(os.environ.get("FLYCNS_BASELINE_DEPOL", "0"))
+    baseline_noise_mV: float = float(os.environ.get("FLYCNS_BASELINE_NOISE", "0"))
 
 
 class CNSModel:
@@ -63,8 +73,9 @@ class CNSModel:
         self.lif_index = pd.Series(np.arange(len(self.lif_ids)), index=self.lif_ids)
 
         p = params
-        eqs = """
-        dv/dt = (v_rest - v + g + I_gap - a) / tau_m : volt (unless refractory)
+        noise = "+ sigma * sqrt(2 / tau_m) * xi" if p.baseline_noise_mV > 0 else ""
+        eqs = f"""
+        dv/dt = (v_rest + I_base - v + g + I_gap - a) / tau_m {noise} : volt (unless refractory)
         dg/dt = -g / tau_syn : volt
         da/dt = -a / tau_adapt : volt
         I_gap : volt
@@ -72,7 +83,8 @@ class CNSModel:
         """
         ns = dict(v_rest=p.v_rest_mV * mV, tau_m=p.tau_m_ms * ms, tau_syn=p.tau_syn_ms * ms,
                   tau_adapt=p.tau_adapt_ms * ms, v_thresh=p.v_thresh_mV * mV,
-                  v_reset=p.v_reset_mV * mV)
+                  v_reset=p.v_reset_mV * mV, I_base=p.baseline_depol_mV * mV,
+                  sigma=p.baseline_noise_mV * mV)
         G = NeuronGroup(len(self.lif_ids), eqs, threshold="v > v_thresh",
                         reset="v = v_reset; a += b_adapt",
                         refractory=p.refractory_ms * ms, method="euler", namespace=ns)
@@ -90,8 +102,10 @@ class CNSModel:
                 self.overrides_applied.append(dict(type=typ, parameter=par, value=val, source=src))
 
         w_unit = p.w_syn_mV * p.w_scale * mV
+        region, region_src = region_of(neurons)
+        self.region_source = region_src
         gain_of = (self.meta["superclass"].map(pre_class).map(p.class_gains).fillna(1.0)
-                   * self.meta["type"].map(type_region).map(p.region_gains).fillna(1.0))
+                   * region.reindex(self.meta.index).fillna("other").map(p.region_gains).fillna(1.0))
         rec = edges[edges["pre"].isin(self.lif_index.index) & edges["post"].isin(self.lif_index.index)]
         S_rec = Synapses(G, G, "w : volt", on_pre="g_post += w")
         S_rec.connect(i=self.lif_index[rec["pre"]].values, j=self.lif_index[rec["post"]].values)

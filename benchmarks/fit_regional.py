@@ -7,6 +7,9 @@ escape circuit. Here only synapses from SEZ intrinsic types (GNG, SAD, PRW,
 FLA, CAN prefixes) are scaled; everything else stays at unity.
 Gustatory afferents are selected by MaleCNS `subclass` (labellar bristle,
 taste peg, pharyngeal sensillum) after fetch_annotations.py.
+The SEZ population is defined anatomically (>50% of synapses in SEZ compartments,
+excluding sensory/motor/efferent) when data/roi_membership.parquet exists; the model
+prints which definition it used.
 
 One network per candidate gain set (sensory, relay, local) on top of the shared
 w_scale = 0.3. Stimulus sets are swapped with store/restore, so each candidate
@@ -97,6 +100,8 @@ for gsez in SEZ_GRID:
     t0 = time.time()
     p = LIFParams(region_gains={"SEZ": gsez, "other": 1.0})
     m = CNSModel(neurons, edges, stim_all, p, electrical=True)
+    if not rows:
+        print(f"SEZ definition: {getattr(m, 'region_source', 'unknown')}")
     m.store()
     # escape
     on = [o for o, _ in loom_protocol(m, n_trials=N)]; E = gf_metrics(m, on); m.restore()

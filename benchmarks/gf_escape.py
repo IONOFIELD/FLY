@@ -59,7 +59,7 @@ def run_arm(name, neurons, edges, electrical):
     print("  per trial GF/TTMn spikes:", " ".join(f"{int(g*2)}/{int(t*2)}" for g, t in zip(df.gf, df.ttmn)))
     A.raster(m, [t for t, _ in trials], ["DNp01", "TTMn"], meta=m.meta)
     A.region_bar(m, [t for t, _ in trials], window_ms=160)
-    summ = dict(arm=name, n_lif=int(len(m.lif_ids)), n_chem_syn=int(m.n_chem),
+    summ = dict(arm=name, region_source=getattr(m, "region_source", ""), n_lif=int(len(m.lif_ids)), n_chem_syn=int(m.n_chem),
                 n_stim=int(len(m.stim)), pop_rate_hz=float(m.population_rate_hz()),
                 gf_per_cell=float(df.gf.mean()), gf_hit=float((df.gf > 0).mean()),
                 gf_hit_ci95=[float(x) for x in _wilson((df.gf > 0).sum(), len(df))],
@@ -110,7 +110,8 @@ prov = ["# Provenance: gf_escape", "", "## Neurotransmitter sign map", str(SIGN_
         "## Electrical synapses added (invisible to EM)"]
 prov += [f"- {a} -> {b} ({'ipsilateral' if i else 'any side'}, spikelet {k}): {s}" for a, b, i, k, s in ELECTRICAL_SYNAPSES]
 prov += ["", "## Intrinsic overrides"] + [f"- {t}.{p} = {v}: {s}" for t, p, v, s in INTRINSIC_OVERRIDES]
-prov += ["", f"## Regional gain: SEZ x{LIFParams().region_gains['SEZ']} (fitted, benchmarks/fit_regional.py), other x1"]
+prov += ["", f"## Regional gain: SEZ x{LIFParams().region_gains['SEZ']} (fitted, benchmarks/fit_regional.py), other x1",
+         f"   SEZ definition: {report['arms']['real_electrical'].get('region_source', 'see flycns/graph.py')}"]
 prov += ["", f"## Loom tuning: {TUNING_SOURCE}; trial gain sigma {GAIN_SIGMA_DEFAULT}; peak rate {PEAK_HZ_DEFAULT} Hz (free dF/F->rate scale)", str(LOOM_TUNING), "",
          "## Checks"] + [f"- {k}: {'PASS' if v else 'FAIL'}" for k, v in checks.items()]
 (OUT / "provenance.md").write_text("\n".join(prov))

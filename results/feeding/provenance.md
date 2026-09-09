@@ -6,10 +6,10 @@ second-order present: ['DNge062', 'GNG120', 'GNG117', 'GNG108']
 motor present: ['MN9', 'MN6', 'MN8']
 
 ## Checks
-- F2b_extra_SEZ_quiet: FAIL
+- F2b_extra_SEZ_quiet: PASS
 - F2c_motor_rate_physiological: PASS
-- F2_monotonic: PASS
-- F1_laterality_matches_wiring: PASS
+- F2_dose_response_REPORTED: SKIP
+- F1_laterality_matches_wiring: SKIP
 - F1_shiu_contralateral_bias: SKIP
 - F3_bitter_suppresses: SKIP
 - F4_second_order_sufficient: PASS

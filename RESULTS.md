@@ -25,21 +25,40 @@ This is a sensory to motor cascade across the neck connective at physiological l
 annotated as chemical on this contact abolishes the response, identifying those synapses
 as the pathway.
 
-**Feeding.** Pharyngeal and labellar gustatory afferents drive the proboscis motor pool
-(MN9, MN10, MN11, MN4, MN6, MN7; 11 of 43 central-brain motor types) monotonically with
-input rate, at motor rates of ~70 Hz, with the rest of the CNS silent and a wind-sensitive
-control population producing nothing. Unilateral drive produces ipsilateral MN9 output,
-matching the 73:1 structural bias in the wiring.
+**Feeding: the model does not reproduce it, and we can say why.** Under the escape circuit's
+parameters MN9 stays silent, and four uniform manipulations fail for one reason:
 
-## Multisensory interaction at GF (reported, direction withdrawn)
+- MN9's synaptic input is balanced to 1.4% (2,966 excitatory vs 3,049 inhibitory synapses), so
+  scaling anything moves both sides together.
+- Gustatory afferents contact MN9's inhibitory relays three times more strongly than its
+  excitatory ones (1,097 vs 3,333 synapses for the screen-selected subset; 1,314 vs 4,659 for
+  all anatomically gustatory afferents).
+- Signed path products from those afferents to MN9 are negative at two hops and positive at
+  three to five: **the pathway is disinhibitory.**
+- A silent network cannot express disinhibition. A uniform tonic depolarisation that makes it
+  non-silent lets MN9 respond, but the wind-sensitive control drives it just as strongly
+  (specificity lost) and the escape response is abolished.
+
+Reproducing feeding therefore needs cell-specific spontaneous activity, that is, the
+state-dependent modulation this model omits; Shiu et al. 2024 reported the same limitation for
+inhibitory neurons in their 0 Hz-baseline model. Full numbers and the scripts that produced
+them: `results/feeding/mechanism.json`. What the feeding benchmark still scores: each of MN9's
+excitatory second-order inputs drives it when stimulated directly, MN9 is silent on a rewired
+null, activity stays inside the SEZ, and motor rates stay physiological.
+
+## Multisensory interaction at GF (reported, currently unresolved)
 Whether auditory drive raises or lowers GF's response to a loom depends entirely on where the
 loom sits relative to threshold, and earlier runs reported both directions at a fixed loom gain
 (suppression 0.55 to 0.20 under the ordinal tuning; facilitation 0.00 to 0.07 under the measured
 tuning at the same gain). Neither is quotable. The auditory benchmark now calibrates a
 near-threshold working point per run (largest loom gain with GF hit rate <= 0.3 and mean
-depolarisation >= 2 mV) and reports the effect there; the value is in
-`results/auditory/report.json` under `A2_prediction` with its calibration table. The in vivo
-direction is not established in our references.
+depolarisation >= 2 mV) and reports the effect there with a confidence interval on the
+difference. Across the eight-run robustness battery at 20 trials per arm the reading was
+facilitation four times, suppression twice and no change twice, all differences of 1 to 5
+trials: the effect is NOT resolved at that trial count and no direction should be quoted.
+Resolving a 0.15 to 0.30 difference needs roughly 120 trials per arm
+(`FLYCNS_A2_TRIALS=120 python benchmarks/auditory.py`). The in vivo direction is not
+established in our references either.
 
 ## Measured loom input (added 8 Sept 2026)
 The ordinal loom tuning has been replaced by amplitudes extracted from the public Turner,
@@ -54,7 +73,13 @@ declared as such.
 ## What the model needed that the connectome does not contain
 - Electrical synapses (invisible to EM): GF to TTMn, GF to PSI, JON to GF. Documented
   anatomy, added with citations and calibrated to measured potentials.
-- A regional gain: synapses from subesophageal-zone intrinsic neurons scaled x2.0. Without
+- (Retired) a regional gain on subesophageal-zone synapses. Fitted to 2.0 while the SEZ was
+  defined by type-name prefixes, where it appeared to open the feeding pathway. Defining the
+  SEZ from the connectome's own compartment annotations (>50% of synapses in
+  GNG/PRW/SAD/FLA/CAN/AMMC/PENP, excluding sensory/motor/efferent: 3,519 neurons, 4.0% of
+  synaptic weight) shows the population is net inhibitory onto that pathway under either
+  definition, and MN9 stays silent at every gain. The parameter is now 1.0 and the apparent
+  effect is documented as an artefact of the naming heuristic. Without
   it, taste never reaches the motor neurons at gains where the escape circuit is stable;
   with a global gain, escape and feeding cannot both pass. Stated as a hypothesis about
   SEZ synapse strength, fitted, and open to test.
@@ -74,7 +99,9 @@ recorded as not applicable rather than passed or failed. Driving every gustatory
 at once yields no feeding output, consistent with a mixed sugar and bitter population.
 
 ## Robustness
-Full suite at seeds 0-2: 18/18. Inverting 5% of neurotransmitter signs at random costs
+Benchmarks now default to 40 trials: at 20, GF response probability (criterion 0.5) failed on
+the two runs where it sat at the floor with a confidence interval spanning it, which is a
+resolution limit rather than a model result. Full suite at seeds 0-2: 18/18. Inverting 5% of neurotransmitter signs at random costs
 0-2 checks; 10% costs 4. The shared weight scale holds from 0.25 to 0.30 and floods above.
 
 ## What this does not claim

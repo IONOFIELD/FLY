@@ -3,6 +3,8 @@ Graph loading, neurotransmitter signing, literature overrides, null models.
 
 Every deviation from the raw connectome is declared here with a citation.
 """
+from pathlib import Path
+
 import numpy as np
 import pandas as pd
 
@@ -37,15 +39,45 @@ G_GAP_RELAY = 0.2  # ohmic coupling (fraction of leak) for a 1:1 relay pair; pop
 # Gustatory afferents by ANATOMY (MaleCNS v1.0 `subclass`); modality is unannotated.
 GUSTATORY_SUBCLASSES = ["labellar bristle", "taste peg", "pharyngeal sensillum"]
 
-# Regional gain: synapses from neurons whose type begins with one of these
-# prefixes (subesophageal zone intrinsic neuropils) get their own multiplier.
+# Regional gain: synapses from SEZ-intrinsic neurons get their own multiplier.
+# Definition (since 2026-09-08): more than half of a neuron's synapses lie in SEZ
+# compartments (GNG, PRW, SAD, FLA, CAN, AMMC, PENP), from the connectome's own
+# roiInfo (fit/roi_membership.py -> data/roi_membership.parquet), AND the neuron is
+# not sensory, motor or efferent (those are inputs to and outputs of the region, not
+# local processing). 3,519 neurons, 4.0% of synaptic weight. The earlier definition
+# was a type-name prefix rule (2,280 neurons, 3.6%); it is kept as a fallback when
+# roi_membership.parquet is absent, and the two overlap in 1,414 neurons.
 # Reading: SEZ local synapses are effectively stronger than synapse counts
 # imply (hypothesis to test in vivo), needed for taste -> MN9 propagation.
-SEZ_TYPE_PREFIXES = ("GNG", "SAD", "PRW", "FLA", "CAN")
-# Fitted value (benchmarks/fit_regional.py, Sept 2026): SEZ gain 2.0 is the smallest
-# value at which gustatory afferents drive MN9 while escape checks and the wind
-# control hold. Declared here so the whole suite runs under one parameter set.
-SEZ_GAIN_FITTED = 2.0
+SEZ_TYPE_PREFIXES = ("GNG", "SAD", "PRW", "FLA", "CAN")     # fallback only
+SEZ_ROI_PREFIXES = ("GNG", "PRW", "SAD", "FLA", "CAN", "AMMC", "PENP")
+_SEZ_BODIES = None
+
+
+def sez_bodies(neurons=None, data_dir="data"):
+    """Body IDs of SEZ-intrinsic neurons by anatomy; empty if the membership file is absent."""
+    global _SEZ_BODIES
+    if _SEZ_BODIES is None:
+        f = Path(data_dir) / "roi_membership.parquet"
+        if not f.exists():
+            _SEZ_BODIES = frozenset()
+        else:
+            m = pd.read_parquet(f).set_index("bodyId")
+            keep = set(m.index[m.sez_frac > 0.5])
+            if neurons is not None:
+                sc = neurons.set_index("bodyId")["superclass"].fillna("")
+                keep &= set(sc.index[~sc.str.contains("sensory|motor|efferent")])
+            _SEZ_BODIES = frozenset(keep)
+    return _SEZ_BODIES
+# Regional gain is DISABLED (1.0) since 2026-09-08. It was fitted to 2.0 under a
+# type-name prefix definition of the SEZ, where it appeared to open the taste -> MN9
+# pathway. With the SEZ defined anatomically from the connectome's own compartment
+# annotations, the population is net inhibitory onto that pathway under either
+# definition, so the gain amplifies inhibition along with excitation and MN9 stays
+# silent at every value (benchmarks/fit_regional.py). The underlying reason is that
+# the pathway is disinhibitory (benchmarks/feeding_mechanism.py); no uniform
+# manipulation reproduces it. Kept as a parameter for anyone who wants to sweep it.
+SEZ_GAIN_FITTED = 1.0
 
 # Screen-selected gustatory subset (benchmarks/screen_afferents.py at w_scale 1.0,
 # Sept 2026): the gustatory types that individually drive MN9. This is the closest
@@ -112,9 +144,20 @@ def pre_class(superclass):
 
 
 def type_region(t):
-    """Region tag from type prefix; 'SEZ' for subesophageal-zone intrinsic types."""
+    """Fallback region tag from the type-name prefix (used only without roi_membership.parquet)."""
     t = "" if t is None or t != t else str(t)
     return "SEZ" if t.startswith(SEZ_TYPE_PREFIXES) else "other"
+
+
+def region_of(neurons, data_dir="data"):
+    """Per-bodyId region ('SEZ'/'other'), anatomical where available, else prefix rule."""
+    bodies = sez_bodies(neurons, data_dir)
+    idx = neurons.set_index("bodyId")
+    if bodies:
+        r = pd.Series("other", index=idx.index)
+        r.loc[list(bodies & set(idx.index))] = "SEZ"
+        return r, f"anatomical (roiInfo, {len(bodies):,} SEZ-intrinsic neurons)"
+    return idx["type"].map(type_region), "type-name prefix fallback"
 
 
 def gustatory_afferents(neurons):
@@ -152,9 +195,20 @@ def pre_class(superclass):
 
 
 def type_region(t):
-    """Region tag from type prefix; 'SEZ' for subesophageal-zone intrinsic types."""
+    """Fallback region tag from the type-name prefix (used only without roi_membership.parquet)."""
     t = "" if t is None or t != t else str(t)
     return "SEZ" if t.startswith(SEZ_TYPE_PREFIXES) else "other"
+
+
+def region_of(neurons, data_dir="data"):
+    """Per-bodyId region ('SEZ'/'other'), anatomical where available, else prefix rule."""
+    bodies = sez_bodies(neurons, data_dir)
+    idx = neurons.set_index("bodyId")
+    if bodies:
+        r = pd.Series("other", index=idx.index)
+        r.loc[list(bodies & set(idx.index))] = "SEZ"
+        return r, f"anatomical (roiInfo, {len(bodies):,} SEZ-intrinsic neurons)"
+    return idx["type"].map(type_region), "type-name prefix fallback"
 
 
 def gustatory_afferents(neurons):

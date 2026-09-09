@@ -31,11 +31,12 @@ group and watch what fires, **14** for one neuron's skeleton and synapses, **6**
 |---|---|---|---|
 | loom escape | 9 loom-sensitive LC types (Turner et al. 2022) | DNp01 (GF), TTMn, PSI | 1-2 GF spikes per response, P(response) 0.5-1.0 with CI, 10-60 ms latency, 1:1 TTMn relay at 0.8 ms, relay lost without electrical synapse, rewired null silent, CNS quiet |
 | auditory to GF | JO-A/JO-B at 150 Hz | DNp01 membrane V | sound alone subthreshold, pathway carried by the declared JON-GF contact, null silent, CNS quiet |
-| feeding | pharyngeal/labellar gustatory afferents | proboscis motor neurons | monotonic dose response, MN rates < 100 Hz, activity confined to SEZ, unilateral drive matches 73:1 structural laterality, second-order sufficiency, null silent |
+| feeding | pharyngeal/labellar gustatory afferents | proboscis motor neurons | second-order sufficiency, null silent, activity confined to SEZ, motor rates < 100 Hz. **The model does not reproduce sugar-driven extension**: the pathway is disinhibitory and no uniform manipulation reproduces it with specificity (`results/feeding/mechanism.json`) |
 
 Recorded but not scored: the effect of auditory drive on GF's response to a near-threshold loom,
-measured at a working point calibrated per run (the direction depends on where the loom sits
-relative to threshold, so a fixed gain gave opposite answers under different tunings). Not
+at a working point calibrated per run. At default trial counts the difference is not statistically
+resolved (facilitation, suppression and no change all appeared across the robustness battery);
+`FLYCNS_A2_TRIALS=120` gives a usable estimate. Not
 applicable with this annotation: bitter suppression and Shiu's labellar-sugar contralateral bias
 (MaleCNS does not annotate taste modality).
 
@@ -45,7 +46,7 @@ the shared weight scale holds from 0.25 to 0.30 and floods above.
 ## Declared parameter set
 
 Shiu et al. 2024 LIF parameters; chemical kick 0.275 mV x 0.3 (MaleCNS rescale, fitted by sweep);
-SEZ intrinsic synapses x2.0 (fitted, `benchmarks/fit_regional.py`); GF adaptation 30 mV (smallest
+regional gain retired (1.0; see the feeding row); GF adaptation 30 mV (smallest
 value satisfying von Reyn 2014 constraints, `benchmarks/fit_gf_adapt.py`); motor neuron adaptation
 10 mV (sustained rates < 100 Hz); electrical synapses GF-TTMn, GF-PSI (1:1 relay, 0.8 ms) and
 JON-GF (calibrated to a 3 mV compound potential). The 679 EM synapses annotated as chemical on the

@@ -1,0 +1,61 @@
+{
+  "M1_MN9_input_balance": {
+    "excitatory_synapses": 2966.0,
+    "inhibitory_synapses": 3049.0,
+    "net": -83.0,
+    "net_fraction_of_total": -0.0138
+  },
+  "M2_afferent_targets": {
+    "screen_selected_subset": {
+      "n_afferents": 140,
+      "onto_MN9_excitatory": 1097.0,
+      "onto_MN9_inhibitory": 3333.0,
+      "ratio": 0.329
+    },
+    "all_gustatory_by_subclass": {
+      "n_afferents": 310,
+      "onto_MN9_excitatory": 1314.0,
+      "onto_MN9_inhibitory": 4659.0,
+      "ratio": 0.282
+    }
+  },
+  "M3_signed_path_products": {
+    "hop_1": 0.0,
+    "hop_2": -0.00345,
+    "hop_3": 0.00316,
+    "hop_4": 0.00653,
+    "hop_5": 0.0025
+  },
+  "M4_uniform_manipulations_tested": [
+    {
+      "manipulation": "global synaptic scale (w_scale 0.25-1.0)",
+      "result": "no value gives taste->MN9 with a quiet CNS",
+      "script": "benchmarks/screen_afferents.py"
+    },
+    {
+      "manipulation": "class-wise gain (sensory/relay/local, up to 3x)",
+      "result": "MN9 silent at every combination",
+      "script": "benchmarks/fit_gains.py"
+    },
+    {
+      "manipulation": "regional gain on SEZ-intrinsic neurons (1.5-4x)",
+      "result": "the SEZ population is net inhibitory onto the path under both a type-prefix and an anatomical definition, so scaling amplifies inhibition with excitation",
+      "script": "benchmarks/fit_regional.py"
+    },
+    {
+      "manipulation": "uniform tonic depolarisation + membrane noise (3-6 mV)",
+      "result": "MN9 responds but so does the wind control (specificity lost) and the escape response is abolished",
+      "script": "benchmarks/fit_baseline.py"
+    }
+  ],
+  "conclusion": "taste -> MN9 in MaleCNS is disinhibitory; a silent network cannot express that, and no uniform manipulation restores it with specificity. Reproducing feeding needs cell-specific spontaneous activity, i.e. the state-dependent modulation this model omits (cf. Shiu et al. 2024, which reported the same limitation for inhibitory neurons at 0 Hz baseline).",
+  "sign_map": {
+    "acetylcholine": 1,
+    "gaba": -1,
+    "glutamate": -1,
+    "histamine": -1,
+    "dopamine": 0,
+    "octopamine": 0,
+    "serotonin": 0
+  }
+}

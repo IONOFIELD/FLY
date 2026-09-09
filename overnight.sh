@@ -8,7 +8,7 @@ mkdir -p results/overnight
 run () {   # run TAG SEED SIGNFLIP WSCALE
   local tag=$1; export FLYCNS_SEED=$2 FLYCNS_SIGNFLIP=$3 FLYCNS_WSCALE=$4 FLYCNS_RUN_TAG=$tag
   echo "=== $(date '+%H:%M') start $tag (seed $2, signflip $3, wscale $4)"
-  for b in gf_escape auditory feeding; do python benchmarks/$b.py 20 data > "results/overnight/${tag}_${b}.log" 2>&1 || echo "  $b errored (see log)"; done
+  for b in gf_escape auditory feeding; do python benchmarks/$b.py 40 data > "results/overnight/${tag}_${b}.log" 2>&1 || echo "  $b errored (see log)"; done
   python benchmarks/summarize.py > /dev/null 2>&1
   mkdir -p "results/overnight/$tag" && cp results/SUITE.md results/*/report.json "results/overnight/$tag/" 2>/dev/null
   grep -m1 "checks pass" results/SUITE.md
