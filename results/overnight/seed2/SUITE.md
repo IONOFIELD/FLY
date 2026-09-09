@@ -63,5 +63,12 @@ effective chemical kick per synapse: 0.0825 mV (Shiu 2024 unitary 0.275 mV x Mal
 
 Declared deviations from the raw connectome: see each results/*/provenance.md and flycns/graph.py.
 
-## Citation check: 27/28 tags resolve in REFERENCES.md
+## Report provenance
+| benchmark | written | commit | env |
+|---|---|---|---|
+| auditory | 2026-09-09T14:33:25 | e48d98d | {'FLYCNS_SEED': '2', 'FLYCNS_RUN_TAG': 'seed2', 'FLYCNS_SIGNFLIP': '0', 'FLYCNS_WSCALE': '0.3'} |
+| feeding | 2026-09-09T15:01:39 | e48d98d | {'FLYCNS_SEED': '2', 'FLYCNS_RUN_TAG': 'seed2', 'FLYCNS_SIGNFLIP': '0', 'FLYCNS_WSCALE': '0.3'} |
+| gf_escape | 2026-09-09T14:14:14 | e48d98d | {'FLYCNS_SEED': '2', 'FLYCNS_RUN_TAG': 'seed2', 'FLYCNS_SIGNFLIP': '0', 'FLYCNS_WSCALE': '0.3'} |
+
+## Citation check: 26/27 tags resolve in REFERENCES.md
 Unresolved: Burrows 1998

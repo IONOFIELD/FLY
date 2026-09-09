@@ -35,20 +35,20 @@
       "n_lif": 167649,
       "n_chem_syn": 5837592,
       "n_stim": 2526,
-      "pop_rate_hz": 0.004790945838696108,
-      "gf_per_cell": 1.0875,
+      "pop_rate_hz": 0.004752397532210453,
+      "gf_per_cell": 0.75,
       "gf_hit": 0.625,
       "gf_hit_ci95": [
         0.4703216005453191,
         0.7577722646420829
       ],
-      "gf_per_hit": 1.84,
-      "gf_lat_ms": 33.45199999999978,
-      "ttmn_per_cell": 1.0875,
-      "ttmn_lag_ms": 0.8999999999997135,
-      "psi_per_cell": 1.0875,
+      "gf_per_hit": 1.3,
+      "gf_lat_ms": 33.99199999999974,
+      "ttmn_per_cell": 0.75,
+      "ttmn_lag_ms": 0.8999999999999136,
+      "psi_per_cell": 0.75,
       "ttmn_to_gf_ratio": 1.0,
-      "wall_s": 98.2
+      "wall_s": 108.2
     },
     "real_chemical_only": {
       "arm": "real_chemical_only",
@@ -56,20 +56,20 @@
       "n_lif": 167649,
       "n_chem_syn": 5837611,
       "n_stim": 2526,
-      "pop_rate_hz": 0.0047248050601996685,
-      "gf_per_cell": 1.175,
-      "gf_hit": 0.725,
+      "pop_rate_hz": 0.004706951107722102,
+      "gf_per_cell": 0.7875,
+      "gf_hit": 0.7,
       "gf_hit_ci95": [
-        0.5716474916687543,
-        0.8389214656685691
+        0.545696893456796,
+        0.819253290843047
       ],
-      "gf_per_hit": 1.7758620689655173,
-      "gf_lat_ms": 32.813793103447686,
+      "gf_per_hit": 1.2678571428571428,
+      "gf_lat_ms": 32.08214285714207,
       "ttmn_per_cell": 0.0,
       "ttmn_lag_ms": NaN,
       "psi_per_cell": 0.0,
       "ttmn_to_gf_ratio": 0.0,
-      "wall_s": 94.8
+      "wall_s": 107.4
     },
     "rewired_null": {
       "arm": "rewired_null",
@@ -90,7 +90,7 @@
       "ttmn_lag_ms": NaN,
       "psi_per_cell": 0.0,
       "ttmn_to_gf_ratio": NaN,
-      "wall_s": 98.0
+      "wall_s": 105.2
     }
   },
   "checks": {
@@ -103,5 +103,15 @@
     "electrical_necessary": true,
     "null_silent": true
   },
-  "pass": true
+  "pass": true,
+  "provenance": {
+    "written_at": "2026-09-09T14:14:14",
+    "git_commit": "e48d98d",
+    "env": {
+      "FLYCNS_SEED": "2",
+      "FLYCNS_RUN_TAG": "seed2",
+      "FLYCNS_SIGNFLIP": "0",
+      "FLYCNS_WSCALE": "0.3"
+    }
+  }
 }
