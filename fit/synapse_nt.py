@@ -34,22 +34,30 @@ meta = neurons.set_index("bodyId")
 print("reading per-T-bar predictions (2.7 GB, a minute or two)...")
 tb = pd.read_feather(TB)
 print("columns:", list(tb.columns)[:12])
-nt_cols = [c for c in tb.columns if c.lower() in
-           ("acetylcholine", "gaba", "glutamate", "dopamine", "octopamine", "serotonin", "histamine")]
+# columns are nt_<transmitter>_prob in MaleCNS v1.0
+nt_cols = [c for c in tb.columns if c.startswith("nt_") and c.endswith("_prob")]
+nt_names = [c[3:-5].lower() for c in nt_cols]
 body_col = next((c for c in tb.columns if c.lower() in ("body", "bodyid", "body_pre")), None)
+print(f"transmitters: {nt_names}")
 if not nt_cols or body_col is None:
     raise SystemExit(f"unexpected columns; found nt={nt_cols} body={body_col}. Inspect and adjust.")
 
 p = tb[nt_cols].to_numpy()
 best = np.argmax(p, axis=1)
 conf = p[np.arange(len(p)), best]
-tb_small = pd.DataFrame({"body": tb[body_col].values, "pred": [nt_cols[i].lower() for i in best], "conf": conf})
+tb_small = pd.DataFrame({"body": tb[body_col].values, "pred": [nt_names[i] for i in best], "conf": conf})
 
-# per-neuron: mean confidence, and agreement with the aggregate consensus label
+# The `body` column covers every EM segment (~1.8M), most of them unproofread fragments
+# with no consensus label; restrict to the annotated neurons that carry the graph.
+n_all = len(tb_small := tb_small if "tb_small" in dir() else None) if False else None
 cons = meta["consensusNt"].str.lower()
+n_before = tb_small["body"].nunique()
+tb_small = tb_small[tb_small["body"].isin(cons.dropna().index)]
+print(f"restricting to annotated neurons: {tb_small['body'].nunique():,} of {n_before:,} bodies")
 tb_small["consensus"] = tb_small["body"].map(cons)
+tb_small["agree"] = tb_small["pred"].values == tb_small["consensus"].fillna("").values
 agg = tb_small.groupby("body").agg(mean_conf=("conf", "mean"), n_tbars=("conf", "size"),
-                                   agree=("pred", lambda s: float((s.values == cons.get(s.name, "")).mean())))
+                                   agree=("agree", "mean"))
 edges2 = edges.copy()
 edges2["nt_conf"] = edges2["pre"].map(agg["mean_conf"])
 edges2["nt_agree"] = edges2["pre"].map(agg["agree"])
@@ -62,6 +70,11 @@ out = {"n_neurons_with_tbars": int(len(agg)),
        "frac_neurons_tbars_disagree_with_consensus": round(float((agg.agree < 0.5).mean()), 4),
        "edge_weight_fraction_from_low_conf": round(float(
            edges2.loc[edges2.nt_conf < 0.6, "weight"].sum() / edges2.weight.sum()), 4),
+       "edge_weight_fraction_from_disagreeing_neurons": round(float(
+           edges2.loc[edges2.nt_agree < 0.5, "weight"].sum() / edges2.weight.sum()), 4),
+       "transmitters": nt_names,
+       "note_bodies": ("statistics are over annotated neurons only; the raw file covers ~1.8M EM "
+                       "segments, mostly unproofread fragments with no consensus label"),
        "note": ("per-T-bar predictions vs the aggregate consensus label used for signing; "
                 "use nt_agree to target sign perturbations at genuinely uncertain neurons "
                 "instead of a random fraction")}

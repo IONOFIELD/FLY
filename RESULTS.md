@@ -98,6 +98,14 @@ contralateral MN9 prediction for labellar sugar GRNs and any bitter-suppression 
 recorded as not applicable rather than passed or failed. Driving every gustatory sensillum
 at once yields no feeding output, consistent with a mixed sugar and bitter population.
 
+## How much rests on uncertain transmitter calls
+MaleCNS publishes per-T-bar transmitter probabilities alongside the aggregate per-neuron label
+the model signs with. Over the annotated neurons that carry the graph, mean per-synapse
+confidence is 0.78; neurons whose individual T-bars mostly disagree with their aggregate label
+carry **3.5% of total synaptic weight**, and low-confidence neurons (mean < 0.6) carry 0.15%.
+`FLYCNS_SIGNFLIP_TARGETED=1` inverts exactly those neurons, which is a sharper test than the
+random 5%/10% flips and is included in the robustness battery (`fit/synapse_nt.py`).
+
 ## Robustness
 Benchmarks now default to 40 trials: at 20, GF response probability (criterion 0.5) failed on
 the two runs where it sat at the floor with a confidence interval spanning it, which is a

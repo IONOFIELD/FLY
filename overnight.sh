@@ -23,5 +23,7 @@ run signflip10   0 0.10 0.3
 run wscale025    0 0    0.25
 run wscale035    0 0    0.35
 run wscale040    0 0    0.40
+# targeted perturbation: only the neurons the transmitter classifier is unsure about
+export FLYCNS_SIGNFLIP_TARGETED=1; run signflip_targeted 0 0 0.3; unset FLYCNS_SIGNFLIP_TARGETED
 export FLYCNS_SEED=0 FLYCNS_SIGNFLIP=0 FLYCNS_WSCALE=0.3 FLYCNS_RUN_TAG=""
 echo; echo "SUMMARY"; for d in results/overnight/*/; do printf "%-16s %s\n" "$(basename $d)" "$(grep -m1 -o '[0-9]*/[0-9]* checks pass' $d/SUITE.md 2>/dev/null)"; done

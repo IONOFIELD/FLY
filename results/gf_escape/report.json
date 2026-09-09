@@ -47,7 +47,7 @@
       "ttmn_lag_ms": 0.8999999999999476,
       "psi_per_cell": 0.7625,
       "ttmn_to_gf_ratio": 1.0,
-      "wall_s": 90.9
+      "wall_s": 90.6
     },
     "real_chemical_only": {
       "arm": "real_chemical_only",
@@ -68,7 +68,7 @@
       "ttmn_lag_ms": NaN,
       "psi_per_cell": 0.0,
       "ttmn_to_gf_ratio": 0.0,
-      "wall_s": 90.5
+      "wall_s": 86.5
     },
     "rewired_null": {
       "arm": "rewired_null",
@@ -89,7 +89,7 @@
       "ttmn_lag_ms": NaN,
       "psi_per_cell": 0.0,
       "ttmn_to_gf_ratio": NaN,
-      "wall_s": 94.3
+      "wall_s": 90.2
     }
   },
   "checks": {

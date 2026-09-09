@@ -121,6 +121,22 @@ def load_graph(data_dir="data", min_weight=5):
     n_unknown = edges["sign"].isna().sum()
     edges = edges[edges["sign"].notna() & (edges["sign"] != 0)].reset_index(drop=True)
     edges["sign"] = edges["sign"].astype(float)
+    # robustness, targeted: flip the sign of neurons whose per-T-bar predictions mostly
+    # disagree with the aggregate label used for signing (data/edges_nt.parquet from
+    # fit/synapse_nt.py). This tests the model against the classifier's own uncertainty
+    # rather than a random fraction. FLYCNS_SIGNFLIP_TARGETED=1
+    if os.environ.get("FLYCNS_SIGNFLIP_TARGETED") == "1":
+        f = Path(data_dir) / "edges_nt.parquet"
+        if f.exists():
+            nt = pd.read_parquet(f)[["pre", "post", "nt_agree"]]
+            edges = edges.merge(nt, on=["pre", "post"], how="left")
+            m = edges["nt_agree"] < 0.5
+            edges.loc[m, "sign"] *= -1
+            print(f"[graph] TARGETED SIGN FLIP: {int(m.sum()):,} edges "
+                  f"({edges.loc[m, 'weight'].sum() / edges['weight'].sum():.1%} of weight) "
+                  f"from neurons whose T-bars disagree with their consensus label")
+        else:
+            print("[graph] FLYCNS_SIGNFLIP_TARGETED set but data/edges_nt.parquet missing; run fit/synapse_nt.py")
     # robustness: flip a random fraction of neurotransmitter signs (FLYCNS_SIGNFLIP, e.g. 0.05)
     flip = float(os.environ.get("FLYCNS_SIGNFLIP", "0"))
     if flip > 0:
