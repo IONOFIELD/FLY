@@ -1,0 +1,18 @@
+{
+  "n_neurons_with_tbars": 1834661,
+  "mean_confidence": 0.7778,
+  "frac_neurons_below_0.6": 0.2403,
+  "frac_neurons_tbars_disagree_with_consensus": 0.9145,
+  "edge_weight_fraction_from_low_conf": 0.0015,
+  "edge_weight_fraction_from_disagreeing_neurons": 0.0348,
+  "transmitters": [
+    "acetylcholine",
+    "dopamine",
+    "gaba",
+    "glutamate",
+    "histamine",
+    "octopamine",
+    "serotonin"
+  ],
+  "note": "per-T-bar predictions vs the aggregate consensus label used for signing; use nt_agree to target sign perturbations at genuinely uncertain neurons instead of a random fraction"
+}
