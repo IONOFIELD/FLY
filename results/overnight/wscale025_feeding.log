@@ -33,15 +33,15 @@ F2 sugar  25 Hz -> MN9 0.00 spikes/cell, CNS 0.0013 Hz
 F2 sugar  50 Hz -> MN9 0.00 spikes/cell, CNS 0.0068 Hz
   outside-SEZ rate 0.0007 Hz | recruited motor mean 5.2 Hz | 7 of 43 cb_motor types active: ['MN11D', 'MNx01', 'MN10', 'MN2Db', 'MN11V', 'MN2Da', 'MNx02']
 [graph] removed 679 EM chemical synapses on declared mixed pairs (modelled as electrical)
-F2 sugar 100 Hz -> MN9 0.45 spikes/cell, CNS 0.0246 Hz
+F2 sugar 100 Hz -> MN9 0.45 spikes/cell, CNS 0.0247 Hz
 [graph] removed 679 EM chemical synapses on declared mixed pairs (modelled as electrical)
-F2 sugar 200 Hz -> MN9 1.75 spikes/cell, CNS 0.0629 Hz
+F2 sugar 200 Hz -> MN9 1.75 spikes/cell, CNS 0.0632 Hz
 [graph] removed 679 EM chemical synapses on declared mixed pairs (modelled as electrical)
 ALL gustatory arm (42 types, every tastant at once) at 50 Hz -> MN9 0.00 spikes/cell (reported, not scored; expected ~0)
 sugar drive: 140 neurons, 69 inferred left
 [graph] removed 679 EM chemical synapses on declared mixed pairs (modelled as electrical)
    structural 2-hop drive from left afferents: MN9-L 25,650 vs MN9-R 350; functional ipsi dominant -> matches wiring
-F1 left sugar 200 Hz: MN9 ipsi 2.15, contra 0.00 spikes/cell  [59s]
+F1 left sugar 100 Hz: MN9 ipsi 0.10, contra 0.00 spikes/cell  [63s]
 F3 skipped: no bitter GRN type resolved
 [graph] removed 679 EM chemical synapses on declared mixed pairs (modelled as electrical)
 F4 DNge062 50 Hz -> MN9 1.07
