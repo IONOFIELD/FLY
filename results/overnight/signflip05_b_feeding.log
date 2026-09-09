@@ -29,22 +29,22 @@ F2 sugar  25 Hz -> MN9 0.00 spikes/cell, CNS 0.0022 Hz
   descending_neuron      ####                                     4.547
   cb_intrinsic           #                                        1.353
   ascending_neuron                                                0.416
+  vnc_motor                                                       0.203
   cb_sensory                                                      0.122
   visual_centrifugal                                              0.099
-  vnc_motor                                                       0.086
   vnc_intrinsic                                                   0.006
-F2 sugar  50 Hz -> MN9 0.00 spikes/cell, CNS 0.0508 Hz
+F2 sugar  50 Hz -> MN9 0.00 spikes/cell, CNS 0.0509 Hz
   outside-SEZ rate 0.0065 Hz | recruited motor mean 77.4 Hz | 10 of 43 cb_motor types active: ['MN11D', 'MNx01', 'MN10', 'MN11V', 'MN2Db', 'MN2Da', 'MN7', 'GNG314']
 [graph] removed 679 EM chemical synapses on declared mixed pairs (modelled as electrical)
-F2 sugar 100 Hz -> MN9 0.00 spikes/cell, CNS 0.0738 Hz
+F2 sugar 100 Hz -> MN9 0.00 spikes/cell, CNS 0.0740 Hz
 [graph] removed 679 EM chemical synapses on declared mixed pairs (modelled as electrical)
-F2 sugar 200 Hz -> MN9 6.40 spikes/cell, CNS 0.1920 Hz
+F2 sugar 200 Hz -> MN9 6.40 spikes/cell, CNS 0.1978 Hz
 [graph] removed 679 EM chemical synapses on declared mixed pairs (modelled as electrical)
 ALL gustatory arm (42 types, every tastant at once) at 50 Hz -> MN9 0.03 spikes/cell (reported, not scored; expected ~0)
 sugar drive: 140 neurons, 69 inferred left
 [graph] removed 679 EM chemical synapses on declared mixed pairs (modelled as electrical)
    structural 2-hop drive from left afferents: MN9-L 25,650 vs MN9-R 350; functional ipsi dominant -> matches wiring
-F1 left sugar 200 Hz: MN9 ipsi 0.15, contra 0.00 spikes/cell  [59s]
+F1 left sugar 200 Hz: MN9 ipsi 0.15, contra 0.00 spikes/cell  [65s]
 F3 skipped: no bitter GRN type resolved
 [graph] removed 679 EM chemical synapses on declared mixed pairs (modelled as electrical)
 F4 DNge062 50 Hz -> MN9 1.30

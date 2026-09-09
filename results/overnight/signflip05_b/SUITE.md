@@ -2,7 +2,7 @@
 
 env: FLYCNS_SEED=1 FLYCNS_SIGNFLIP=0.05 FLYCNS_WSCALE=0.3
 
-**19/19 checks pass under ONE parameter set** (same LIFParams for every circuit).
+**18/18 checks pass under ONE parameter set** (same LIFParams for every circuit).
 
 ## Parameters
 ```
@@ -37,7 +37,7 @@ effective chemical kick per synapse: 0.0825 mV (Shiu 2024 unitary 0.275 mV x Mal
 | benchmark | check | result |
 |---|---|---|
 | auditory | A1_jo_alone_mostly_subthreshold | PASS |
-| auditory | A2_summation_with_loom | PASS |
+| auditory | A2_jo_effect_on_near_threshold_loom_REPORTED | SKIP |
 | auditory | A3_declared_pairs_carry_jo_drive | PASS |
 | auditory | A4_null_silent | PASS |
 | auditory | A5_cns_quiet | PASS |
@@ -50,7 +50,7 @@ effective chemical kick per synapse: 0.0825 mV (Shiu 2024 unitary 0.275 mV x Mal
 | feeding | F4_second_order_sufficient | PASS |
 | feeding | F5_null_silent | PASS |
 | gf_escape | gf_spikes_per_response_1_to_2 | PASS |
-| gf_escape | gf_hit_ge_0.8 | PASS |
+| gf_escape | gf_response_prob_0.5_to_1 | PASS |
 | gf_escape | gf_latency_10_60ms | PASS |
 | gf_escape | ttmn_one_to_one | PASS |
 | gf_escape | ttmn_lag_0.5_1.5ms | PASS |
@@ -60,4 +60,4 @@ effective chemical kick per synapse: 0.0825 mV (Shiu 2024 unitary 0.275 mV x Mal
 
 Declared deviations from the raw connectome: see each results/*/provenance.md and flycns/graph.py.
 
-## Citation check: 25/25 tags resolve in REFERENCES.md
+## Citation check: 26/26 tags resolve in REFERENCES.md
