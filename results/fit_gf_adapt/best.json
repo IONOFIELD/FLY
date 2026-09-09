@@ -1,5 +1,5 @@
 {
-  "b_adapt_mV": 15,
+  "b_adapt_mV": 30,
   "rule": "smallest b with C1-C4",
   "constraints": "von Reyn 2014: 1-2 spikes/loom, probabilistic; Tanouye & Wyman 1980 relay"
 }

@@ -17,6 +17,7 @@ import numpy as np
 import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from flycns.bench import provenance
 from flycns import load_graph, rewire_null, CNSModel, LIFParams, loom_protocol
 from flycns.protocols import LOOM_TUNING, TUNING_SOURCE, GAIN_SIGMA_DEFAULT, PEAK_HZ_DEFAULT
 from flycns.graph import ELECTRICAL_SYNAPSES, INTRINSIC_OVERRIDES, SIGN_MAP
@@ -104,6 +105,7 @@ checks = {
 }
 report["checks"] = checks
 report["pass"] = all(checks.values())
+report["provenance"] = provenance()
 (OUT / "report.json").write_text(json.dumps(report, indent=2, default=float))
 
 prov = ["# Provenance: gf_escape", "", "## Neurotransmitter sign map", str(SIGN_MAP), "",

@@ -43,6 +43,7 @@ from flycns import load_graph, rewire_null, CNSModel, LIFParams
 from flycns.graph import (FEEDING_SECOND_ORDER, FEEDING_MOTOR, SUGAR_GRN_PATTERNS,
                           BITTER_GRN_PATTERNS, TASTE_SENSORY_FALLBACK)
 from flycns.bench import find_types, present_types, pulse_protocol, readout_rates
+from flycns.bench import provenance
 from flycns.graph import infer_side, gustatory_afferents, GUSTATORY_MN9_DRIVING
 from flycns import ascii as A
 
@@ -236,6 +237,7 @@ mech = Path("results/feeding/mechanism.json")
 if mech.exists():
     report["mechanism"] = json.loads(mech.read_text())["conclusion"]
     print("\nmechanism:", report["mechanism"])
+report["provenance"] = provenance()
 (OUT / "report.json").write_text(json.dumps(report, indent=2, default=float))
 prov = ["# Provenance: feeding (port of Shiu et al. 2024 tests to MaleCNS)", "",
         f"sugar types used: {sugar}", f"bitter types used: {bitter or 'none resolved'}",

@@ -9,7 +9,7 @@
     "tau_syn_ms": 5.0,
     "refractory_ms": 2.2,
     "w_syn_mV": 0.275,
-    "w_scale": 0.3,
+    "w_scale": 0.35,
     "tau_adapt_ms": 100.0,
     "gap_delay_ms": 0.8,
     "chem_delay_ms": 1.8,
@@ -35,20 +35,20 @@
       "n_lif": 167649,
       "n_chem_syn": 5837592,
       "n_stim": 2526,
-      "pop_rate_hz": 0.004452938056563995,
-      "gf_per_cell": 1.0625,
-      "gf_hit": 0.675,
+      "pop_rate_hz": 0.005832155885456014,
+      "gf_per_cell": 1.9375,
+      "gf_hit": 0.725,
       "gf_hit_ci95": [
-        0.52017458088898,
-        0.7991568303733828
+        0.5716474916687543,
+        0.8389214656685691
       ],
-      "gf_per_hit": 1.7407407407407407,
-      "gf_lat_ms": 37.28518518518394,
-      "ttmn_per_cell": 1.0625,
-      "ttmn_lag_ms": 0.9000000000000109,
-      "psi_per_cell": 1.0625,
+      "gf_per_hit": 2.7241379310344827,
+      "gf_lat_ms": 33.10689655172346,
+      "ttmn_per_cell": 1.9375,
+      "ttmn_lag_ms": 0.8999999999998185,
+      "psi_per_cell": 1.925,
       "ttmn_to_gf_ratio": 1.0,
-      "wall_s": 95.7
+      "wall_s": 102.5
     },
     "real_chemical_only": {
       "arm": "real_chemical_only",
@@ -56,20 +56,20 @@
       "n_lif": 167649,
       "n_chem_syn": 5837611,
       "n_stim": 2526,
-      "pop_rate_hz": 0.004385579963125903,
-      "gf_per_cell": 1.125,
-      "gf_hit": 0.75,
+      "pop_rate_hz": 0.005712453249526874,
+      "gf_per_cell": 2.05,
+      "gf_hit": 0.85,
       "gf_hit_ci95": [
-        0.5980574093302989,
-        0.8581303210445049
+        0.7092737396097997,
+        0.9293890829149257
       ],
-      "gf_per_hit": 1.6833333333333333,
-      "gf_lat_ms": 35.56999999999905,
+      "gf_per_hit": 2.5,
+      "gf_lat_ms": 34.88235294117565,
       "ttmn_per_cell": 0.0,
       "ttmn_lag_ms": NaN,
       "psi_per_cell": 0.0,
       "ttmn_to_gf_ratio": 0.0,
-      "wall_s": 92.2
+      "wall_s": 99.3
     },
     "rewired_null": {
       "arm": "rewired_null",
@@ -77,7 +77,7 @@
       "n_lif": 167649,
       "n_chem_syn": 5821202,
       "n_stim": 2526,
-      "pop_rate_hz": 4.057716472174225e-07,
+      "pop_rate_hz": 4.057716472174225e-06,
       "gf_per_cell": 0.0,
       "gf_hit": 0.0,
       "gf_hit_ci95": [
@@ -90,11 +90,11 @@
       "ttmn_lag_ms": NaN,
       "psi_per_cell": 0.0,
       "ttmn_to_gf_ratio": NaN,
-      "wall_s": 105.6
+      "wall_s": 102.8
     }
   },
   "checks": {
-    "gf_spikes_per_response_1_to_2": true,
+    "gf_spikes_per_response_1_to_2": false,
     "gf_response_prob_0.5_to_1": true,
     "gf_latency_10_60ms": true,
     "ttmn_one_to_one": true,
@@ -103,5 +103,5 @@
     "electrical_necessary": true,
     "null_silent": true
   },
-  "pass": true
+  "pass": false
 }

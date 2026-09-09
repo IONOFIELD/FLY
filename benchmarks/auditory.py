@@ -42,6 +42,7 @@ from flycns import load_graph, rewire_null, CNSModel, LIFParams, loom_protocol
 from flycns.graph import drop_mixed_chemical
 from flycns.protocols import LOOM_TUNING
 from flycns.bench import find_types, pulse_protocol
+from flycns.bench import provenance
 from flycns import ascii as A
 
 OUT = Path("results/auditory"); OUT.mkdir(parents=True, exist_ok=True)
@@ -178,6 +179,7 @@ report["arms"]["A2_prediction"] = dict(loom_gain=SUB_LOOM_GAIN, n_trials_per_arm
 print(f"A2 (reported, {n1} trials/arm): loom alone {lo['gf_hit']:.2f} -> with JO {a2['gf_hit']:.2f}; "
       f"difference {d:+.2f} (95% CI {dlo:+.2f} to {dhi:+.2f}) -> {direction}")
 report["pass"] = all(v for v in report["checks"].values() if v is not None)
+report["provenance"] = provenance()
 (OUT / "report.json").write_text(json.dumps(report, indent=2, default=float))
 prov = ["# Provenance: auditory (JON -> GF)", "", f"JO types: {jo_types} at {JO_HZ} Hz",
         f"A2 reported (not scored): JO drive {report['arms']['A2_prediction']['direction']} of near-threshold loom response",
