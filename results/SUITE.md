@@ -29,6 +29,7 @@ env: FLYCNS_SEED=0 FLYCNS_SIGNFLIP=0 FLYCNS_WSCALE=0.3
     "SEZ": 1.0,
     "other": 1.0
   },
+  "superclass_params": {},
   "baseline_depol_mV": 0.0,
   "baseline_noise_mV": 0.0
 }

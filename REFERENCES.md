@@ -34,8 +34,11 @@ in a manuscript. This project builds on the work below; it does not contradict i
 - **Turner, Krieger, Pang & Clandinin 2022** — Turner MH, Krieger A, Pang MM, Clandinin TR. Visual and motor signatures of locomotion dynamically shape a population code for feature detection in Drosophila. *eLife* 11:e82587 (2022). Pan-glomerulus imaging; loom-responsive LC types; shared trial gain.
 - **Krieger 2023** — Krieger A. How do neuropeptides shape sensory processing in Drosophila. PhD thesis, Stanford University (2023).
 
+## Nerve cord connectome and motor neuron identity
+- **Azevedo et al. 2024** — Azevedo A, Lesser E, Phelps JS, Mark B, et al. Connectomic reconstruction of a female Drosophila ventral nerve cord. *Nature* (2024). Leg and wing motor neuron identification with muscle targets (69-70 MNs per T1 leg; SETi 7,090 and FETi 14,904 input synapses). Anatomy and identity, no biophysical measurements.
+
 ## Motor neuron physiology
-- **Azevedo et al. 2020** — Azevedo AW, Dickinson ES, Gurung P, et al. A size principle for recruitment of Drosophila leg motor neurons. *eLife* 9:e56754 (2020). Sustained MN firing rates and recruitment order.
+- **Azevedo et al. 2020** — Azevedo AW, Dickinson ES, Gurung P, Cherry L, Ahmed AW, Tuthill JC. A size principle for recruitment of Drosophila leg motor neurons. *eLife* 9:e56754 (2020). Tibia flexor MN input resistance 150/300/700 MOhm for fast/intermediate/slow (Fig. 3E, n=15/11/14); covarying resting potential, spontaneous firing rate and soma, neurite and axon diameter (Fig. 3C-E); slow MN spontaneous firing maintained by cholinergic input and setting resting muscle force (Fig. 4C); somatic current injection fails to evoke spikes in fast and intermediate MNs (spike initiation zone electrically isolated from the soma); recruitment ordered weakest to strongest (Fig. 5).
 
 ## Feeding circuit
 - **Gordon & Scott 2009** — Gordon MD, Scott K. Motor control in a Drosophila taste circuit. *Neuron* 61:373–384 (2009). MN9 necessary and sufficient for proboscis extension.

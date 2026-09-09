@@ -95,16 +95,37 @@ BITTER_GRN_PATTERNS = [r"Gr66a", r"bitter", r"GRN.*bitter", r"Taste.*bitter"]
 TASTE_SENSORY_FALLBACK = ["BM_Taste"]   # MaleCNS labellar taste population, modality unsplit
 
 # Per-superclass single-neuron parameters. EMPTY BY DEFAULT AND DELIBERATELY SO.
+#
 # Shiu et al. 2024's values (tau_m 20 ms, threshold 7 mV above rest, refractory 2.2 ms) were
-# for central-brain neurons; we apply them everywhere, cord included. Motor neurons are large,
-# low-resistance cells and do not belong in that regime. Azevedo et al. 2020 (eLife 9:e56754)
-# measured leg motor neuron input resistance, recruitment order and firing behaviour and is the
-# right source for cord values, but the numbers must be read from the paper rather than
-# recalled: fill this in with a page or figure reference per field, or leave it empty and rely
-# on benchmarks/sensitivity_cord.py to bound how much the assumption matters.
+# for central-brain neurons; we apply them everywhere, cord included.
+#
+# What is measured (Azevedo et al. 2020, eLife 9:e56754, tibia flexor motor neurons, Fig. 3):
+#   input resistance   fast 150 MOhm (n=15), intermediate 300 MOhm (n=11), slow 700 MOhm (n=14)
+#   resting potential, spontaneous rate, soma/neurite/axon diameter all covary along the same
+#   gradient; slow MNs fire spontaneously at tens of Hz, fast MNs are silent (Fig. 3C-E).
+#
+# Why these are NOT entered here:
+#  1. tau_m = R * C and the paper reports R but not membrane capacitance or area, so the time
+#     constant is not derivable from the measurement.
+#  2. The defensible use of the gradient is a postsynaptic gain proportional to input resistance
+#     (the same synaptic current depolarises a slow MN ~4.7x more than a fast one), but that
+#     needs a fast/intermediate/slow assignment for MaleCNS motor neurons. None exists: Azevedo
+#     et al. 2024 (Nature) identified leg MNs by muscle target in FANC, a different dataset.
+#  3. Current injection in fast and intermediate MNs failed to evoke spikes from the soma
+#     because the spike initiation zone is electrically isolated from it (Azevedo 2020, citing
+#     Sasaki and Burrows 1998). A single-compartment cell with a somatic threshold cannot
+#     represent that; it is a limitation of the model class, not a parameter to tune.
+#
+# benchmarks/sensitivity_cord.py measured the escape benchmark to be invariant to cord tau_m
+# (5-40 ms), threshold gap (4-10 mV) and refractory period (1-5 ms) across all 14,153 cord
+# neurons, so this gap does not affect present results. Fill this in only alongside a
+# fast/slow assignment for MaleCNS MNs, with a figure reference per field.
 #   CORD_PARAMS = {"vnc_motor": {"tau_m_ms": ..., "v_thresh_mV": ..., "refractory_ms": ...}}
-# Until then the declared parameter set is uniform, and RESULTS.md says so.
 CORD_PARAMS: dict = {}
+
+# Measured motor neuron input resistances, kept for the gain calculation above once a
+# fast/slow assignment exists. Values in MOhm; Azevedo et al. 2020 Fig. 3E.
+MN_INPUT_RESISTANCE_MOHM = {"fast": 150.0, "intermediate": 300.0, "slow": 700.0}
 
 # Per-type intrinsic overrides. (type, parameter, value, citation)
 # GF fires 1 to 2 spikes per loom regardless of input strength

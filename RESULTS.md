@@ -41,7 +41,11 @@ parameters MN9 stays silent, and four uniform manipulations fail for one reason:
 
 Reproducing feeding therefore needs cell-specific spontaneous activity, that is, the
 state-dependent modulation this model omits; Shiu et al. 2024 reported the same limitation for
-inhibitory neurons in their 0 Hz-baseline model. Full numbers and the scripts that produced
+inhibitory neurons in their 0 Hz-baseline model. Cell-type-specific spontaneous firing is
+measured, not hypothetical: slow leg motor neurons fire at tens of Hz at rest, maintained by
+cholinergic drive (blocking nicotinic receptors lowered both the rate and resting muscle force),
+while fast motor neurons are silent (Azevedo et al. 2020, Fig. 3D and Fig. 4C). That is exactly
+the pattern a uniform baseline cannot produce and is the form the missing mechanism should take. Full numbers and the scripts that produced
 them: `results/feeding/mechanism.json`. What the feeding benchmark still scores: each of MN9's
 excitatory second-order inputs drives it when stimulated directly, MN9 is silent on a rewired
 null, activity stays inside the SEZ, and motor rates stay physiological.
@@ -137,10 +141,16 @@ standard deviation 0.0 across the sweep). The escape result therefore does not d
 single-neuron parameters: the cascade crosses the neck through a declared electrical relay and
 one strong chemical connection, neither of which the membrane time constant gates. The inherited
 brain parameters remain a limitation for any circuit that asks the cord to compute, and are not
-one for what this benchmark tests. Fitting
-cord parameters properly needs the leg motor neuron measurements of Azevedo et al. 2020 read
-from the paper; `CORD_PARAMS` in `flycns/graph.py` is a deliberately empty stub for them, since
-putting remembered numbers behind a citation is exactly what this project avoids.
+one for what this benchmark tests. Azevedo et al. 2020 (eLife 9:e56754) measured the relevant properties for tibia flexor motor
+neurons: input resistance 150 MOhm (fast), 300 (intermediate), 700 (slow), with resting
+potential, spontaneous rate and soma, neurite and axon diameter covarying along the same
+gradient. Those numbers are recorded in `flycns/graph.py` but are NOT entered as parameters,
+for three stated reasons: tau_m = R*C and capacitance is not reported, so the time constant is
+not derivable; using the gradient as a postsynaptic gain requires a fast/slow assignment for
+MaleCNS motor neurons that does not exist (the 2024 FANC connectome identified leg MNs by
+muscle target in a different dataset); and somatic current injection failed to evoke spikes in
+fast and intermediate MNs because the spike initiation zone is electrically isolated from the
+soma, which a single-compartment cell cannot represent at all.
 
 ## What this does not claim
 The single-neuron parameters (membrane time constant, threshold, refractory period, unitary

@@ -2,12 +2,16 @@
 __pycache__/
 *.pyc
 .flycns_state.json
+
+# fetched data (reproducible from fetch_*.py and the documented sources)
 data/*.parquet
 data/skeletons/
 data/meshes/
+data/bulk/
+data/turner2022/
+data/loom_tuning_measured.json
+
+# generated artefacts
 results/**/*.parquet
 results/**/*.html
-overnight.log
-data/turner2022/
-data/bulk/
-data/meshes/
+overnight*.log

@@ -24,6 +24,7 @@
       "SEZ": 1.0,
       "other": 1.0
     },
+    "superclass_params": {},
     "baseline_depol_mV": 0.0,
     "baseline_noise_mV": 0.0
   },
@@ -47,7 +48,7 @@
       "ttmn_lag_ms": 0.9000000000000109,
       "psi_per_cell": 1.0625,
       "ttmn_to_gf_ratio": 1.0,
-      "wall_s": 90.4
+      "wall_s": 95.7
     },
     "real_chemical_only": {
       "arm": "real_chemical_only",
@@ -68,7 +69,7 @@
       "ttmn_lag_ms": NaN,
       "psi_per_cell": 0.0,
       "ttmn_to_gf_ratio": 0.0,
-      "wall_s": 87.1
+      "wall_s": 92.2
     },
     "rewired_null": {
       "arm": "rewired_null",
@@ -89,7 +90,7 @@
       "ttmn_lag_ms": NaN,
       "psi_per_cell": 0.0,
       "ttmn_to_gf_ratio": NaN,
-      "wall_s": 89.9
+      "wall_s": 105.6
     }
   },
   "checks": {
