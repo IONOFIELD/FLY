@@ -17,7 +17,7 @@ F2 sugar  25 Hz -> MN9 0.00 spikes/cell, CNS 0.0054 Hz
 [graph] removed 679 EM chemical synapses on declared mixed pairs (modelled as electrical)
   raster: 8 ms/char, 250 ms from onset   (| spike, # multiple)
   t0  MN9    .........|...|.#|...........|..
-  t0  CNS    .344555456667777666666767776666   (log2 spikes/bin, 9 = flood)
+  t0  CNS    .344555456667777666666777776666   (log2 spikes/bin, 9 = flood)
 
   t1  MN9    ...............||..............
   t1  CNS    5566666666776666677666666665555   (log2 spikes/bin, 9 = flood)
@@ -27,23 +27,23 @@ F2 sugar  25 Hz -> MN9 0.00 spikes/cell, CNS 0.0054 Hz
   cb_sensory_tbc         #######################                  24.778
   descending_neuron      ###                                      3.383
   cb_intrinsic           #                                        1.197
-  vnc_motor                                                       0.342
+  vnc_motor                                                       0.789
   ascending_neuron                                                0.295
   cb_sensory                                                      0.127
   visual_centrifugal                                              0.053
   vnc_intrinsic                                                   0.032
-F2 sugar  50 Hz -> MN9 0.93 spikes/cell, CNS 0.0421 Hz
-  outside-SEZ rate 0.0053 Hz | recruited motor mean 61.6 Hz | 12 of 43 cb_motor types active: ['MN11D', 'MNx01', 'MN10', 'MN11V', 'MN2Da', 'MN9', 'MN2Db', 'GNG314']
+F2 sugar  50 Hz -> MN9 0.93 spikes/cell, CNS 0.0423 Hz
+  outside-SEZ rate 0.0056 Hz | recruited motor mean 61.6 Hz | 12 of 43 cb_motor types active: ['MN11D', 'MNx01', 'MN10', 'MN11V', 'MN2Da', 'MN9', 'MN2Db', 'GNG314']
 [graph] removed 679 EM chemical synapses on declared mixed pairs (modelled as electrical)
-F2 sugar 100 Hz -> MN9 4.15 spikes/cell, CNS 0.0716 Hz
+F2 sugar 100 Hz -> MN9 4.15 spikes/cell, CNS 0.0724 Hz
 [graph] removed 679 EM chemical synapses on declared mixed pairs (modelled as electrical)
-F2 sugar 200 Hz -> MN9 5.67 spikes/cell, CNS 0.1207 Hz
+F2 sugar 200 Hz -> MN9 5.67 spikes/cell, CNS 0.1219 Hz
 [graph] removed 679 EM chemical synapses on declared mixed pairs (modelled as electrical)
 ALL gustatory arm (42 types, every tastant at once) at 50 Hz -> MN9 0.00 spikes/cell (reported, not scored; expected ~0)
 sugar drive: 140 neurons, 69 inferred left
 [graph] removed 679 EM chemical synapses on declared mixed pairs (modelled as electrical)
    structural 2-hop drive from left afferents: MN9-L 25,650 vs MN9-R 350; functional ipsi dominant -> matches wiring
-F1 left sugar 100 Hz: MN9 ipsi 1.95, contra 0.00 spikes/cell  [63s]
+F1 left sugar 100 Hz: MN9 ipsi 1.95, contra 0.00 spikes/cell  [62s]
 F3 skipped: no bitter GRN type resolved
 [graph] removed 679 EM chemical synapses on declared mixed pairs (modelled as electrical)
 F4 DNge062 50 Hz -> MN9 1.25
