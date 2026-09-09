@@ -46,6 +46,13 @@ class LIFParams:
     # MaleCNS taste -> MN9 path is net inhibitory at two hops and net EXCITATORY at three
     # to five (signed path products), i.e. it works by disinhibition, which a silent
     # network cannot express. Set > 0 to give inhibitory cells something to suppress.
+    # Per-superclass overrides of the single-neuron parameters. Shiu et al. 2024's values
+    # were measured/chosen for central-brain neurons; motor neurons in particular are large,
+    # low-resistance cells. Keys are superclass names, values are dicts of
+    # {tau_m_ms, v_thresh_mV, refractory_ms} overriding the global value for those cells.
+    # Empty by default so the declared parameter set stays uniform until a fit justifies it.
+    superclass_params: dict = field(default_factory=dict)
+
     # Tonic depolarisation and membrane noise, in mV. Poisson background cannot reach
     # threshold at plausible rates (200 Hz of 1.2 mV kicks gives ~1.2 mV against a 7 mV
     # gap), so the baseline is a current plus an Ornstein-Uhlenbeck-style noise term.
@@ -85,11 +92,31 @@ class CNSModel:
                   tau_adapt=p.tau_adapt_ms * ms, v_thresh=p.v_thresh_mV * mV,
                   v_reset=p.v_reset_mV * mV, I_base=p.baseline_depol_mV * mV,
                   sigma=p.baseline_noise_mV * mV)
-        G = NeuronGroup(len(self.lif_ids), eqs, threshold="v > v_thresh",
+        # per-neuron tau_m, threshold and refractory, so superclasses can differ
+        eqs = eqs.replace("/ tau_m ", "/ tau_m_i ").replace("/ tau_m)", "/ tau_m_i)")
+        eqs += "        tau_m_i : second\n        v_thresh_i : volt\n        ref_i : second\n"
+        G = NeuronGroup(len(self.lif_ids), eqs, threshold="v > v_thresh_i",
                         reset="v = v_reset; a += b_adapt",
-                        refractory=p.refractory_ms * ms, method="euler", namespace=ns)
+                        refractory="ref_i", method="euler", namespace=ns)
         G.v = p.v_rest_mV * mV
         G.b_adapt = 0 * mV
+        G.tau_m_i = p.tau_m_ms * ms
+        G.v_thresh_i = p.v_thresh_mV * mV
+        G.ref_i = p.refractory_ms * ms
+        self.superclass_params_applied = []
+        if p.superclass_params:
+            sc_of = self.meta.loc[self.lif_ids, "superclass"].fillna("").values
+            for sc, over in p.superclass_params.items():
+                idx = np.flatnonzero(sc_of == sc)
+                if not len(idx):
+                    continue
+                if "tau_m_ms" in over:
+                    G.tau_m_i[idx] = over["tau_m_ms"] * ms
+                if "v_thresh_mV" in over:
+                    G.v_thresh_i[idx] = over["v_thresh_mV"] * mV
+                if "refractory_ms" in over:
+                    G.ref_i[idx] = over["refractory_ms"] * ms
+                self.superclass_params_applied.append(dict(superclass=sc, n=int(len(idx)), **over))
         self.overrides_applied = []
         for typ, par, val, src in INTRINSIC_OVERRIDES:
             if typ.startswith("superclass:"):

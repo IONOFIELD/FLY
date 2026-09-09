@@ -16,8 +16,8 @@
 ## Regional gain: SEZ x1.0 (fitted, benchmarks/fit_regional.py), other x1
    SEZ definition: anatomical (roiInfo, 3,519 SEZ-intrinsic neurons)
 
-## Loom tuning: MEASURED: Turner, Krieger, Pang & Clandinin 2022, eLife 11:e82587; Dryad doi:10.5061/dryad.h44j0zpp8 (10 flies, extracted 2026-09-08); trial gain sigma 0.3834; peak rate 5.0 Hz (free dF/F->rate scale)
-{'LC17': 1.0, 'LC12': 0.754, 'LC26': 0.7355, 'LPLC2': 0.6926, 'LC15': 0.614, 'LPLC1': 0.5118, 'LC4': 0.498, 'LC16': 0.4865, 'LC6': 0.3981, 'LC21': 0.3724, 'LC18': 0.3608, 'LC9': 0.3048, 'LC11': 0.2883}
+## Loom tuning: MEASURED (all trials): Turner, Krieger, Pang & Clandinin 2022, eLife 11:e82587; Dryad doi:10.5061/dryad.h44j0zpp8 (21 flies, extracted 2026-09-09); trial gain sigma 0.3687; peak rate 5.0 Hz (free dF/F->rate scale)
+{'LC17': 1.0, 'LC12': 0.9416, 'LPLC2': 0.8695, 'LC26': 0.8051, 'LC15': 0.6731, 'LC4': 0.5948, 'LPLC1': 0.5639, 'LC16': 0.537, 'LC6': 0.448, 'LC21': 0.4218, 'LC18': 0.4135, 'LC9': 0.3532, 'LC11': 0.307}
 
 ## Checks
 - gf_spikes_per_response_1_to_2: PASS

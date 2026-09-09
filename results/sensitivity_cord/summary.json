@@ -1,0 +1,24 @@
+{
+  "n_settings": 10,
+  "checks_failing_in_any_setting": {
+    "E_spikes": 0,
+    "E_prob": 0,
+    "E_relay": 1,
+    "E_lag": 1,
+    "E_quiet": 0
+  },
+  "metric_std_across_sweep": {
+    "E_spikes": 0.0,
+    "E_prob": 0.0,
+    "E_relay": 0.2189,
+    "E_lag": 7.481,
+    "E_quiet": 0.0
+  },
+  "cord_superclasses": [
+    "vnc_motor",
+    "vnc_intrinsic",
+    "vnc_sensory",
+    "vnc_efferent"
+  ],
+  "interpretation": "checks that never fail across a 8x range of cord tau_m, a 4-10 mV threshold range and a 5x refractory range do not rest on cord single-neuron parameters"
+}

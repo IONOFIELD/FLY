@@ -51,6 +51,10 @@ contralateral bias (MaleCNS does not annotate taste modality).
 
 ## Robustness
 
+- Escape is **invariant** to cord single-neuron parameters: sweeping tau_m 5-40 ms, threshold gap
+  4-10 mV and refractory 1-5 ms across all 14,153 nerve-cord neurons leaves every check passing
+  and every metric unchanged (`benchmarks/sensitivity_cord.py`). The inherited central-brain
+  parameters are a limitation for circuits that require cord computation, not for this one.
 - Escape passes 8/8 **unchanged** when every neuron whose per-T-bar transmitter predictions
   disagree with its aggregate label is sign-inverted (132,680 edges, 2.0% of synaptic weight):
   the circuit does not rest on any uncertain transmitter call.
@@ -78,7 +82,11 @@ baseline. Full list with citations: `flycns/graph.py`, `REFERENCES.md`.
 The loom stimulus uses per-glomerulus amplitudes and a trial-gain distribution extracted from
 the public Turner, Krieger, Pang & Clandinin 2022 dataset (Dryad doi:10.5061/dryad.h44j0zpp8;
 10 flies, 150 loom trials): LC17 1.00, LC12 0.75, LC26 0.74, LPLC2 0.69, LPLC1 0.51, LC4 0.50,
-LC16 0.49, LC6 0.40, small-object types 0.29-0.37, gain sigma 0.38. Menu **21** gives download
+LC16 0.49, LC6 0.40, small-object types 0.29-0.37. Trials are split by the authors' own walking
+classification (no video download needed): responses are larger when the fly walks (LC6 0.64 vs
+0.40 stationary; gain sigma 0.44 vs 0.36), reproducing their locomotor-enhancement result. The
+benchmarks use the **stationary** set, matching a simulation with no locomotion;
+`FLYCNS_LOOM_STATE=walking|all` selects the others. Menu **21** gives download
 instructions (Dryad blocks scripted downloads), **22** runs the extraction
 (`fit/extract_turner_loom.py`). The dF/F-to-rate scale (5 Hz for the strongest type) is the one
 remaining free parameter of the stimulus and is declared as such.
@@ -122,7 +130,9 @@ perturbation, and a mechanistic account of one circuit the model class cannot re
 the model disagrees with a measurement, the model is presumed wrong.
 
 ## Known limits
-Single-neuron parameters are Shiu's central-brain values applied uniformly to brain and cord;
+Single-neuron parameters are Shiu's central-brain values applied uniformly to brain and cord
+(measured to be irrelevant for the escape benchmark, see Robustness; `CORD_PARAMS` in
+`flycns/graph.py` is an empty stub for values read from Azevedo et al. 2020);
 no parameter is fitted to a neural recording (only the stimulus is measured); modulatory
 transmitters are omitted, which is exactly what the feeding result implicates; gap junctions
 appear only where documented.

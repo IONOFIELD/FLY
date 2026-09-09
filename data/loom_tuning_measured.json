@@ -1,53 +1,53 @@
 {
   "amplitude": {
     "LC17": 1.0,
-    "LC12": 0.754,
-    "LC26": 0.7355,
-    "LPLC2": 0.6926,
-    "LC15": 0.614,
-    "LPLC1": 0.5118,
-    "LC4": 0.498,
-    "LC16": 0.4865,
-    "LC6": 0.3981,
-    "LC21": 0.3724,
-    "LC18": 0.3608,
-    "LC9": 0.3048,
-    "LC11": 0.2883
+    "LC12": 0.9416,
+    "LPLC2": 0.8695,
+    "LC26": 0.8051,
+    "LC15": 0.6731,
+    "LC4": 0.5948,
+    "LPLC1": 0.5639,
+    "LC16": 0.537,
+    "LC6": 0.448,
+    "LC21": 0.4218,
+    "LC18": 0.4135,
+    "LC9": 0.3532,
+    "LC11": 0.307
   },
   "amplitude_sem_normalised": {
-    "LC4": 0.0325,
-    "LC6": 0.0318,
-    "LC9": 0.0303,
-    "LC11": 0.0119,
-    "LC12": 0.054,
-    "LC15": 0.0313,
-    "LC16": 0.0448,
-    "LC17": 0.1339,
-    "LC18": 0.0139,
-    "LC21": 0.0256,
-    "LC26": 0.053,
-    "LPLC1": 0.0336,
-    "LPLC2": 0.0533
+    "LC4": 0.0241,
+    "LC6": 0.0224,
+    "LC9": 0.0207,
+    "LC11": 0.0103,
+    "LC12": 0.0441,
+    "LC15": 0.0264,
+    "LC16": 0.0382,
+    "LC17": 0.0854,
+    "LC18": 0.0144,
+    "LC21": 0.0147,
+    "LC26": 0.0429,
+    "LPLC1": 0.0278,
+    "LPLC2": 0.0491
   },
   "mean_peak_dff": {
-    "LC4": 0.2084,
-    "LC6": 0.1666,
-    "LC9": 0.1276,
-    "LC11": 0.1207,
-    "LC12": 0.3156,
-    "LC15": 0.257,
-    "LC16": 0.2037,
-    "LC17": 0.4186,
-    "LC18": 0.151,
-    "LC21": 0.1559,
-    "LC26": 0.3079,
-    "LPLC1": 0.2142,
-    "LPLC2": 0.2899
+    "LC4": 0.1783,
+    "LC6": 0.1343,
+    "LC9": 0.1059,
+    "LC11": 0.0921,
+    "LC12": 0.2823,
+    "LC15": 0.2018,
+    "LC16": 0.161,
+    "LC17": 0.2998,
+    "LC18": 0.124,
+    "LC21": 0.1265,
+    "LC26": 0.2414,
+    "LPLC1": 0.169,
+    "LPLC2": 0.2607
   },
-  "gain_sigma": 0.3834,
-  "gain_n_trials": 150,
-  "n_series": 10,
-  "n_flies": 10,
+  "gain_sigma": 0.3687,
+  "gain_n_trials": 1510,
+  "n_series": 23,
+  "n_flies": 21,
   "series": [
     {
       "file": "2021-08-04.hdf5",
@@ -55,7 +55,12 @@
       "series": "series_001",
       "protocol": "PanGlomSuite",
       "loom_trials": 15,
-      "gloms": 13
+      "gloms": 13,
+      "rv_ratios": [
+        0.005,
+        0.02,
+        0.1
+      ]
     },
     {
       "file": "2021-08-04.hdf5",
@@ -63,7 +68,12 @@
       "series": "series_004",
       "protocol": "PanGlomSuite",
       "loom_trials": 15,
-      "gloms": 13
+      "gloms": 13,
+      "rv_ratios": [
+        0.005,
+        0.02,
+        0.1
+      ]
     },
     {
       "file": "2021-08-04.hdf5",
@@ -71,7 +81,12 @@
       "series": "series_007",
       "protocol": "PanGlomSuite",
       "loom_trials": 15,
-      "gloms": 13
+      "gloms": 13,
+      "rv_ratios": [
+        0.005,
+        0.02,
+        0.1
+      ]
     },
     {
       "file": "2021-08-11.hdf5",
@@ -79,7 +94,12 @@
       "series": "series_001",
       "protocol": "PanGlomSuite",
       "loom_trials": 15,
-      "gloms": 13
+      "gloms": 13,
+      "rv_ratios": [
+        0.005,
+        0.02,
+        0.1
+      ]
     },
     {
       "file": "2021-08-11.hdf5",
@@ -87,7 +107,12 @@
       "series": "series_007",
       "protocol": "PanGlomSuite",
       "loom_trials": 15,
-      "gloms": 13
+      "gloms": 13,
+      "rv_ratios": [
+        0.005,
+        0.02,
+        0.1
+      ]
     },
     {
       "file": "2021-08-20.hdf5",
@@ -95,7 +120,12 @@
       "series": "series_002",
       "protocol": "PanGlomSuite",
       "loom_trials": 15,
-      "gloms": 13
+      "gloms": 13,
+      "rv_ratios": [
+        0.005,
+        0.02,
+        0.1
+      ]
     },
     {
       "file": "2021-08-25.hdf5",
@@ -103,7 +133,12 @@
       "series": "series_001",
       "protocol": "PanGlomSuite",
       "loom_trials": 15,
-      "gloms": 13
+      "gloms": 13,
+      "rv_ratios": [
+        0.005,
+        0.02,
+        0.1
+      ]
     },
     {
       "file": "2021-08-25.hdf5",
@@ -111,7 +146,12 @@
       "series": "series_009",
       "protocol": "PanGlomSuite",
       "loom_trials": 15,
-      "gloms": 13
+      "gloms": 13,
+      "rv_ratios": [
+        0.005,
+        0.02,
+        0.1
+      ]
     },
     {
       "file": "2021-11-29.hdf5",
@@ -119,7 +159,12 @@
       "series": "series_002",
       "protocol": "PanGlomSuite",
       "loom_trials": 15,
-      "gloms": 13
+      "gloms": 13,
+      "rv_ratios": [
+        0.005,
+        0.02,
+        0.1
+      ]
     },
     {
       "file": "2021-11-29.hdf5",
@@ -127,10 +172,173 @@
       "series": "series_008",
       "protocol": "PanGlomSuite",
       "loom_trials": 15,
-      "gloms": 13
+      "gloms": 13,
+      "rv_ratios": [
+        0.005,
+        0.02,
+        0.1
+      ]
+    },
+    {
+      "file": "2022-04-04.hdf5",
+      "fly": "Fly1",
+      "series": "series_002",
+      "protocol": "LoomingSpot",
+      "loom_trials": 100,
+      "gloms": 13,
+      "rv_ratios": [
+        0.1
+      ]
+    },
+    {
+      "file": "2022-04-04.hdf5",
+      "fly": "Fly2",
+      "series": "series_007",
+      "protocol": "LoomingSpot",
+      "loom_trials": 100,
+      "gloms": 13,
+      "rv_ratios": [
+        0.1
+      ]
+    },
+    {
+      "file": "2022-04-07.hdf5",
+      "fly": "Fly1",
+      "series": "series_001",
+      "protocol": "LoomingSpot",
+      "loom_trials": 100,
+      "gloms": 13,
+      "rv_ratios": [
+        0.1
+      ]
+    },
+    {
+      "file": "2022-04-12.hdf5",
+      "fly": "Fly1",
+      "series": "series_002",
+      "protocol": "LoomingSpot",
+      "loom_trials": 100,
+      "gloms": 13,
+      "rv_ratios": [
+        0.1
+      ]
+    },
+    {
+      "file": "2022-04-12.hdf5",
+      "fly": "Fly2",
+      "series": "series_006",
+      "protocol": "LoomingSpot",
+      "loom_trials": 100,
+      "gloms": 13,
+      "rv_ratios": [
+        0.1
+      ]
+    },
+    {
+      "file": "2022-04-12.hdf5",
+      "fly": "Fly3",
+      "series": "series_009",
+      "protocol": "LoomingSpot",
+      "loom_trials": 100,
+      "gloms": 13,
+      "rv_ratios": [
+        0.1
+      ]
+    },
+    {
+      "file": "2022-04-19.hdf5",
+      "fly": "Fly1",
+      "series": "series_002",
+      "protocol": "LoomingSpot",
+      "loom_trials": 120,
+      "gloms": 13,
+      "rv_ratios": [
+        0.05,
+        0.1,
+        0.2,
+        0.4,
+        0.8,
+        1.6
+      ]
+    },
+    {
+      "file": "2022-04-19.hdf5",
+      "fly": "Fly2",
+      "series": "series_006",
+      "protocol": "LoomingSpot",
+      "loom_trials": 120,
+      "gloms": 13,
+      "rv_ratios": [
+        0.05,
+        0.1,
+        0.2,
+        0.4,
+        0.8,
+        1.6
+      ]
+    },
+    {
+      "file": "2022-04-19.hdf5",
+      "fly": "Fly3",
+      "series": "series_009",
+      "protocol": "LoomingSpot",
+      "loom_trials": 120,
+      "gloms": 13,
+      "rv_ratios": [
+        0.05,
+        0.1,
+        0.2,
+        0.4,
+        0.8,
+        1.6
+      ]
+    },
+    {
+      "file": "2022-04-26.hdf5",
+      "fly": "Fly1",
+      "series": "series_001",
+      "protocol": "LoomingSpot",
+      "loom_trials": 100,
+      "gloms": 13,
+      "rv_ratios": [
+        0.1
+      ]
+    },
+    {
+      "file": "2022-04-26.hdf5",
+      "fly": "Fly1",
+      "series": "series_002",
+      "protocol": "LoomingSpot",
+      "loom_trials": 100,
+      "gloms": 13,
+      "rv_ratios": [
+        0.1
+      ]
+    },
+    {
+      "file": "2022-04-26.hdf5",
+      "fly": "Fly2",
+      "series": "series_005",
+      "protocol": "LoomingSpot",
+      "loom_trials": 100,
+      "gloms": 13,
+      "rv_ratios": [
+        0.1
+      ]
+    },
+    {
+      "file": "2022-04-26.hdf5",
+      "fly": "Fly2",
+      "series": "series_007",
+      "protocol": "LoomingSpot",
+      "loom_trials": 100,
+      "gloms": 13,
+      "rv_ratios": [
+        0.1
+      ]
     }
   ],
   "method": "photodiode epoch onsets; dF/F vs 1 s pre; peak in 3 s stim window",
   "source": "Turner, Krieger, Pang & Clandinin 2022, eLife 11:e82587; Dryad doi:10.5061/dryad.h44j0zpp8",
-  "extracted_on": "2026-09-08"
+  "extracted_on": "2026-09-09"
 }

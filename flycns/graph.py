@@ -94,6 +94,18 @@ SUGAR_GRN_PATTERNS = [r"Gr64f", r"sugar", r"GRN.*sugar", r"sugar.*GRN", r"Gr5a",
 BITTER_GRN_PATTERNS = [r"Gr66a", r"bitter", r"GRN.*bitter", r"Taste.*bitter"]
 TASTE_SENSORY_FALLBACK = ["BM_Taste"]   # MaleCNS labellar taste population, modality unsplit
 
+# Per-superclass single-neuron parameters. EMPTY BY DEFAULT AND DELIBERATELY SO.
+# Shiu et al. 2024's values (tau_m 20 ms, threshold 7 mV above rest, refractory 2.2 ms) were
+# for central-brain neurons; we apply them everywhere, cord included. Motor neurons are large,
+# low-resistance cells and do not belong in that regime. Azevedo et al. 2020 (eLife 9:e56754)
+# measured leg motor neuron input resistance, recruitment order and firing behaviour and is the
+# right source for cord values, but the numbers must be read from the paper rather than
+# recalled: fill this in with a page or figure reference per field, or leave it empty and rely
+# on benchmarks/sensitivity_cord.py to bound how much the assumption matters.
+#   CORD_PARAMS = {"vnc_motor": {"tau_m_ms": ..., "v_thresh_mV": ..., "refractory_ms": ...}}
+# Until then the declared parameter set is uniform, and RESULTS.md says so.
+CORD_PARAMS: dict = {}
+
 # Per-type intrinsic overrides. (type, parameter, value, citation)
 # GF fires 1 to 2 spikes per loom regardless of input strength
 # (von Reyn et al. 2014; Ache et al. 2019): spike-triggered adaptation.

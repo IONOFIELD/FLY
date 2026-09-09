@@ -60,6 +60,17 @@ Resolving a 0.15 to 0.30 difference needs roughly 120 trials per arm
 (`FLYCNS_A2_TRIALS=120 python benchmarks/auditory.py`). The in vivo direction is not
 established in our references either.
 
+## Locomotor state changes the loom input (9 Sept 2026)
+The datafiles carry the authors' own 50 Hz walking classification, so trials can be split by
+behavioural state without touching the video archive. Labelling a loom trial walking if the fly
+moves for more than half the stimulus window and stationary if less than a tenth (8 and 13 series
+qualify), every glomerulus except LC12 is relatively larger when the fly walks: LC6 0.64 vs 0.40,
+LC21 0.59 vs 0.39, LC26 0.93 vs 0.69, LC4 0.73 vs 0.52, LPLC2 1.00 vs 0.83. Trial-gain sigma is
+also higher when walking (0.44 vs 0.36). This is the locomotor enhancement Turner, Krieger, Pang
+& Clandinin 2022 report, recovered by an independent extraction. Because the benchmarks simulate
+a fly that is not walking, the **stationary** amplitudes are the default input;
+`FLYCNS_LOOM_STATE=walking` or `=all` selects the others.
+
 ## Measured loom input (added 8 Sept 2026)
 The ordinal loom tuning has been replaced by amplitudes extracted from the public Turner,
 Krieger, Pang & Clandinin 2022 dataset (Dryad doi:10.5061/dryad.h44j0zpp8): 10 flies, 150 loom
@@ -115,6 +126,21 @@ Benchmarks now default to 40 trials: at 20, GF response probability (criterion 0
 the two runs where it sat at the floor with a confidence interval spanning it, which is a
 resolution limit rather than a model result. Full suite at seeds 0-2: 18/18. Inverting 5% of neurotransmitter signs at random costs
 0-2 checks; 10% costs 4. The shared weight scale holds from 0.25 to 0.30 and floods above.
+
+## Does the cord inherit the wrong parameters? (bounded, not resolved)
+Shiu et al.'s single-neuron values were chosen for central-brain neurons and we apply them to
+the nerve cord too. `benchmarks/sensitivity_cord.py` sweeps cord-only tau_m (5-40 ms), threshold
+gap (4-10 mV) and refractory period (1-5 ms) across all 14,153 cord neurons. **Every escape
+check holds at every setting, and every metric is invariant** (GF 1.06 spikes per response,
+response probability 0.68, TTMn/GF ratio 1.06, relay lag 0.90 ms, population rate 0.0045 Hz;
+standard deviation 0.0 across the sweep). The escape result therefore does not depend on cord
+single-neuron parameters: the cascade crosses the neck through a declared electrical relay and
+one strong chemical connection, neither of which the membrane time constant gates. The inherited
+brain parameters remain a limitation for any circuit that asks the cord to compute, and are not
+one for what this benchmark tests. Fitting
+cord parameters properly needs the leg motor neuron measurements of Azevedo et al. 2020 read
+from the paper; `CORD_PARAMS` in `flycns/graph.py` is a deliberately empty stub for them, since
+putting remembered numbers behind a citation is exactly what this project avoids.
 
 ## What this does not claim
 The single-neuron parameters (membrane time constant, threshold, refractory period, unitary

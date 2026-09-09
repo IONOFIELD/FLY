@@ -62,4 +62,4 @@ effective chemical kick per synapse: 0.0825 mV (Shiu 2024 unitary 0.275 mV x Mal
 
 Declared deviations from the raw connectome: see each results/*/provenance.md and flycns/graph.py.
 
-## Citation check: 26/26 tags resolve in REFERENCES.md
+## Citation check: 27/27 tags resolve in REFERENCES.md

@@ -22,9 +22,25 @@ from pathlib import Path
 _meas = Path("data/loom_tuning_measured.json")
 if _meas.exists():
     _m = json.loads(_meas.read_text())
-    LOOM_TUNING = {k: v for k, v in _m["amplitude"].items() if v > 0.05}
-    GAIN_SIGMA_DEFAULT = float(_m.get("gain_sigma", GAIN_SIGMA_DEFAULT))
-    TUNING_SOURCE = f"MEASURED: {_m['source']} ({_m['n_flies']} flies, extracted {_m['extracted_on']})"
+    # Behavioural state: loom responses are larger when the fly walks (Turner, Krieger, Pang &
+    # Clandinin 2022, reproduced by fit/extract_turner_loom.py: every glomerulus except LC12 is
+    # relatively larger in walking trials, e.g. LC6 0.64 vs 0.40, and the trial-gain sigma is
+    # 0.44 vs 0.36). The benchmarks simulate a fly that is not walking, so the STATIONARY set is
+    # the default; FLYCNS_LOOM_STATE=walking or =all selects the others.
+    _state = os.environ.get("FLYCNS_LOOM_STATE", "stationary")
+    _byst = _m.get("amplitude_by_state", {})
+    if _state in _byst:
+        LOOM_TUNING = {k: v for k, v in _byst[_state].items() if v > 0.05}
+        GAIN_SIGMA_DEFAULT = float((_m.get("gain_sigma_by_state") or {}).get(_state)
+                                   or _m.get("gain_sigma", GAIN_SIGMA_DEFAULT))
+        _n = (_m.get("n_series_by_state") or {}).get(_state, "?")
+        TUNING_SOURCE = (f"MEASURED ({_state} trials, {_n} series): {_m['source']} "
+                         f"({_m['n_flies']} flies, extracted {_m['extracted_on']})")
+    else:
+        LOOM_TUNING = {k: v for k, v in _m["amplitude"].items() if v > 0.05}
+        GAIN_SIGMA_DEFAULT = float(_m.get("gain_sigma", GAIN_SIGMA_DEFAULT))
+        TUNING_SOURCE = (f"MEASURED (all trials): {_m['source']} "
+                         f"({_m['n_flies']} flies, extracted {_m['extracted_on']})")
 else:
     LOOM_TUNING = dict(LOOM_TUNING_ORDINAL)
 
