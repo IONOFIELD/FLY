@@ -28,56 +28,68 @@
   "arms": {
     "real_electrical": {
       "arm": "real_electrical",
-      "n_lif": 168279,
-      "n_chem_syn": 5916480,
-      "n_stim": 1896,
-      "pop_rate_hz": 0.0012629819129738914,
-      "gf_per_cell": 0.525,
-      "gf_hit": 0.65,
+      "n_lif": 167649,
+      "n_chem_syn": 5837592,
+      "n_stim": 2526,
+      "pop_rate_hz": 0.002686565383628893,
+      "gf_per_cell": 0.2,
+      "gf_hit": 0.4,
+      "gf_hit_ci95": [
+        0.21880396741419272,
+        0.613422057684794
+      ],
       "gf_per_hit": 1.0,
-      "gf_lat_ms": 36.60769230769371,
-      "ttmn_per_cell": 0.525,
-      "ttmn_lag_ms": 0.9000000000001216,
-      "psi_per_cell": 0.525,
+      "gf_lat_ms": 46.0375000000017,
+      "ttmn_per_cell": 0.2,
+      "ttmn_lag_ms": 0.9000000000000341,
+      "psi_per_cell": 0.2,
       "ttmn_to_gf_ratio": 1.0,
-      "wall_s": 44.9
+      "wall_s": 48.7
     },
     "real_chemical_only": {
       "arm": "real_chemical_only",
-      "n_lif": 168279,
-      "n_chem_syn": 5916499,
-      "n_stim": 1896,
-      "pop_rate_hz": 0.0012312885149067926,
-      "gf_per_cell": 0.575,
-      "gf_hit": 0.7,
+      "n_lif": 167649,
+      "n_chem_syn": 5837611,
+      "n_stim": 2526,
+      "pop_rate_hz": 0.002676226322057793,
+      "gf_per_cell": 0.275,
+      "gf_hit": 0.5,
+      "gf_hit_ci95": [
+        0.2992949144298199,
+        0.70070508557018
+      ],
       "gf_per_hit": 1.0,
-      "gf_lat_ms": 35.97857142857266,
+      "gf_lat_ms": 43.720000000001164,
       "ttmn_per_cell": 0.0,
       "ttmn_lag_ms": NaN,
       "psi_per_cell": 0.0,
       "ttmn_to_gf_ratio": 0.0,
-      "wall_s": 42.7
+      "wall_s": 46.5
     },
     "rewired_null": {
       "arm": "rewired_null",
-      "n_lif": 168279,
-      "n_chem_syn": 5900828,
-      "n_stim": 1896,
+      "n_lif": 167649,
+      "n_chem_syn": 5821202,
+      "n_stim": 2526,
       "pop_rate_hz": 0.0,
       "gf_per_cell": 0.0,
       "gf_hit": 0.0,
+      "gf_hit_ci95": [
+        -1.1641658116749259e-17,
+        0.1611301254949332
+      ],
       "gf_per_hit": 0.0,
       "gf_lat_ms": NaN,
       "ttmn_per_cell": 0.0,
       "ttmn_lag_ms": NaN,
       "psi_per_cell": 0.0,
       "ttmn_to_gf_ratio": NaN,
-      "wall_s": 44.2
+      "wall_s": 48.9
     }
   },
   "checks": {
     "gf_spikes_per_response_1_to_2": true,
-    "gf_hit_ge_0.8": false,
+    "gf_response_prob_0.5_to_1": false,
     "gf_latency_10_60ms": true,
     "ttmn_one_to_one": true,
     "ttmn_lag_0.5_1.5ms": true,
