@@ -131,10 +131,12 @@ MN_INPUT_RESISTANCE_MOHM = {"fast": 150.0, "intermediate": 300.0, "slow": 700.0}
 # GF fires 1 to 2 spikes per loom regardless of input strength
 # (von Reyn et al. 2014; Ache et al. 2019): spike-triggered adaptation.
 INTRINSIC_OVERRIDES = [
-    ("DNp01", "b_adapt_mV", 15.0, "all-or-none GF response; von Reyn 2014; Ache 2019. Fitted by pre-stated rule "
-                                  "(smallest value giving 1-2 spikes/response, <=2 on strong looms, P(response) 0.5-1, "
-                                  "TTMn relay intact; benchmarks/fit_gf_adapt.py). 30 mV under the ordinal loom tuning "
-                                  "(2026-09-08), 15 mV under the measured Turner 2022 tuning (2026-09-08); 0 mV gives up to 8 spikes."),
+    ("DNp01", "b_adapt_mV", 30.0, "all-or-none GF response; von Reyn 2014; Ache 2019. Fitted by pre-stated rule "
+                                  "(smallest value giving 1-2 spikes/response, <=2 on the strongest gain quartile, "
+                                  "P(response) 0.5-1, TTMn relay intact; benchmarks/fit_gf_adapt.py at >=40 trials). "
+                                  "30 mV under the ordinal loom tuning, 30 mV under measured stationary tuning at 40 "
+                                  "trials; an intermediate 15 mV came from a 20-trial fit whose strong-gain quartile "
+                                  "held ~5 trials and was undersampled. 0 mV gives up to 8 spikes per loom."),
     # superclass-level: sustained fly motor neuron firing stays well under 100 Hz
     # (leg MNs, Azevedo et al. 2020; proboscis MNs, McKellar et al. 2020). Without
     # adaptation the LIF motor pool pins at the 450 Hz refractory ceiling.

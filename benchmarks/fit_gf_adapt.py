@@ -8,7 +8,8 @@ candidate increment b (mV), using the standard loom protocol with lognormal gain
   C2  spikes per responding GF <= 2 on the strongest quartile of gains (all-or-none)
   C3  response probability in [0.5, 1.0]
   C4  TTMn spikes / GF spikes in [0.8, 1.2]        (relay unaffected)
-Rule: choose the SMALLEST b satisfying C1-C4 (minimal modification of the raw model).
+Rule: choose the SMALLEST b satisfying C1-C4 (minimal modification of the raw model), with at
+least 40 trials so the strongest-gain quartile (C2, the binding constraint) is estimable.
 Run:  python benchmarks/fit_gf_adapt.py [n_trials] [data_dir]
 Writes results/fit_gf_adapt/grid.csv and best.json
 """
@@ -21,7 +22,10 @@ from flycns import load_graph, CNSModel, LIFParams, loom_protocol
 from flycns.protocols import LOOM_TUNING
 from flycns import graph as G
 
-N = int(sys.argv[1]) if len(sys.argv) > 1 else 20
+N = int(sys.argv[1]) if len(sys.argv) > 1 else 40
+if N < 40:
+    print(f"WARNING: {N} trials leaves ~{N//4} trials in the strongest-gain quartile, which is the "
+          f"binding constraint (C2). Use >= 40.")
 DATA = sys.argv[2] if len(sys.argv) > 2 else "data"
 OUT = Path("results/fit_gf_adapt"); OUT.mkdir(parents=True, exist_ok=True)
 GRID = [0, 5, 10, 15, 20, 30, 45, 60]

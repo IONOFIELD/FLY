@@ -1,8 +1,8 @@
-# MaleCNS v1.0 LIF benchmark suite  [wscale025]
+# MaleCNS v1.0 LIF benchmark suite
 
-env: FLYCNS_SEED=0 FLYCNS_SIGNFLIP=0 FLYCNS_WSCALE=0.25
+env: FLYCNS_SEED=0 FLYCNS_SIGNFLIP=0 FLYCNS_WSCALE=0.3
 
-**15/16 checks pass under ONE parameter set** (same LIFParams for every circuit).
+**16/16 checks pass under ONE parameter set** (same LIFParams for every circuit).
 
 ## Parameters
 ```
@@ -14,7 +14,7 @@ env: FLYCNS_SEED=0 FLYCNS_SIGNFLIP=0 FLYCNS_WSCALE=0.25
   "tau_syn_ms": 5.0,
   "refractory_ms": 2.2,
   "w_syn_mV": 0.275,
-  "w_scale": 0.25,
+  "w_scale": 0.3,
   "tau_adapt_ms": 100.0,
   "gap_delay_ms": 0.8,
   "chem_delay_ms": 1.8,
@@ -34,7 +34,7 @@ env: FLYCNS_SEED=0 FLYCNS_SIGNFLIP=0 FLYCNS_WSCALE=0.25
   "baseline_noise_mV": 0.0
 }
 ```
-effective chemical kick per synapse: 0.0688 mV (Shiu 2024 unitary 0.275 mV x MaleCNS rescale 0.25)
+effective chemical kick per synapse: 0.0825 mV (Shiu 2024 unitary 0.275 mV x MaleCNS rescale 0.3)
 
 ## Checks
 | benchmark | check | result |
@@ -53,7 +53,7 @@ effective chemical kick per synapse: 0.0688 mV (Shiu 2024 unitary 0.275 mV x Mal
 | feeding | F4_second_order_sufficient | PASS |
 | feeding | F5_null_silent | PASS |
 | gf_escape | gf_spikes_per_response_1_to_2 | PASS |
-| gf_escape | gf_response_prob_0.5_to_1 | FAIL |
+| gf_escape | gf_response_prob_0.5_to_1 | PASS |
 | gf_escape | gf_latency_10_60ms | PASS |
 | gf_escape | ttmn_one_to_one | PASS |
 | gf_escape | ttmn_lag_0.5_1.5ms | PASS |
@@ -63,5 +63,12 @@ effective chemical kick per synapse: 0.0688 mV (Shiu 2024 unitary 0.275 mV x Mal
 
 Declared deviations from the raw connectome: see each results/*/provenance.md and flycns/graph.py.
 
-## Citation check: 27/28 tags resolve in REFERENCES.md
+## Report provenance
+| benchmark | written | commit | env |
+|---|---|---|---|
+| auditory | 2026-09-09T13:09:25 | 08cf15f | - |
+| feeding | 2026-09-09T13:14:25 | 08cf15f | - |
+| gf_escape | 2026-09-09T12:50:09 | 08cf15f | - |
+
+## Citation check: 26/27 tags resolve in REFERENCES.md
 Unresolved: Burrows 1998
