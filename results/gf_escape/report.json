@@ -9,7 +9,7 @@
     "tau_syn_ms": 5.0,
     "refractory_ms": 2.2,
     "w_syn_mV": 0.275,
-    "w_scale": 0.3,
+    "w_scale": 0.25,
     "tau_adapt_ms": 100.0,
     "gap_delay_ms": 0.8,
     "chem_delay_ms": 1.8,
@@ -25,6 +25,8 @@
       "other": 1.0
     },
     "superclass_params": {},
+    "peptide_gain_scale": 0.0,
+    "peptide_exclude": [],
     "baseline_depol_mV": 0.0,
     "baseline_noise_mV": 0.0
   },
@@ -35,20 +37,20 @@
       "n_lif": 167649,
       "n_chem_syn": 5837592,
       "n_stim": 2526,
-      "pop_rate_hz": 0.004084497400890575,
-      "gf_per_cell": 0.45,
-      "gf_hit": 0.575,
+      "pop_rate_hz": 0.003393874057326522,
+      "gf_per_cell": 0.3375,
+      "gf_hit": 0.475,
       "gf_hit_ci95": [
-        0.4219480043605999,
-        0.7149083147518411
+        0.32935229550181694,
+        0.6250289314607026
       ],
-      "gf_per_hit": 1.0434782608695652,
-      "gf_lat_ms": 38.6391304347813,
-      "ttmn_per_cell": 0.45,
-      "ttmn_lag_ms": 0.9000000000001577,
-      "psi_per_cell": 0.45,
+      "gf_per_hit": 1.0,
+      "gf_lat_ms": 43.15789473684079,
+      "ttmn_per_cell": 0.3375,
+      "ttmn_lag_ms": 0.9000000000000371,
+      "psi_per_cell": 0.3375,
       "ttmn_to_gf_ratio": 1.0,
-      "wall_s": 106.2
+      "wall_s": 389.7
     },
     "real_chemical_only": {
       "arm": "real_chemical_only",
@@ -56,20 +58,20 @@
       "n_lif": 167649,
       "n_chem_syn": 5837611,
       "n_stim": 2526,
-      "pop_rate_hz": 0.004056904928879791,
-      "gf_per_cell": 0.5,
-      "gf_hit": 0.65,
+      "pop_rate_hz": 0.0033743970182600856,
+      "gf_per_cell": 0.4125,
+      "gf_hit": 0.6,
       "gf_hit_ci95": [
-        0.4950559699353738,
-        0.7786566682895085
+        0.44595619827393507,
+        0.7365188938759865
       ],
-      "gf_per_hit": 1.0384615384615385,
-      "gf_lat_ms": 36.51153846153785,
+      "gf_per_hit": 1.0,
+      "gf_lat_ms": 39.74999999999921,
       "ttmn_per_cell": 0.0,
       "ttmn_lag_ms": NaN,
       "psi_per_cell": 0.0,
       "ttmn_to_gf_ratio": 0.0,
-      "wall_s": 102.5
+      "wall_s": 518.3
     },
     "rewired_null": {
       "arm": "rewired_null",
@@ -77,7 +79,7 @@
       "n_lif": 167649,
       "n_chem_syn": 5821202,
       "n_stim": 2526,
-      "pop_rate_hz": 4.057716472174225e-07,
+      "pop_rate_hz": 0.0,
       "gf_per_cell": 0.0,
       "gf_hit": 0.0,
       "gf_hit_ci95": [
@@ -90,12 +92,12 @@
       "ttmn_lag_ms": NaN,
       "psi_per_cell": 0.0,
       "ttmn_to_gf_ratio": NaN,
-      "wall_s": 105.8
+      "wall_s": 289.4
     }
   },
   "checks": {
     "gf_spikes_per_response_1_to_2": true,
-    "gf_response_prob_0.5_to_1": true,
+    "gf_response_prob_0.5_to_1": false,
     "gf_latency_10_60ms": true,
     "ttmn_one_to_one": true,
     "ttmn_lag_0.5_1.5ms": true,
@@ -103,15 +105,15 @@
     "electrical_necessary": true,
     "null_silent": true
   },
-  "pass": true,
+  "pass": false,
   "provenance": {
-    "written_at": "2026-09-09T15:06:59",
-    "git_commit": "00a6afb",
+    "written_at": "2026-09-09T19:49:19",
+    "git_commit": "9d42586",
     "env": {
       "FLYCNS_SEED": "0",
-      "FLYCNS_RUN_TAG": "signflip05_a",
-      "FLYCNS_SIGNFLIP": "0.05",
-      "FLYCNS_WSCALE": "0.3"
+      "FLYCNS_RUN_TAG": "wscale025",
+      "FLYCNS_SIGNFLIP": "0",
+      "FLYCNS_WSCALE": "0.25"
     }
   }
 }

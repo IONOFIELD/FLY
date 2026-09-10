@@ -6,8 +6,8 @@
 ## Electrical synapses added (invisible to EM)
 - DNp01 -> TTMn (ipsilateral, spikelet 9.0): shakB gap junction, 1:1 relay; Tanouye & Wyman 1980; Allen et al. 2006
 - DNp01 -> PSI (ipsilateral, spikelet 9.0): shakB gap junction, 1:1 relay; Allen et al. 2006; Phelan et al. 2008
-- JO-A* -> DNp01 (ipsilateral, spikelet {'compound_mV': 3.0, 'at_hz': 150}): JON->GF electrical; Pezier & Blagburn 2013; Yorozu 2009
-- JO-B* -> DNp01 (ipsilateral, spikelet {'compound_mV': 3.0, 'at_hz': 150}): JON->GF electrical; Pezier & Blagburn 2013; Yorozu 2009
+- JO-B1_a -> DNp01 (ipsilateral, spikelet {'compound_mV': 3.0, 'at_hz': 150}): JON->GF electrical; Pezier & Blagburn 2013; Yorozu 2009; contact set from MaleCNS v1.0
+- JO-B1_c -> DNp01 (ipsilateral, spikelet {'compound_mV': 3.0, 'at_hz': 150}): JON->GF electrical; Pezier & Blagburn 2013; Yorozu 2009; contact set from MaleCNS v1.0
 
 ## Intrinsic overrides
 - DNp01.b_adapt_mV = 30.0: all-or-none GF response; von Reyn 2014; Ache 2019. Fitted by pre-stated rule (smallest value giving 1-2 spikes/response, <=2 on the strongest gain quartile, P(response) 0.5-1, TTMn relay intact; benchmarks/fit_gf_adapt.py at >=40 trials). 30 mV under the ordinal loom tuning, 30 mV under measured stationary tuning at 40 trials; an intermediate 15 mV came from a 20-trial fit whose strong-gain quartile held ~5 trials and was undersampled. 0 mV gives up to 8 spikes per loom.
@@ -21,7 +21,7 @@
 
 ## Checks
 - gf_spikes_per_response_1_to_2: PASS
-- gf_response_prob_0.5_to_1: PASS
+- gf_response_prob_0.5_to_1: FAIL
 - gf_latency_10_60ms: PASS
 - ttmn_one_to_one: PASS
 - ttmn_lag_0.5_1.5ms: PASS
