@@ -11,3 +11,4 @@ motor present: ['MN9', 'MN6', 'MN8']  missing: ['MN11']
 gustatory afferents by subclass (labellar bristle, taste peg, pharyngeal sensillum): 42 types
 WARNING: no sugar-specific GRN type in this annotation; driving taste-region afferents ['aPhM2a', 'aPhM5', 'PhG1c', 'claw_tpGRN', 'LB3a', 'LB3b', 'LB3c', 'LB3d'] (F3 bitter test skipped; F1/F2/F5 test taste -> MN9 wiring)
 [graph] removed 679 EM chemical synapses on declared mixed pairs (modelled as electrical)
+WARNING    Simulation stop requested. Press Ctrl+C again to interrupt. [brian2]

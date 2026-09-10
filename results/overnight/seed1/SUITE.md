@@ -30,6 +30,8 @@ env: FLYCNS_SEED=1 FLYCNS_SIGNFLIP=0 FLYCNS_WSCALE=0.3
     "other": 1.0
   },
   "superclass_params": {},
+  "peptide_gain_scale": 0.0,
+  "peptide_exclude": [],
   "baseline_depol_mV": 0.0,
   "baseline_noise_mV": 0.0
 }
@@ -63,12 +65,15 @@ effective chemical kick per synapse: 0.0825 mV (Shiu 2024 unitary 0.275 mV x Mal
 
 Declared deviations from the raw connectome: see each results/*/provenance.md and flycns/graph.py.
 
+**WARNING: reports more than an hour older than the newest are included: gf_escape, peptide_asta. Rerun the suite (`./run_all.sh`) before quoting this table.**
+
 ## Report provenance
 | benchmark | written | commit | env |
 |---|---|---|---|
-| auditory | 2026-09-09T13:40:08 | f67df24 | {'FLYCNS_SEED': '1', 'FLYCNS_RUN_TAG': 'seed1', 'FLYCNS_SIGNFLIP': '0', 'FLYCNS_WSCALE': '0.3'} |
-| feeding | 2026-09-09T14:08:48 | f67df24 | {'FLYCNS_SEED': '1', 'FLYCNS_RUN_TAG': 'seed1', 'FLYCNS_SIGNFLIP': '0', 'FLYCNS_WSCALE': '0.3'} |
-| gf_escape | 2026-09-09T13:20:16 | f67df24 | {'FLYCNS_SEED': '1', 'FLYCNS_RUN_TAG': 'seed1', 'FLYCNS_SIGNFLIP': '0', 'FLYCNS_WSCALE': '0.3'} |
+| auditory | 2026-09-09T21:22:00 | c85592a | {'FLYCNS_SEED': '1', 'FLYCNS_RUN_TAG': 'seed1', 'FLYCNS_SIGNFLIP': '0', 'FLYCNS_WSCALE': '0.3'} |
+| feeding | 2026-09-09T22:07:19 | c85592a | {'FLYCNS_SEED': '1', 'FLYCNS_RUN_TAG': 'seed1', 'FLYCNS_SIGNFLIP': '0', 'FLYCNS_WSCALE': '0.3'} |
+| gf_escape | 2026-09-09T20:45:11 | c85592a | {'FLYCNS_SEED': '1', 'FLYCNS_RUN_TAG': 'seed1', 'FLYCNS_SIGNFLIP': '0', 'FLYCNS_WSCALE': '0.3'} |
+| peptide_asta | 2026-09-09T15:43:57 | 00a6afb | - |
 
-## Citation check: 26/27 tags resolve in REFERENCES.md
+## Citation check: 27/28 tags resolve in REFERENCES.md
 Unresolved: Burrows 1998
