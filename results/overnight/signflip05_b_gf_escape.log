@@ -55,3 +55,33 @@ loom tuning source: MEASURED (all trials): Turner, Krieger, Pang & Clandinin 202
   vnc_intrinsic                                                   0.001
   ol_intrinsic                                                    0.000
 [real_chemical_only] GF 0.75/cell hit 0.72 (95% CI 0.57-0.84) lat 39.8 ms | TTMn 0.00/cell lag nan ms | pop 0.0044 Hz | 153.9s
+  per trial GF/TTMn spikes: 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0
+  raster: 4 ms/char, 120 ms from onset   (| spike, # multiple)
+  t0  DNp01  ..............................
+  t0  TTMn   ..............................
+  t0  CNS    ..............................   (log2 spikes/bin, 9 = flood)
+
+  t1  DNp01  ..............................
+  t1  TTMn   ..............................
+  t1  CNS    ..............................   (log2 spikes/bin, 9 = flood)
+
+  t2  DNp01  ..............................
+  t2  TTMn   ..............................
+  t2  CNS    ...............1..............   (log2 spikes/bin, 9 = flood)
+
+  region activity (spikes per neuron over 40 stimulus windows):
+  cb_intrinsic           ######################################## 0.000
+  ol_intrinsic           #######                                  0.000
+[rewired_null] GF 0.00/cell hit 0.00 (95% CI -0.00-0.09) lat nan ms | TTMn 0.00/cell lag nan ms | pop 0.0000 Hz | 162.3s
+
+CHECKS
+  PASS  gf_spikes_per_response_1_to_2
+  PASS  gf_response_prob_0.5_to_1
+  PASS  gf_latency_10_60ms
+  PASS  ttmn_one_to_one
+  PASS  ttmn_lag_0.5_1.5ms
+  PASS  cns_quiet
+  PASS  electrical_necessary
+  PASS  null_silent
+
+BENCHMARK PASS  -> results/gf_escape/report.json
