@@ -30,6 +30,8 @@ env: FLYCNS_SEED=0 FLYCNS_SIGNFLIP=0.10 FLYCNS_WSCALE=0.3
     "other": 1.0
   },
   "superclass_params": {},
+  "peptide_gain_scale": 0.0,
+  "peptide_exclude": [],
   "baseline_depol_mV": 0.0,
   "baseline_noise_mV": 0.0
 }
@@ -62,6 +64,16 @@ effective chemical kick per synapse: 0.0825 mV (Shiu 2024 unitary 0.275 mV x Mal
 | gf_escape | null_silent | PASS |
 
 Declared deviations from the raw connectome: see each results/*/provenance.md and flycns/graph.py.
+
+**WARNING: reports more than an hour older than the newest are included: gf_escape, peptide_asta. Rerun the suite (`./run_all.sh`) before quoting this table.**
+
+## Report provenance
+| benchmark | written | commit | env |
+|---|---|---|---|
+| auditory | 2026-09-09T18:35:10 | 12a03f9 | {'FLYCNS_SEED': '0', 'FLYCNS_RUN_TAG': 'signflip10', 'FLYCNS_SIGNFLIP': '0.10', 'FLYCNS_WSCALE': '0.3'} |
+| feeding | 2026-09-09T19:29:15 | 12a03f9 | {'FLYCNS_SEED': '0', 'FLYCNS_RUN_TAG': 'signflip10', 'FLYCNS_SIGNFLIP': '0.10', 'FLYCNS_WSCALE': '0.3'} |
+| gf_escape | 2026-09-09T17:54:17 | 12a03f9 | {'FLYCNS_SEED': '0', 'FLYCNS_RUN_TAG': 'signflip10', 'FLYCNS_SIGNFLIP': '0.10', 'FLYCNS_WSCALE': '0.3'} |
+| peptide_asta | 2026-09-09T15:43:57 | 00a6afb | - |
 
 ## Citation check: 27/28 tags resolve in REFERENCES.md
 Unresolved: Burrows 1998
