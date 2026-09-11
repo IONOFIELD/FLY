@@ -11,7 +11,7 @@ loom tuning source: MEASURED (all trials): Turner, Krieger, Pang & Clandinin 202
   t0  TTMn   ..............................
   t0  CNS    .1345434433444343.............   (log2 spikes/bin, 9 = flood)
 
-  t1  DNp01  ......|........|..............
+  t1  DNp01  .......|.......|..............
   t1  TTMn   .......|.......|..............
   t1  CNS    .1244433332333342.............   (log2 spikes/bin, 9 = flood)
 
@@ -30,7 +30,7 @@ loom tuning source: MEASURED (all trials): Turner, Krieger, Pang & Clandinin 202
   visual_projection                                               0.001
   vnc_intrinsic                                                   0.001
   ol_intrinsic                                                    0.000
-[real_electrical] GF 0.75/cell hit 0.62 (95% CI 0.47-0.76) lat 34.0 ms | TTMn 0.75/cell lag 0.90 ms | pop 0.0048 Hz | 108.2s
+[real_electrical] GF 0.75/cell hit 0.62 (95% CI 0.47-0.76) lat 34.7 ms | TTMn 0.75/cell lag 0.90 ms | pop 0.0048 Hz | 153.3s
   per trial GF/TTMn spikes: 2/0 1/0 0/0 0/0 5/0 3/0 1/0 3/0 2/0 0/0 4/0 0/0 1/0 0/0 3/0 1/0 2/0 0/0 2/0 0/0 4/0 1/0 2/0 2/0 0/0 2/0 6/0 0/0 0/0 0/0 2/0 1/0 2/0 2/0 2/0 2/0 1/0 3/0 0/0 1/0
   raster: 4 ms/char, 120 ms from onset   (| spike, # multiple)
   t0  DNp01  ...........|..|...............
@@ -55,7 +55,7 @@ loom tuning source: MEASURED (all trials): Turner, Krieger, Pang & Clandinin 202
   visual_projection                                               0.001
   vnc_intrinsic                                                   0.001
   ol_intrinsic                                                    0.000
-[real_chemical_only] GF 0.79/cell hit 0.70 (95% CI 0.55-0.82) lat 32.1 ms | TTMn 0.00/cell lag nan ms | pop 0.0047 Hz | 107.4s
+[real_chemical_only] GF 0.79/cell hit 0.70 (95% CI 0.55-0.82) lat 32.1 ms | TTMn 0.00/cell lag nan ms | pop 0.0047 Hz | 152.5s
   per trial GF/TTMn spikes: 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0
   raster: 4 ms/char, 120 ms from onset   (| spike, # multiple)
   t0  DNp01  ..............................
@@ -74,7 +74,7 @@ loom tuning source: MEASURED (all trials): Turner, Krieger, Pang & Clandinin 202
   vnc_intrinsic          ######################################## 0.000
   cb_intrinsic           ################                         0.000
   ol_intrinsic           ###########                              0.000
-[rewired_null] GF 0.00/cell hit 0.00 (95% CI -0.00-0.09) lat nan ms | TTMn 0.00/cell lag nan ms | pop 0.0000 Hz | 105.2s
+[rewired_null] GF 0.00/cell hit 0.00 (95% CI -0.00-0.09) lat nan ms | TTMn 0.00/cell lag nan ms | pop 0.0000 Hz | 154.9s
 
 CHECKS
   PASS  gf_spikes_per_response_1_to_2
