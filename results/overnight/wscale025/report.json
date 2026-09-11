@@ -1,107 +1,132 @@
 {
-  "benchmark": "gf_escape",
-  "n_trials": 40,
-  "params": {
-    "v_rest_mV": -52.0,
-    "v_thresh_mV": -45.0,
-    "v_reset_mV": -52.0,
-    "tau_m_ms": 20.0,
-    "tau_syn_ms": 5.0,
-    "refractory_ms": 2.2,
-    "w_syn_mV": 0.275,
-    "w_scale": 0.25,
-    "tau_adapt_ms": 100.0,
-    "gap_delay_ms": 0.8,
-    "chem_delay_ms": 1.8,
-    "dt_ms": 0.1,
-    "seed": 0,
-    "class_gains": {
-      "sensory": 1.0,
-      "relay": 1.0,
-      "local": 1.0
-    },
-    "region_gains": {
-      "SEZ": 1.0,
-      "other": 1.0
-    },
-    "superclass_params": {},
-    "baseline_depol_mV": 0.0,
-    "baseline_noise_mV": 0.0
+  "benchmark": "peptide_asta",
+  "drive": [
+    "L3",
+    "L5"
+  ],
+  "drive_hz": 100.0,
+  "n_trials": 10,
+  "declared": {
+    "peptide": "AstA",
+    "source": "Pm3",
+    "targets": [
+      "L1",
+      "L2",
+      "L3",
+      "L4",
+      "L5",
+      "C2",
+      "Mi1",
+      "Mi15",
+      "Dm9",
+      "Tm2",
+      "TmY3",
+      "T2"
+    ],
+    "gain": 0.5,
+    "tau_s": 2.0,
+    "source_note": "AstA is expressed by a single visual-system cell type, Pm3 (SPARC single-cell labelling)",
+    "effect_note": "AstA perfusion and optogenetic Pm3 activation increase the peak-to-trough dynamic range of Mi1 responses to light flashes; AstA-R1 knockdown in Mi1 blocks the increase and reduces the hyperpolarising phase of its response",
+    "citation": "Krieger 2023, PhD thesis (Stanford), Ch. 2 Figs 1-4; AstA-R2 additionally in L2",
+    "caveat": "the measured signal is a graded biphasic calcium response; a spiking LIF cannot reproduce peak-to-trough waveform, so any model criterion must be a spike-count analogue"
   },
   "arms": {
-    "real_electrical": {
-      "arm": "real_electrical",
-      "region_source": "anatomical (roiInfo, 3,519 SEZ-intrinsic neurons)",
-      "n_lif": 167649,
-      "n_chem_syn": 5837592,
-      "n_stim": 2526,
-      "pop_rate_hz": 0.0033987433170931313,
-      "gf_per_cell": 0.3875,
-      "gf_hit": 0.475,
-      "gf_hit_ci95": [
-        0.32935229550181694,
-        0.6250289314607026
-      ],
-      "gf_per_hit": 1.105263157894737,
-      "gf_lat_ms": 38.742105263156816,
-      "ttmn_per_cell": 0.3875,
-      "ttmn_lag_ms": 0.8999999999999653,
-      "psi_per_cell": 0.3875,
-      "ttmn_to_gf_ratio": 1.0,
-      "wall_s": 98.9
+    "flash_only": {
+      "arm": "flash_only",
+      "peptide_gain_scale": 0.0,
+      "excluded": [],
+      "spikes_per_cell_per_flash": {
+        "L1": 0.0,
+        "L2": 0.0,
+        "L4": 0.0,
+        "C2": 0.0,
+        "Mi1": 0.0006,
+        "Mi15": 0.0,
+        "Dm9": 1.5539,
+        "Tm2": 0.0,
+        "TmY3": 0.0,
+        "T2": 0.0001
+      },
+      "pop_rate_hz": 0.11169621980176314,
+      "peptide_applied": [],
+      "wall_s": 99
     },
-    "real_chemical_only": {
-      "arm": "real_chemical_only",
-      "region_source": "anatomical (roiInfo, 3,519 SEZ-intrinsic neurons)",
-      "n_lif": 167649,
-      "n_chem_syn": 5837611,
-      "n_stim": 2526,
-      "pop_rate_hz": 0.0033760201048489554,
-      "gf_per_cell": 0.4625,
-      "gf_hit": 0.6,
-      "gf_hit_ci95": [
-        0.44595619827393507,
-        0.7365188938759865
-      ],
-      "gf_per_hit": 1.0833333333333333,
-      "gf_lat_ms": 38.95833333333163,
-      "ttmn_per_cell": 0.0,
-      "ttmn_lag_ms": NaN,
-      "psi_per_cell": 0.0,
-      "ttmn_to_gf_ratio": 0.0,
-      "wall_s": 95.5
+    "flash_plus_Pm3_synaptic": {
+      "arm": "flash_plus_Pm3_synaptic",
+      "peptide_gain_scale": 0.0,
+      "excluded": [],
+      "spikes_per_cell_per_flash": {
+        "L1": 0.0001,
+        "L2": 0.0,
+        "L4": 0.0,
+        "C2": 0.0,
+        "Mi1": 0.0002,
+        "Mi15": 0.0,
+        "Dm9": 1.5498,
+        "Tm2": 0.0,
+        "TmY3": 0.0,
+        "T2": 0.0
+      },
+      "pop_rate_hz": 0.11155103704082171,
+      "peptide_applied": [],
+      "wall_s": 96
     },
-    "rewired_null": {
-      "arm": "rewired_null",
-      "region_source": "anatomical (roiInfo, 3,519 SEZ-intrinsic neurons)",
-      "n_lif": 167649,
-      "n_chem_syn": 5821202,
-      "n_stim": 2526,
-      "pop_rate_hz": 0.0,
-      "gf_per_cell": 0.0,
-      "gf_hit": 0.0,
-      "gf_hit_ci95": [
-        -6.330876522670002e-18,
-        0.08762453925039232
+    "flash_plus_Pm3_AstA": {
+      "arm": "flash_plus_Pm3_AstA",
+      "peptide_gain_scale": 1.0,
+      "excluded": [],
+      "spikes_per_cell_per_flash": {
+        "L1": 0.0001,
+        "L2": 0.0,
+        "L4": 0.0,
+        "C2": 0.0,
+        "Mi1": 0.0002,
+        "Mi15": 0.0,
+        "Dm9": 1.5498,
+        "Tm2": 0.0,
+        "TmY3": 0.0,
+        "T2": 0.0
+      },
+      "pop_rate_hz": 0.11155103704082171,
+      "peptide_applied": [],
+      "wall_s": 98
+    },
+    "AstA_minus_Mi1": {
+      "arm": "AstA_minus_Mi1",
+      "peptide_gain_scale": 1.0,
+      "excluded": [
+        "Mi1"
       ],
-      "gf_per_hit": 0.0,
-      "gf_lat_ms": NaN,
-      "ttmn_per_cell": 0.0,
-      "ttmn_lag_ms": NaN,
-      "psi_per_cell": 0.0,
-      "ttmn_to_gf_ratio": NaN,
-      "wall_s": 98.5
+      "spikes_per_cell_per_flash": {
+        "L1": 0.0001,
+        "L2": 0.0,
+        "L4": 0.0,
+        "C2": 0.0,
+        "Mi1": 0.0002,
+        "Mi15": 0.0,
+        "Dm9": 1.5498,
+        "Tm2": 0.0,
+        "TmY3": 0.0,
+        "T2": 0.0
+      },
+      "pop_rate_hz": 0.11155103704082171,
+      "peptide_applied": [],
+      "wall_s": 101
     }
   },
-  "checks": {
-    "gf_spikes_per_response_1_to_2": true,
-    "gf_response_prob_0.5_to_1": false,
-    "gf_latency_10_60ms": true,
-    "ttmn_one_to_one": true,
-    "ttmn_lag_0.5_1.5ms": true,
-    "cns_quiet": true,
-    "electrical_necessary": true,
-    "null_silent": true
+  "comparison": {
+    "Mi1_flash_only": 0.0006,
+    "Mi1_flash_plus_Pm3_synaptic": 0.0002,
+    "Mi1_flash_plus_Pm3_AstA": 0.0002,
+    "Mi1_receptor_knockdown": 0.0002,
+    "Pm3_synaptic_effect": 0.333,
+    "AstA_effect_over_synaptic": 1.0,
+    "knockdown_returns_to_synaptic": 1.0,
+    "note": "published effect is an increase in the peak-to-trough dynamic range of a graded biphasic calcium response, blocked by AstA-R1 knockdown in Mi1; this is a spike-count analogue in a model with no graded compartment, reported and never scored"
   },
-  "pass": false
+  "provenance": {
+    "written_at": "2026-09-09T15:43:57",
+    "git_commit": "00a6afb",
+    "env": {}
+  }
 }
