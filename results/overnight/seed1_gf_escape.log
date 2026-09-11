@@ -5,7 +5,6 @@
   [brain] ........................................ neck ........ [VNC]
 loom tuning source: MEASURED (all trials): Turner, Krieger, Pang & Clandinin 2022, eLife 11:e82587; Dryad doi:10.5061/dryad.h44j0zpp8 (21 flies, extracted 2026-09-09); peak rate 5.0 Hz; gain sigma 0.3687
 [graph] removed 679 EM chemical synapses on declared mixed pairs (modelled as electrical)
-WARNING    Simulation stop requested. Press Ctrl+C again to interrupt. [brian2]
   per trial GF/TTMn spikes: 1/1 4/4 2/2 0/0 3/3 3/3 1/1 2/2 2/2 2/2 2/2 2/2 0/0 0/0 0/0 3/3 2/2 0/0 0/0 0/0 3/3 0/0 5/5 3/3 0/0 0/0 1/1 0/0 2/2 1/1 5/5 0/0 1/1 5/5 2/2 2/2 0/0 0/0 2/2 1/1
   raster: 4 ms/char, 120 ms from onset   (| spike, # multiple)
   t0  DNp01  ..............|...............
@@ -31,7 +30,7 @@ WARNING    Simulation stop requested. Press Ctrl+C again to interrupt. [brian2]
   vnc_intrinsic                                                   0.001
   visual_projection                                               0.000
   ol_intrinsic                                                    0.000
-[real_electrical] GF 0.78/cell hit 0.65 (95% CI 0.50-0.78) lat 40.7 ms | TTMn 0.78/cell lag 0.90 ms | pop 0.0048 Hz | 232.1s
+[real_electrical] GF 0.78/cell hit 0.65 (95% CI 0.50-0.78) lat 40.7 ms | TTMn 0.78/cell lag 0.90 ms | pop 0.0048 Hz | 152.4s
   per trial GF/TTMn spikes: 2/0 4/0 2/0 0/0 3/0 3/0 1/0 2/0 2/0 2/0 2/0 2/0 0/0 1/0 0/0 3/0 2/0 1/0 0/0 1/0 3/0 0/0 5/0 3/0 0/0 0/0 1/0 1/0 2/0 2/0 5/0 0/0 1/0 5/0 2/0 2/0 1/0 0/0 2/0 1/0
   raster: 4 ms/char, 120 ms from onset   (| spike, # multiple)
   t0  DNp01  .........|.|..................
@@ -55,7 +54,7 @@ WARNING    Simulation stop requested. Press Ctrl+C again to interrupt. [brian2]
   vnc_intrinsic                                                   0.001
   visual_projection                                               0.000
   ol_intrinsic                                                    0.000
-[real_chemical_only] GF 0.86/cell hit 0.78 (95% CI 0.62-0.88) lat 39.0 ms | TTMn 0.00/cell lag nan ms | pop 0.0048 Hz | 225.5s
+[real_chemical_only] GF 0.86/cell hit 0.78 (95% CI 0.62-0.88) lat 39.0 ms | TTMn 0.00/cell lag nan ms | pop 0.0048 Hz | 154.7s
   per trial GF/TTMn spikes: 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0
   raster: 4 ms/char, 120 ms from onset   (| spike, # multiple)
   t0  DNp01  ..............................
@@ -73,7 +72,7 @@ WARNING    Simulation stop requested. Press Ctrl+C again to interrupt. [brian2]
   region activity (spikes per neuron over 40 stimulus windows):
   cb_intrinsic           ######################################## 0.000
   ol_intrinsic           #######                                  0.000
-[rewired_null] GF 0.00/cell hit 0.00 (95% CI -0.00-0.09) lat nan ms | TTMn 0.00/cell lag nan ms | pop 0.0000 Hz | 237.9s
+[rewired_null] GF 0.00/cell hit 0.00 (95% CI -0.00-0.09) lat nan ms | TTMn 0.00/cell lag nan ms | pop 0.0000 Hz | 175.3s
 
 CHECKS
   PASS  gf_spikes_per_response_1_to_2
