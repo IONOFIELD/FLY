@@ -5,57 +5,57 @@
   [brain] ........................................ neck ........ [VNC]
 loom tuning source: MEASURED (all trials): Turner, Krieger, Pang & Clandinin 2022, eLife 11:e82587; Dryad doi:10.5061/dryad.h44j0zpp8 (21 flies, extracted 2026-09-09); peak rate 5.0 Hz; gain sigma 0.3687
 [graph] removed 679 EM chemical synapses on declared mixed pairs (modelled as electrical)
-  per trial GF/TTMn spikes: 5/5 5/5 9/9 8/8 0/0 6/6 8/8 7/7 0/0 0/0 1/1 5/5 0/0 1/1 0/0 0/0 1/1 3/3 5/5 8/8 0/0 8/8 3/3 6/6 9/9 6/6 0/0 0/0 3/3 5/5 0/0 3/3 2/2 5/5 9/9 5/5 0/0 3/3 7/7 9/9
+  per trial GF/TTMn spikes: 4/4 2/2 6/6 4/4 0/0 4/4 5/5 5/5 0/0 0/0 1/1 3/3 0/0 1/1 0/0 0/0 1/1 2/2 4/4 5/5 0/0 6/6 2/2 4/4 6/6 4/4 0/0 0/0 2/2 4/4 0/0 2/2 2/2 2/2 6/6 4/4 0/0 2/2 5/5 6/6
   raster: 4 ms/char, 120 ms from onset   (| spike, # multiple)
-  t0  DNp01  .......|....|||.|.............
-  t0  TTMn   .......|.....||||.............
-  t0  CNS    .134544444344455431.1.........   (log2 spikes/bin, 9 = flood)
+  t0  DNp01  .......|....|.||..............
+  t0  TTMn   ........|....|.#..............
+  t0  CNS    .134544444344455431...........   (log2 spikes/bin, 9 = flood)
 
-  t1  DNp01  ..........|...|#.|............
-  t1  TTMn   ..........|...||||............
-  t1  CNS    .24444344544444322............   (log2 spikes/bin, 9 = flood)
+  t1  DNp01  ...............#..............
+  t1  TTMn   ...............||.............
+  t1  CNS    .2444434454444342.............   (log2 spikes/bin, 9 = flood)
 
-  t2  DNp01  ........||#||#.|..............
-  t2  TTMn   .........#|#|.#|..............
-  t2  CNS    .2455555455555553321..........   (log2 spikes/bin, 9 = flood)
+  t2  DNp01  ........#.||.||...............
+  t2  TTMn   .........#||..#...............
+  t2  CNS    .24555554555555533............   (log2 spikes/bin, 9 = flood)
 
   region activity (spikes per neuron over 40 stimulus windows):
-  efferent_ascending     ######################################## 3.500
-  visual_centrifugal     ###############################          2.719
-  vnc_efferent           ##################                       1.638
-  descending_neuron      #####                                    0.485
-  cb_intrinsic           ####                                     0.359
-  vnc_motor              ###                                      0.307
-  ascending_neuron                                                0.079
+  efferent_ascending     ######################################## 2.875
+  visual_centrifugal     #####################################    2.719
+  vnc_efferent           ###############                          1.085
+  descending_neuron      #####                                    0.429
+  cb_intrinsic           ####                                     0.358
+  vnc_motor              ###                                      0.237
+  ascending_neuron       #                                        0.074
   vnc_intrinsic                                                   0.005
   visual_projection                                               0.001
   ol_intrinsic                                                    0.001
-[real_electrical] GF 1.94/cell hit 0.72 (95% CI 0.57-0.84) lat 33.1 ms | TTMn 1.94/cell lag 0.90 ms | pop 0.0058 Hz | 102.5s
-  per trial GF/TTMn spikes: 6/0 3/0 9/0 8/0 0/0 7/0 8/0 7/0 1/0 1/0 1/0 5/0 0/0 2/0 0/0 0/0 1/0 3/0 5/0 8/0 1/0 9/0 3/0 6/0 9/0 6/0 0/0 0/0 3/0 6/0 1/0 3/0 2/0 5/0 9/0 5/0 2/0 3/0 7/0 9/0
+[real_electrical] GF 1.30/cell hit 0.72 (95% CI 0.57-0.84) lat 35.6 ms | TTMn 1.30/cell lag 0.90 ms | pop 0.0057 Hz | 155.8s
+  per trial GF/TTMn spikes: 4/0 2/0 6/0 5/0 0/0 4/0 5/0 5/0 0/0 1/0 1/0 3/0 0/0 2/0 0/0 0/0 1/0 2/0 4/0 5/0 0/0 6/0 2/0 4/0 6/0 4/0 0/0 0/0 2/0 5/0 0/0 2/0 2/0 2/0 7/0 4/0 1/0 2/0 5/0 6/0
   raster: 4 ms/char, 120 ms from onset   (| spike, # multiple)
-  t0  DNp01  .......|...|.||.#.............
+  t0  DNp01  .......|...|..||..............
   t0  TTMn   ..............................
-  t0  CNS    .1345444443434554312..........   (log2 spikes/bin, 9 = flood)
+  t0  CNS    .134544444343455431...........   (log2 spikes/bin, 9 = flood)
 
-  t1  DNp01  ..............|||.............
+  t1  DNp01  ..............||..............
   t1  TTMn   ..............................
-  t1  CNS    .2444434454444432.............   (log2 spikes/bin, 9 = flood)
+  t1  CNS    .2444434454444431.............   (log2 spikes/bin, 9 = flood)
 
-  t2  DNp01  ........#||#.#.|..............
+  t2  DNp01  ........#.||.||...............
   t2  TTMn   ..............................
   t2  CNS    .24555554555555533............   (log2 spikes/bin, 9 = flood)
 
   region activity (spikes per neuron over 40 stimulus windows):
-  efferent_ascending     ######################################## 3.375
-  visual_centrifugal     ################################         2.719
-  descending_neuron      #####                                    0.495
-  cb_intrinsic           ####                                     0.359
-  vnc_motor              #                                        0.086
-  ascending_neuron                                                0.079
+  efferent_ascending     ######################################## 2.875
+  visual_centrifugal     #####################################    2.719
+  descending_neuron      ######                                   0.435
+  cb_intrinsic           ####                                     0.358
+  vnc_motor              #                                        0.088
+  ascending_neuron       #                                        0.076
   vnc_intrinsic                                                   0.005
   visual_projection                                               0.001
   ol_intrinsic                                                    0.001
-[real_chemical_only] GF 2.05/cell hit 0.85 (95% CI 0.71-0.93) lat 34.9 ms | TTMn 0.00/cell lag nan ms | pop 0.0057 Hz | 99.3s
+[real_chemical_only] GF 1.38/cell hit 0.78 (95% CI 0.62-0.88) lat 33.7 ms | TTMn 0.00/cell lag nan ms | pop 0.0057 Hz | 153.1s
   per trial GF/TTMn spikes: 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0
   raster: 4 ms/char, 120 ms from onset   (| spike, # multiple)
   t0  DNp01  ..............................
@@ -74,10 +74,10 @@ loom tuning source: MEASURED (all trials): Turner, Krieger, Pang & Clandinin 202
   visual_projection      ######################################## 0.000
   ol_intrinsic           #####                                    0.000
   cb_intrinsic           ##                                       0.000
-[rewired_null] GF 0.00/cell hit 0.00 (95% CI -0.00-0.09) lat nan ms | TTMn 0.00/cell lag nan ms | pop 0.0000 Hz | 102.8s
+[rewired_null] GF 0.00/cell hit 0.00 (95% CI -0.00-0.09) lat nan ms | TTMn 0.00/cell lag nan ms | pop 0.0000 Hz | 156.2s
 
 CHECKS
-  FAIL  gf_spikes_per_response_1_to_2
+  PASS  gf_spikes_per_response_1_to_2
   PASS  gf_response_prob_0.5_to_1
   PASS  gf_latency_10_60ms
   PASS  ttmn_one_to_one
@@ -86,4 +86,4 @@ CHECKS
   PASS  electrical_necessary
   PASS  null_silent
 
-BENCHMARK FAIL  -> results/gf_escape/report.json
+BENCHMARK PASS  -> results/gf_escape/report.json
