@@ -1,0 +1,14 @@
+[graph] TARGETED SIGN FLIP: 132,680 edges (2.0% of weight) from neurons whose T-bars disagree with their consensus label
+[graph] 176,422 neurons, 6,127,738 signed edges (dropped 110,136 unknown-NT pairs and modulatory amines)
+
+  taste ->  gustatory afferents (MxLbN, aPhN)  ==chem==>  SEZ interneurons (GNG...)  ==chem==>  MN9  ->  proboscis
+  wind  ->  JO-FV (control)      must NOT reach MN9
+second-order (Shiu names) absent; using MN9's top EXCITATORY input types: ['DNge062', 'GNG120', 'GNG117', 'GNG108']
+sensory afferents onto MN9 excitatory inputs (>=50 syn): ['LN-DN1', 'BM', 'GNG654']
+sugar GRN candidates: NONE FOUND
+bitter GRN candidates: NONE FOUND
+second-order present: ['DNge062', 'GNG120', 'GNG117', 'GNG108']  missing: ['Fdg', 'Clavicle', 'Zorro', 'Rattle', 'Phantom', 'Bract', 'Roundup', 'Usnea', 'Cleaver']
+motor present: ['MN9', 'MN6', 'MN8']  missing: ['MN11']
+gustatory afferents by subclass (labellar bristle, taste peg, pharyngeal sensillum): 42 types
+WARNING: no sugar-specific GRN type in this annotation; driving taste-region afferents ['aPhM2a', 'aPhM5', 'PhG1c', 'claw_tpGRN', 'LB3a', 'LB3b', 'LB3c', 'LB3d'] (F3 bitter test skipped; F1/F2/F5 test taste -> MN9 wiring)
+[graph] removed 679 EM chemical synapses on declared mixed pairs (modelled as electrical)

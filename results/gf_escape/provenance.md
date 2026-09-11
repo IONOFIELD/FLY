@@ -21,7 +21,7 @@
 
 ## Checks
 - gf_spikes_per_response_1_to_2: PASS
-- gf_response_prob_0.5_to_1: FAIL
+- gf_response_prob_0.5_to_1: PASS
 - gf_latency_10_60ms: PASS
 - ttmn_one_to_one: PASS
 - ttmn_lag_0.5_1.5ms: PASS

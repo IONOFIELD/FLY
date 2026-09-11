@@ -9,7 +9,7 @@
     "tau_syn_ms": 5.0,
     "refractory_ms": 2.2,
     "w_syn_mV": 0.275,
-    "w_scale": 0.25,
+    "w_scale": 0.3,
     "tau_adapt_ms": 100.0,
     "gap_delay_ms": 0.8,
     "chem_delay_ms": 1.8,
@@ -37,20 +37,20 @@
       "n_lif": 167649,
       "n_chem_syn": 5837592,
       "n_stim": 2526,
-      "pop_rate_hz": 0.003393874057326522,
-      "gf_per_cell": 0.3375,
-      "gf_hit": 0.475,
+      "pop_rate_hz": 0.004408303175370078,
+      "gf_per_cell": 0.675,
+      "gf_hit": 0.65,
       "gf_hit_ci95": [
-        0.32935229550181694,
-        0.6250289314607026
+        0.4950559699353738,
+        0.7786566682895085
       ],
-      "gf_per_hit": 1.0,
-      "gf_lat_ms": 43.15789473684079,
-      "ttmn_per_cell": 0.3375,
-      "ttmn_lag_ms": 0.9000000000000371,
-      "psi_per_cell": 0.3375,
+      "gf_per_hit": 1.1923076923076923,
+      "gf_lat_ms": 38.67692307692159,
+      "ttmn_per_cell": 0.675,
+      "ttmn_lag_ms": 0.90000000000015,
+      "psi_per_cell": 0.675,
       "ttmn_to_gf_ratio": 1.0,
-      "wall_s": 389.7
+      "wall_s": 156.6
     },
     "real_chemical_only": {
       "arm": "real_chemical_only",
@@ -58,20 +58,20 @@
       "n_lif": 167649,
       "n_chem_syn": 5837611,
       "n_stim": 2526,
-      "pop_rate_hz": 0.0033743970182600856,
-      "gf_per_cell": 0.4125,
-      "gf_hit": 0.6,
+      "pop_rate_hz": 0.004367726010648336,
+      "gf_per_cell": 0.775,
+      "gf_hit": 0.775,
       "gf_hit_ci95": [
-        0.44595619827393507,
-        0.7365188938759865
+        0.6249660359590695,
+        0.8768404674532148
       ],
-      "gf_per_hit": 1.0,
-      "gf_lat_ms": 39.74999999999921,
+      "gf_per_hit": 1.1935483870967742,
+      "gf_lat_ms": 36.79032258064399,
       "ttmn_per_cell": 0.0,
       "ttmn_lag_ms": NaN,
       "psi_per_cell": 0.0,
       "ttmn_to_gf_ratio": 0.0,
-      "wall_s": 518.3
+      "wall_s": 151.5
     },
     "rewired_null": {
       "arm": "rewired_null",
@@ -79,7 +79,7 @@
       "n_lif": 167649,
       "n_chem_syn": 5821202,
       "n_stim": 2526,
-      "pop_rate_hz": 0.0,
+      "pop_rate_hz": 4.057716472174225e-07,
       "gf_per_cell": 0.0,
       "gf_hit": 0.0,
       "gf_hit_ci95": [
@@ -92,12 +92,12 @@
       "ttmn_lag_ms": NaN,
       "psi_per_cell": 0.0,
       "ttmn_to_gf_ratio": NaN,
-      "wall_s": 289.4
+      "wall_s": 157.4
     }
   },
   "checks": {
     "gf_spikes_per_response_1_to_2": true,
-    "gf_response_prob_0.5_to_1": false,
+    "gf_response_prob_0.5_to_1": true,
     "gf_latency_10_60ms": true,
     "ttmn_one_to_one": true,
     "ttmn_lag_0.5_1.5ms": true,
@@ -105,15 +105,16 @@
     "electrical_necessary": true,
     "null_silent": true
   },
-  "pass": false,
+  "pass": true,
   "provenance": {
-    "written_at": "2026-09-09T19:49:19",
-    "git_commit": "9d42586",
+    "written_at": "2026-09-11T12:21:29",
+    "git_commit": "8b95326",
     "env": {
       "FLYCNS_SEED": "0",
-      "FLYCNS_RUN_TAG": "wscale025",
+      "FLYCNS_SIGNFLIP_TARGETED": "1",
+      "FLYCNS_RUN_TAG": "signflip_targeted",
       "FLYCNS_SIGNFLIP": "0",
-      "FLYCNS_WSCALE": "0.25"
+      "FLYCNS_WSCALE": "0.3"
     }
   }
 }

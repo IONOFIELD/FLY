@@ -1,0 +1,451 @@
+{
+  "part_a_by_name": [
+    {
+      "group": "IPC / insulin-producing",
+      "n_cells": 26,
+      "n_types": 6,
+      "types": [
+        "IPC",
+        "M_ilPNm90",
+        "VL1_ilPN",
+        "VP1l+VP3_ilPN",
+        "VP1m+VP5_ilPN",
+        "V_ilPN"
+      ]
+    },
+    {
+      "group": "AKH / adipokinetic",
+      "n_cells": 0,
+      "n_types": 0,
+      "types": []
+    },
+    {
+      "group": "octopaminergic VUM (SEZ-adjacent)",
+      "n_cells": 30,
+      "n_types": 13,
+      "types": [
+        "OA-AL2i1",
+        "OA-AL2i2",
+        "OA-AL2i3",
+        "OA-AL2i4",
+        "OA-VPM3",
+        "OA-VPM4",
+        "OA-VUMa1",
+        "OA-VUMa2"
+      ]
+    },
+    {
+      "group": "hugin",
+      "n_cells": 4,
+      "n_types": 1,
+      "types": [
+        "Hugin-RG"
+      ]
+    },
+    {
+      "group": "leucokinin",
+      "n_cells": 12,
+      "n_types": 1,
+      "types": [
+        "LK"
+      ]
+    },
+    {
+      "group": "NPF / sNPF",
+      "n_cells": 4,
+      "n_types": 2,
+      "types": [
+        "DNp29",
+        "NPFL1-I"
+      ]
+    },
+    {
+      "group": "allatostatin A",
+      "n_cells": 2,
+      "n_types": 1,
+      "types": [
+        "AstA1"
+      ]
+    },
+    {
+      "group": "drosulfakinin",
+      "n_cells": 6,
+      "n_types": 2,
+      "types": [
+        "DNp62",
+        "DSKMP3"
+      ]
+    },
+    {
+      "group": "SLC5A11 / CN nutrient sensor",
+      "n_cells": 328,
+      "n_types": 27,
+      "types": [
+        "EPG",
+        "ER1_a",
+        "ER1_b",
+        "ER1_c",
+        "ER2_a",
+        "ER2_b",
+        "ER2_c",
+        "ER2_d"
+      ]
+    },
+    {
+      "group": "clock (reference, known present)",
+      "n_cells": 46,
+      "n_types": 8,
+      "types": [
+        "5thsLNv_LNd6",
+        "DN1a",
+        "DN1pA",
+        "DN1pB",
+        "LNd_b",
+        "LNd_c",
+        "l-LNv",
+        "s-LNv"
+      ]
+    }
+  ],
+  "part_a_monoamines": [
+    {
+      "transmitter": "dopamine",
+      "n": 396,
+      "sez_frac_gt_0_5": 0,
+      "sez_frac_gt_0_2": 0,
+      "top_rois": {
+        "MB(L)": 188,
+        "MB(R)": 142,
+        "CX": 24
+      }
+    },
+    {
+      "transmitter": "octopamine",
+      "n": 101,
+      "sez_frac_gt_0_5": 0,
+      "sez_frac_gt_0_2": 0,
+      "top_rois": {
+        "ANm": 39,
+        "CX": 18,
+        "Optic(L)": 9
+      }
+    },
+    {
+      "transmitter": "serotonin",
+      "n": 48,
+      "sez_frac_gt_0_5": 10,
+      "sez_frac_gt_0_2": 10,
+      "top_rois": {
+        "ANm": 8,
+        "GNG": 7,
+        "CX": 6
+      }
+    }
+  ],
+  "part_b": {
+    "n_midline_sez": 1037,
+    "n_output_dominated": 862,
+    "n_dopamine_predicted": 0,
+    "top_candidates": [
+      {
+        "bodyId": 513781,
+        "type": "ENS5",
+        "instance": NaN,
+        "consensusNt": "unclear",
+        "predictedNt": "serotonin",
+        "dominant_roi": "PENP",
+        "sez_frac": 0.5640394088669951,
+        "out_w": 835.0,
+        "in_w": 0.0,
+        "pre_frac": 1.0
+      },
+      {
+        "bodyId": 422978,
+        "type": "JO-FV",
+        "instance": "JO-FV_R",
+        "consensusNt": "acetylcholine",
+        "predictedNt": "acetylcholine",
+        "dominant_roi": "GNG",
+        "sez_frac": 0.7623529411764706,
+        "out_w": 388.0,
+        "in_w": 0.0,
+        "pre_frac": 1.0
+      },
+      {
+        "bodyId": 220334,
+        "type": "BM",
+        "instance": "BM_L",
+        "consensusNt": "acetylcholine",
+        "predictedNt": "acetylcholine",
+        "dominant_roi": "GNG",
+        "sez_frac": 0.9111969111969112,
+        "out_w": 358.0,
+        "in_w": 0.0,
+        "pre_frac": 1.0
+      },
+      {
+        "bodyId": 536630,
+        "type": NaN,
+        "instance": NaN,
+        "consensusNt": "acetylcholine",
+        "predictedNt": "acetylcholine",
+        "dominant_roi": "GNG",
+        "sez_frac": 0.6942528735632184,
+        "out_w": 335.0,
+        "in_w": 0.0,
+        "pre_frac": 1.0
+      },
+      {
+        "bodyId": 211937357,
+        "type": "JO-CM",
+        "instance": "JO-CM_L",
+        "consensusNt": "acetylcholine",
+        "predictedNt": "acetylcholine",
+        "dominant_roi": "PENP",
+        "sez_frac": 0.6648122392211405,
+        "out_w": 296.0,
+        "in_w": 0.0,
+        "pre_frac": 1.0
+      },
+      {
+        "bodyId": 789003564,
+        "type": "JO-EV5",
+        "instance": "JO-EV5_R",
+        "consensusNt": "acetylcholine",
+        "predictedNt": "acetylcholine",
+        "dominant_roi": "PENP",
+        "sez_frac": 0.6666666666666666,
+        "out_w": 258.0,
+        "in_w": 0.0,
+        "pre_frac": 1.0
+      },
+      {
+        "bodyId": 796452146,
+        "type": NaN,
+        "instance": NaN,
+        "consensusNt": "acetylcholine",
+        "predictedNt": "acetylcholine",
+        "dominant_roi": "GNG",
+        "sez_frac": 0.9078014184397163,
+        "out_w": 254.0,
+        "in_w": 0.0,
+        "pre_frac": 1.0
+      },
+      {
+        "bodyId": 1015296890,
+        "type": "JO-ED2_c",
+        "instance": "JO-ED2_c_R",
+        "consensusNt": "acetylcholine",
+        "predictedNt": "acetylcholine",
+        "dominant_roi": "PENP",
+        "sez_frac": 0.6653620352250489,
+        "out_w": 240.0,
+        "in_w": 0.0,
+        "pre_frac": 1.0
+      },
+      {
+        "bodyId": 193486296,
+        "type": NaN,
+        "instance": NaN,
+        "consensusNt": "acetylcholine",
+        "predictedNt": "acetylcholine",
+        "dominant_roi": "PENP",
+        "sez_frac": 0.5428571428571428,
+        "out_w": 215.0,
+        "in_w": 0.0,
+        "pre_frac": 1.0
+      },
+      {
+        "bodyId": 821484380,
+        "type": "JO-EV2",
+        "instance": "JO-EV2_L",
+        "consensusNt": "acetylcholine",
+        "predictedNt": "acetylcholine",
+        "dominant_roi": "PENP",
+        "sez_frac": 0.6621160409556314,
+        "out_w": 213.0,
+        "in_w": 0.0,
+        "pre_frac": 1.0
+      },
+      {
+        "bodyId": 118359732,
+        "type": "JO-CM",
+        "instance": "JO-CM_L",
+        "consensusNt": "acetylcholine",
+        "predictedNt": "acetylcholine",
+        "dominant_roi": "PENP",
+        "sez_frac": 0.6666666666666666,
+        "out_w": 205.0,
+        "in_w": 0.0,
+        "pre_frac": 1.0
+      },
+      {
+        "bodyId": 210817,
+        "type": "BM",
+        "instance": "BM_L",
+        "consensusNt": "acetylcholine",
+        "predictedNt": "acetylcholine",
+        "dominant_roi": "GNG",
+        "sez_frac": 0.7507788161993769,
+        "out_w": 204.0,
+        "in_w": 0.0,
+        "pre_frac": 1.0
+      },
+      {
+        "bodyId": 535512,
+        "type": "JO-FV",
+        "instance": "JO-FV_R",
+        "consensusNt": "acetylcholine",
+        "predictedNt": "acetylcholine",
+        "dominant_roi": "GNG",
+        "sez_frac": 0.7847682119205298,
+        "out_w": 202.0,
+        "in_w": 0.0,
+        "pre_frac": 1.0
+      },
+      {
+        "bodyId": 511976,
+        "type": "ENS5",
+        "instance": NaN,
+        "consensusNt": "unclear",
+        "predictedNt": "serotonin",
+        "dominant_roi": "PENP",
+        "sez_frac": 0.5633293124246079,
+        "out_w": 902.0,
+        "in_w": 5.0,
+        "pre_frac": 0.9944873208379272
+      },
+      {
+        "bodyId": 566476,
+        "type": "CB4246",
+        "instance": "CB4246_R",
+        "consensusNt": "unclear",
+        "predictedNt": "acetylcholine",
+        "dominant_roi": "PENP",
+        "sez_frac": 0.5944014294222751,
+        "out_w": 1787.0,
+        "in_w": 19.0,
+        "pre_frac": 0.9894795127353266
+      },
+      {
+        "bodyId": 265620368,
+        "type": "BM_Vib",
+        "instance": "BM_Vib_R",
+        "consensusNt": "acetylcholine",
+        "predictedNt": "acetylcholine",
+        "dominant_roi": "GNG",
+        "sez_frac": 0.9290465631929047,
+        "out_w": 420.0,
+        "in_w": 6.0,
+        "pre_frac": 0.9859154929577465
+      },
+      {
+        "bodyId": 534464626,
+        "type": "JO-FV",
+        "instance": "JO-FV_R",
+        "consensusNt": "acetylcholine",
+        "predictedNt": "acetylcholine",
+        "dominant_roi": "GNG",
+        "sez_frac": 0.7456359102244389,
+        "out_w": 325.0,
+        "in_w": 5.0,
+        "pre_frac": 0.9848484848484849
+      },
+      {
+        "bodyId": 521444,
+        "type": "CB4246",
+        "instance": "CB4246_L",
+        "consensusNt": "unclear",
+        "predictedNt": "serotonin",
+        "dominant_roi": "PENP",
+        "sez_frac": 0.6230805025593299,
+        "out_w": 2315.0,
+        "in_w": 36.0,
+        "pre_frac": 0.9846873670778392
+      },
+      {
+        "bodyId": 387990,
+        "type": "JO-A1",
+        "instance": "JO-A1_L",
+        "consensusNt": "acetylcholine",
+        "predictedNt": "acetylcholine",
+        "dominant_roi": "PENP",
+        "sez_frac": 0.5707236842105263,
+        "out_w": 350.0,
+        "in_w": 6.0,
+        "pre_frac": 0.9831460674157303
+      },
+      {
+        "bodyId": 426555,
+        "type": "dorsal_tpGRN",
+        "instance": "dorsal_tpGRN_R",
+        "consensusNt": "acetylcholine",
+        "predictedNt": "acetylcholine",
+        "dominant_roi": "GNG",
+        "sez_frac": 0.6673684210526316,
+        "out_w": 666.0,
+        "in_w": 12.0,
+        "pre_frac": 0.9823008849557522
+      }
+    ],
+    "contacts_mn9_relays": [
+      {
+        "bodyId": 331473,
+        "type": NaN,
+        "pre_frac": 0.98,
+        "onto_MN9_inhibitory": 107,
+        "onto_MN9_excitatory": 61
+      },
+      {
+        "bodyId": 453256188,
+        "type": NaN,
+        "pre_frac": 0.97,
+        "onto_MN9_inhibitory": 48,
+        "onto_MN9_excitatory": 18
+      },
+      {
+        "bodyId": 319204020,
+        "type": NaN,
+        "pre_frac": 0.97,
+        "onto_MN9_inhibitory": 26,
+        "onto_MN9_excitatory": 39
+      },
+      {
+        "bodyId": 796452146,
+        "type": NaN,
+        "pre_frac": 1.0,
+        "onto_MN9_inhibitory": 6,
+        "onto_MN9_excitatory": 25
+      },
+      {
+        "bodyId": 658545570,
+        "type": "BM_Taste",
+        "pre_frac": 0.97,
+        "onto_MN9_inhibitory": 5,
+        "onto_MN9_excitatory": 11
+      },
+      {
+        "bodyId": 600700832,
+        "type": NaN,
+        "pre_frac": 0.97,
+        "onto_MN9_inhibitory": 5,
+        "onto_MN9_excitatory": 10
+      },
+      {
+        "bodyId": 521444,
+        "type": "CB4246",
+        "pre_frac": 0.98,
+        "onto_MN9_inhibitory": 7,
+        "onto_MN9_excitatory": 0
+      },
+      {
+        "bodyId": 84031,
+        "type": "ENS5",
+        "pre_frac": 0.98,
+        "onto_MN9_inhibitory": 7,
+        "onto_MN9_excitatory": 0
+      }
+    ],
+    "signature": "Marella 2012: single midline VUM, broad GNG arbor, nSyb-GFP labels all arbors (output-dominated). Candidates are ranked by that signature only; confirming identity needs NBLAST against the light-level template."
+  }
+}

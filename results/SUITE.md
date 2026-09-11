@@ -1,8 +1,8 @@
-# MaleCNS v1.0 LIF benchmark suite  [signflip10]
+# MaleCNS v1.0 LIF benchmark suite  [wscale040]
 
-env: FLYCNS_SEED=0 FLYCNS_SIGNFLIP=0.10 FLYCNS_WSCALE=0.3
+env: FLYCNS_SEED=0 FLYCNS_SIGNFLIP=0 FLYCNS_WSCALE=0.40
 
-**15/16 checks pass under ONE parameter set** (same LIFParams for every circuit).
+**16/17 checks pass under ONE parameter set** (same LIFParams for every circuit).
 
 ## Parameters
 ```
@@ -14,7 +14,7 @@ env: FLYCNS_SEED=0 FLYCNS_SIGNFLIP=0.10 FLYCNS_WSCALE=0.3
   "tau_syn_ms": 5.0,
   "refractory_ms": 2.2,
   "w_syn_mV": 0.275,
-  "w_scale": 0.3,
+  "w_scale": 0.4,
   "tau_adapt_ms": 100.0,
   "gap_delay_ms": 0.8,
   "chem_delay_ms": 1.8,
@@ -36,7 +36,7 @@ env: FLYCNS_SEED=0 FLYCNS_SIGNFLIP=0.10 FLYCNS_WSCALE=0.3
   "baseline_noise_mV": 0.0
 }
 ```
-effective chemical kick per synapse: 0.0825 mV (Shiu 2024 unitary 0.275 mV x MaleCNS rescale 0.3)
+effective chemical kick per synapse: 0.1100 mV (Shiu 2024 unitary 0.275 mV x MaleCNS rescale 0.4)
 
 ## Checks
 | benchmark | check | result |
@@ -49,13 +49,13 @@ effective chemical kick per synapse: 0.0825 mV (Shiu 2024 unitary 0.275 mV x Mal
 | feeding | F2b_extra_SEZ_quiet | PASS |
 | feeding | F2c_motor_rate_physiological | PASS |
 | feeding | F2_dose_response_REPORTED | SKIP |
-| feeding | F1_laterality_matches_wiring | SKIP |
+| feeding | F1_laterality_matches_wiring | PASS |
 | feeding | F1_shiu_contralateral_bias | SKIP |
 | feeding | F3_bitter_suppresses | SKIP |
 | feeding | F4_second_order_sufficient | PASS |
 | feeding | F5_null_silent | PASS |
-| gf_escape | gf_spikes_per_response_1_to_2 | PASS |
-| gf_escape | gf_response_prob_0.5_to_1 | FAIL |
+| gf_escape | gf_spikes_per_response_1_to_2 | FAIL |
+| gf_escape | gf_response_prob_0.5_to_1 | PASS |
 | gf_escape | gf_latency_10_60ms | PASS |
 | gf_escape | ttmn_one_to_one | PASS |
 | gf_escape | ttmn_lag_0.5_1.5ms | PASS |
@@ -70,9 +70,9 @@ Declared deviations from the raw connectome: see each results/*/provenance.md an
 ## Report provenance
 | benchmark | written | commit | env |
 |---|---|---|---|
-| auditory | 2026-09-09T18:35:10 | 12a03f9 | {'FLYCNS_SEED': '0', 'FLYCNS_RUN_TAG': 'signflip10', 'FLYCNS_SIGNFLIP': '0.10', 'FLYCNS_WSCALE': '0.3'} |
-| feeding | 2026-09-09T19:29:15 | 12a03f9 | {'FLYCNS_SEED': '0', 'FLYCNS_RUN_TAG': 'signflip10', 'FLYCNS_SIGNFLIP': '0.10', 'FLYCNS_WSCALE': '0.3'} |
-| gf_escape | 2026-09-09T17:54:17 | 12a03f9 | {'FLYCNS_SEED': '0', 'FLYCNS_RUN_TAG': 'signflip10', 'FLYCNS_SIGNFLIP': '0.10', 'FLYCNS_WSCALE': '0.3'} |
+| auditory | 2026-09-11T11:30:05 | 52b8bb7 | {'FLYCNS_SEED': '0', 'FLYCNS_RUN_TAG': 'wscale040', 'FLYCNS_SIGNFLIP': '0', 'FLYCNS_WSCALE': '0.40'} |
+| feeding | 2026-09-11T12:13:37 | 52b8bb7 | {'FLYCNS_SEED': '0', 'FLYCNS_RUN_TAG': 'wscale040', 'FLYCNS_SIGNFLIP': '0', 'FLYCNS_WSCALE': '0.40'} |
+| gf_escape | 2026-09-11T11:01:14 | 52b8bb7 | {'FLYCNS_SEED': '0', 'FLYCNS_RUN_TAG': 'wscale040', 'FLYCNS_SIGNFLIP': '0', 'FLYCNS_WSCALE': '0.40'} |
 | peptide_asta | 2026-09-09T15:43:57 | 00a6afb | - |
 
 ## Citation check: 27/28 tags resolve in REFERENCES.md

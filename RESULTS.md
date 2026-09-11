@@ -134,6 +134,33 @@ tuned to make Mi1 fire. Beyond that, the measured effect is a change in a graded
 waveform, and every cell in this model spikes, so even a working version could only offer a
 spike-count analogue.
 
+## The missing ingredient is not obtainable from this connectome (11 September 2026)
+Feeding needs cell-specific spontaneous activity. The one neuron with a measured, hunger-gated
+tonic rate in the right place is TH-VUM, a single dopaminergic ventral unpaired median neuron in
+the SEZ firing at about 1 Hz when fed and 25 Hz after 24 h starvation (Marella, Mann & Scott
+2012, Neuron 73:941-950, Fig. 6, loose patch in vivo). It cannot be used, and neither can the
+alternatives, for reasons measured in the dataset (`fit/check_modulators.py`,
+`results/checks/modulator_checks.json`):
+
+- **By name:** peptidergic populations exist (hugin 4 cells, leucokinin 12, AstA 2, DSK 6, NPF 4)
+  but there is no TH-VUM, and AKH-producing cells are absent as expected for a neuroendocrine
+  organ outside the CNS.
+- **By transmitter and region:** of 396 dopaminergic and 101 octopaminergic neurons, **none has
+  even 20% of its synapses in SEZ compartments**; they sit in the mushroom body, central complex
+  and abdominal neuromere. Only serotonin has any SEZ presence (10 cells above 50%). This also
+  rules out the SEZ octopaminergic AKHR route.
+- **By morphology:** of 1,037 midline bodies with more than half their synapses in the SEZ, 862
+  are output-dominated (the nSyb-GFP phenotype Marella describes), and **zero are
+  dopamine-predicted**. Four contact MN9's relays at all; two are cholinergic and therefore
+  excitatory, two have unclear transmitters and contact weights under 110 synapses against the
+  ~6,000 reaching MN9.
+
+The most plausible explanation is a classifier blind spot rather than a missing neuron: Eckstein
+et al. 2024 (Cell 187:2574-2594) report cell-level accuracy of 96% for GABA and 91% for
+acetylcholine but 85-90% for dopamine, and neurons that release mainly by volume transmission
+offer few classical synapses to classify. A dopaminergic VUM would plausibly be among the ~1,095
+untyped, transmitter-unclear gnathal bodies. We are not promoting any of them on shape alone.
+
 **One blocking item now accounts for three separate results.** Feeding, the ON pathway and AstA
 modulation all fail because the same ingredient is missing: cell-specific spontaneous activity.
 That makes it the next thing to build, ahead of any fourth circuit.

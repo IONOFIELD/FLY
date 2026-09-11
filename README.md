@@ -56,8 +56,12 @@ pathway (Mi1's largest input is L1 with 141,873 glutamatergic synapses; the ON r
 double inversion), and AstA release (Pm3 is GABAergic, so activating it in a silent network does
 nothing). A zero-baseline LIF cannot represent any of them, and a uniform tonic baseline does not
 help: it destroys stimulus specificity and abolishes the escape response. Cell-specific
-spontaneous activity is the single missing ingredient behind all three, and it is measured for at
-least one motor pool (Azevedo et al. 2020). `benchmarks/feeding_mechanism.py` and
+spontaneous activity is the single missing ingredient behind all three. It is measured for at
+least one motor pool (Azevedo et al. 2020) and for the feeding circuit's key modulator, TH-VUM
+(1 Hz fed, 25 Hz starved; Marella et al. 2012), but **MaleCNS v1.0 contains no identifiable
+aminergic modulator in the SEZ**: no dopaminergic or octopaminergic neuron has even 20% of its
+synapses in SEZ compartments, and none of the 862 output-dominated midline SEZ bodies is
+dopamine-predicted (`fit/check_modulators.py`). `benchmarks/feeding_mechanism.py` and
 `benchmarks/peptide_asta.py` document the two cases in detail.
 
 ## Robustness
