@@ -70,9 +70,9 @@ Declared deviations from the raw connectome: see each results/*/provenance.md an
 ## Report provenance
 | benchmark | written | commit | env |
 |---|---|---|---|
-| auditory | 2026-09-09T18:35:10 | 12a03f9 | {'FLYCNS_SEED': '0', 'FLYCNS_RUN_TAG': 'signflip10', 'FLYCNS_SIGNFLIP': '0.10', 'FLYCNS_WSCALE': '0.3'} |
-| feeding | 2026-09-09T19:29:15 | 12a03f9 | {'FLYCNS_SEED': '0', 'FLYCNS_RUN_TAG': 'signflip10', 'FLYCNS_SIGNFLIP': '0.10', 'FLYCNS_WSCALE': '0.3'} |
-| gf_escape | 2026-09-09T17:54:17 | 12a03f9 | {'FLYCNS_SEED': '0', 'FLYCNS_RUN_TAG': 'signflip10', 'FLYCNS_SIGNFLIP': '0.10', 'FLYCNS_WSCALE': '0.3'} |
+| auditory | 2026-09-11T07:33:18 | 7784324 | {'FLYCNS_SEED': '0', 'FLYCNS_RUN_TAG': 'signflip10', 'FLYCNS_SIGNFLIP': '0.10', 'FLYCNS_WSCALE': '0.3'} |
+| feeding | 2026-09-11T08:15:45 | 7784324 | {'FLYCNS_SEED': '0', 'FLYCNS_RUN_TAG': 'signflip10', 'FLYCNS_SIGNFLIP': '0.10', 'FLYCNS_WSCALE': '0.3'} |
+| gf_escape | 2026-09-11T07:04:47 | 7784324 | {'FLYCNS_SEED': '0', 'FLYCNS_RUN_TAG': 'signflip10', 'FLYCNS_SIGNFLIP': '0.10', 'FLYCNS_WSCALE': '0.3'} |
 | peptide_asta | 2026-09-09T15:43:57 | 00a6afb | - |
 
 ## Citation check: 27/28 tags resolve in REFERENCES.md
