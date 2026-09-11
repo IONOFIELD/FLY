@@ -65,14 +65,14 @@ effective chemical kick per synapse: 0.0825 mV (Shiu 2024 unitary 0.275 mV x Mal
 
 Declared deviations from the raw connectome: see each results/*/provenance.md and flycns/graph.py.
 
-**WARNING: reports more than an hour older than the newest are included: gf_escape. Rerun the suite (`./run_all.sh`) before quoting this table.**
+**WARNING: reports more than an hour older than the newest are included: gf_escape, peptide_asta. Rerun the suite (`./run_all.sh`) before quoting this table.**
 
 ## Report provenance
 | benchmark | written | commit | env |
 |---|---|---|---|
-| auditory | 2026-09-09T15:26:42 | 00a6afb | {'FLYCNS_SEED': '0', 'FLYCNS_RUN_TAG': 'signflip05_a', 'FLYCNS_SIGNFLIP': '0.05', 'FLYCNS_WSCALE': '0.3'} |
-| feeding | 2026-09-09T16:19:24 | 00a6afb | {'FLYCNS_SEED': '0', 'FLYCNS_RUN_TAG': 'signflip05_a', 'FLYCNS_SIGNFLIP': '0.05', 'FLYCNS_WSCALE': '0.3'} |
-| gf_escape | 2026-09-09T15:06:59 | 00a6afb | {'FLYCNS_SEED': '0', 'FLYCNS_RUN_TAG': 'signflip05_a', 'FLYCNS_SIGNFLIP': '0.05', 'FLYCNS_WSCALE': '0.3'} |
+| auditory | 2026-09-11T04:56:06 | 132d8b9 | {'FLYCNS_SEED': '0', 'FLYCNS_RUN_TAG': 'signflip05_a', 'FLYCNS_SIGNFLIP': '0.05', 'FLYCNS_WSCALE': '0.3'} |
+| feeding | 2026-09-11T05:38:25 | 132d8b9 | {'FLYCNS_SEED': '0', 'FLYCNS_RUN_TAG': 'signflip05_a', 'FLYCNS_SIGNFLIP': '0.05', 'FLYCNS_WSCALE': '0.3'} |
+| gf_escape | 2026-09-11T04:27:39 | 132d8b9 | {'FLYCNS_SEED': '0', 'FLYCNS_RUN_TAG': 'signflip05_a', 'FLYCNS_SIGNFLIP': '0.05', 'FLYCNS_WSCALE': '0.3'} |
 | peptide_asta | 2026-09-09T15:43:57 | 00a6afb | - |
 
 ## Citation check: 27/28 tags resolve in REFERENCES.md
