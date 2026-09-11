@@ -2,118 +2,119 @@
 
   sound ->  JO-A/JO-B (antenna)  ==gap (calibrated 3 mV)==>  GF (DNp01)   subthreshold alone
   loom  ->  LC4/LPLC2            ==chem=====================>  GF          summates -> spike
-JO vibration types: ['JO-A2', 'JO-A1', 'JO-A4', 'JO-A3', 'JO-B1_a', 'JO-B4_b', 'JO-B1_b', 'JO-B3', 'JO-B1_c', 'JO-B2', 'JO-B4_a']
+auditory JO types (11, 105 neurons): ['JO-A1', 'JO-A2', 'JO-A3', 'JO-A4', 'JO-B1_a', 'JO-B1_b', 'JO-B1_c', 'JO-B2', 'JO-B3', 'JO-CA1', 'JO-CA2']
+wind/gravity control types (28): ['JO-A4', 'JO-B1_a', 'JO-B1_b', 'JO-B1_c', 'JO-B2', 'JO-B3']...
 [graph] removed 679 EM chemical synapses on declared mixed pairs (modelled as electrical)
   raster: 4 ms/char, 100 ms from onset   (| spike, # multiple)
   t0  DNp01  .........................
-  t0  CNS    ..223333221212231.1......   (log2 spikes/bin, 9 = flood)
+  t0  CNS    ..22433313122322211......   (log2 spikes/bin, 9 = flood)
 
   t1  DNp01  .........................
-  t1  CNS    .1234321132.1231.1.......   (log2 spikes/bin, 9 = flood)
+  t1  CNS    .1234411231213322........   (log2 spikes/bin, 9 = flood)
 
-[cal_loom_gain_0.4] GF 0.00/cell hit 0.00 lat nan ms depol 3.23 mV | CNS 0.0013 Hz | 47.2s
-  calibration: loom gain 0.4 -> GF hit 0.00, depol 3.23 mV
+[cal_loom_gain_0.4] GF 0.03/cell hit 0.05 lat 36.8 ms depol 3.96 mV | CNS 0.0015 Hz | 157.3s
+  calibration: loom gain 0.4 -> GF hit 0.05, depol 3.96 mV
 [graph] removed 679 EM chemical synapses on declared mixed pairs (modelled as electrical)
   raster: 4 ms/char, 100 ms from onset   (| spike, # multiple)
-  t0  DNp01  ..............|..........
-  t0  CNS    ..23443333342332.........   (log2 spikes/bin, 9 = flood)
+  t0  DNp01  ........|................
+  t0  CNS    .1234443433334321........   (log2 spikes/bin, 9 = flood)
 
   t1  DNp01  .........................
-  t1  CNS    .224433233333322.........   (log2 spikes/bin, 9 = flood)
+  t1  CNS    .234443333332431.........   (log2 spikes/bin, 9 = flood)
 
-[cal_loom_gain_0.6] GF 0.10/cell hit 0.15 lat 46.5 ms depol 4.79 mV | CNS 0.0022 Hz | 47.0s
-  calibration: loom gain 0.6 -> GF hit 0.15, depol 4.79 mV
+[cal_loom_gain_0.6] GF 0.24/cell hit 0.42 lat 45.4 ms depol 5.38 mV | CNS 0.0026 Hz | 158.1s
+  calibration: loom gain 0.6 -> GF hit 0.42, depol 5.38 mV
 [graph] removed 679 EM chemical synapses on declared mixed pairs (modelled as electrical)
   raster: 4 ms/char, 100 ms from onset   (| spike, # multiple)
-  t0  DNp01  ........|....#.#|........
-  t0  CNS    .234444445544444321......   (log2 spikes/bin, 9 = flood)
+  t0  DNp01  .......|...|..|#.........
+  t0  CNS    .23444544444444431.......   (log2 spikes/bin, 9 = flood)
 
-  t1  DNp01  ...............#|#.......
-  t1  CNS    .23443334434443423223....   (log2 spikes/bin, 9 = flood)
+  t1  DNp01  ...............#.#.......
+  t1  CNS    .2444434343444443311.....   (log2 spikes/bin, 9 = flood)
 
-[cal_loom_gain_0.8] GF 1.35/cell hit 0.90 lat 48.7 ms depol 6.57 mV | CNS 0.0037 Hz | 46.8s
-  calibration: loom gain 0.8 -> GF hit 0.90, depol 6.57 mV
+[cal_loom_gain_0.8] GF 1.34/cell hit 0.93 lat 46.3 ms depol 6.63 mV | CNS 0.0045 Hz | 158.1s
+  calibration: loom gain 0.8 -> GF hit 0.93, depol 6.63 mV
 [graph] removed 679 EM chemical synapses on declared mixed pairs (modelled as electrical)
   raster: 4 ms/char, 100 ms from onset   (| spike, # multiple)
-  t0  DNp01  .......|...|#|#|.........
-  t0  CNS    .2444454445445554432111..   (log2 spikes/bin, 9 = flood)
+  t0  DNp01  .......|..|.#|..|........
+  t0  CNS    .24544455554455543.......   (log2 spikes/bin, 9 = flood)
 
-  t1  DNp01  ...........||#|||........
-  t1  CNS    .24444344444444443322....   (log2 spikes/bin, 9 = flood)
+  t1  DNp01  ..........||.#.|.........
+  t1  CNS    .345444455455544412......   (log2 spikes/bin, 9 = flood)
 
-[cal_loom_gain_1.0] GF 3.00/cell hit 1.00 lat 43.2 ms depol 6.95 mV | CNS 0.0059 Hz | 46.8s
+[cal_loom_gain_1.0] GF 2.46/cell hit 1.00 lat 40.2 ms depol 6.95 mV | CNS 0.0071 Hz | 157.6s
   calibration: loom gain 1.0 -> GF hit 1.00, depol 6.95 mV
 [graph] removed 679 EM chemical synapses on declared mixed pairs (modelled as electrical)
   raster: 4 ms/char, 100 ms from onset   (| spike, # multiple)
-  t0  DNp01  ......||.|#|#|...........
-  t0  CNS    .2455455555555554321.....   (log2 spikes/bin, 9 = flood)
+  t0  DNp01  ....|.|..#||.............
+  t0  CNS    .2455555565555565431.....   (log2 spikes/bin, 9 = flood)
 
-  t1  DNp01  .........|##|#|..........
-  t1  CNS    .345454555555555431.1....   (log2 spikes/bin, 9 = flood)
+  t1  DNp01  ......|.|.#.|.#..........
+  t1  CNS    .3555555555555554311.....   (log2 spikes/bin, 9 = flood)
 
-[cal_loom_gain_1.3] GF 4.38/cell hit 1.00 lat 31.3 ms depol 6.95 mV | CNS 0.0090 Hz | 46.8s
+[cal_loom_gain_1.3] GF 3.11/cell hit 1.00 lat 28.4 ms depol 6.95 mV | CNS 0.0111 Hz | 159.4s
   calibration: loom gain 1.3 -> GF hit 1.00, depol 6.95 mV
-A2 working point: loom gain 0.6
+A2 working point: loom gain 0.4
 [graph] removed 679 EM chemical synapses on declared mixed pairs (modelled as electrical)
   raster: 4 ms/char, 100 ms from onset   (| spike, # multiple)
   t0  DNp01  .........................
-  t0  CNS    .14344444544444433221....   (log2 spikes/bin, 9 = flood)
-
-  t1  DNp01  ....|....................
-  t1  CNS    .24444454555444433.......   (log2 spikes/bin, 9 = flood)
-
-[A1_jo_alone_electrical] GF 0.10/cell hit 0.20 lat 33.2 ms depol 1.87 mV | CNS 0.0055 Hz | 46.6s
-[graph] removed 679 EM chemical synapses on declared mixed pairs (modelled as electrical)
-  raster: 4 ms/char, 100 ms from onset   (| spike, # multiple)
-  t0  DNp01  .........................
-  t0  CNS    .14344444544444433221....   (log2 spikes/bin, 9 = flood)
-
-  t1  DNp01  ....|....................
-  t1  CNS    .24444454555444333.......   (log2 spikes/bin, 9 = flood)
-
-[A3_jo_alone_no_electrical_no_mixed_edges] GF 0.07/cell hit 0.15 lat 33.0 ms depol 0.98 mV | CNS 0.0055 Hz | 44.5s
-  raster: 4 ms/char, 100 ms from onset   (| spike, # multiple)
-  t0  DNp01  ..||............|........
-  t0  CNS    .14444444544445433221....   (log2 spikes/bin, 9 = flood)
-
-  t1  DNp01  .|.|....|................
-  t1  CNS    .24444454554444333.......   (log2 spikes/bin, 9 = flood)
-
-[ref_jo_alone_chem_only_EM_as_annotated] GF 1.70/cell hit 1.00 lat 9.2 ms depol 3.63 mV | CNS 0.0055 Hz | 44.5s
-[graph] removed 679 EM chemical synapses on declared mixed pairs (modelled as electrical)
-  raster: 4 ms/char, 100 ms from onset   (| spike, # multiple)
-  t0  DNp01  ..............|..........
-  t0  CNS    ..23443333342332.........   (log2 spikes/bin, 9 = flood)
+  t0  CNS    .244444455555544331......   (log2 spikes/bin, 9 = flood)
 
   t1  DNp01  .........................
-  t1  CNS    .224433233333322.........   (log2 spikes/bin, 9 = flood)
+  t1  CNS    .13444454455544442.......   (log2 spikes/bin, 9 = flood)
 
-[subthreshold_loom_alone] GF 0.10/cell hit 0.15 lat 46.5 ms depol 4.79 mV | CNS 0.0022 Hz | 46.8s
+[A1_jo_alone_electrical] GF 0.01/cell hit 0.03 lat 19.7 ms depol 1.86 mV | CNS 0.0065 Hz | 158.1s
 [graph] removed 679 EM chemical synapses on declared mixed pairs (modelled as electrical)
   raster: 4 ms/char, 100 ms from onset   (| spike, # multiple)
   t0  DNp01  .........................
-  t0  CNS    .145555445545555433......   (log2 spikes/bin, 9 = flood)
+  t0  CNS    .244444455555544331......   (log2 spikes/bin, 9 = flood)
 
   t1  DNp01  .........................
-  t1  CNS    .134454544554455421......   (log2 spikes/bin, 9 = flood)
+  t1  CNS    .13444454455544442.......   (log2 spikes/bin, 9 = flood)
 
-[A2_loom_plus_jo] GF 0.07/cell hit 0.15 lat 34.4 ms depol 2.45 mV | CNS 0.0076 Hz | 47.1s
+[A3_jo_alone_no_electrical_no_mixed_edges] GF 0.00/cell hit 0.00 lat nan ms depol 0.41 mV | CNS 0.0065 Hz | 155.9s
+  raster: 4 ms/char, 100 ms from onset   (| spike, # multiple)
+  t0  DNp01  .|....|..................
+  t0  CNS    .244444455555545331......   (log2 spikes/bin, 9 = flood)
+
+  t1  DNp01  ..|.|....................
+  t1  CNS    .13444454455544442.......   (log2 spikes/bin, 9 = flood)
+
+[ref_jo_alone_chem_only_EM_as_annotated] GF 1.06/cell hit 1.00 lat 10.8 ms depol 3.66 mV | CNS 0.0066 Hz | 154.7s
 [graph] removed 679 EM chemical synapses on declared mixed pairs (modelled as electrical)
   raster: 4 ms/char, 100 ms from onset   (| spike, # multiple)
   t0  DNp01  .........................
-  t0  CNS    ...2.22121331231.........   (log2 spikes/bin, 9 = flood)
+  t0  CNS    ..22433313122322211......   (log2 spikes/bin, 9 = flood)
 
   t1  DNp01  .........................
-  t1  CNS    ....111223332321.........   (log2 spikes/bin, 9 = flood)
+  t1  CNS    .1234411231213322........   (log2 spikes/bin, 9 = flood)
 
-[A4_jo_rewired_null_chem] GF 0.00/cell hit 0.00 lat nan ms depol -0.00 mV | CNS 0.0007 Hz | 44.8s
-A2 (reported): JO drive changes GF response to near-threshold loom 0.15 -> 0.15 (none)
+[subthreshold_loom_alone] GF 0.03/cell hit 0.05 lat 36.8 ms depol 3.96 mV | CNS 0.0015 Hz | 156.0s
+[graph] removed 679 EM chemical synapses on declared mixed pairs (modelled as electrical)
+  raster: 4 ms/char, 100 ms from onset   (| spike, # multiple)
+  t0  DNp01  .........................
+  t0  CNS    .23455554555545541.......   (log2 spikes/bin, 9 = flood)
+
+  t1  DNp01  .........................
+  t1  CNS    .344555555445555321......   (log2 spikes/bin, 9 = flood)
+
+[A2_loom_plus_jo] GF 0.11/cell hit 0.23 lat 22.9 ms depol 3.07 mV | CNS 0.0081 Hz | 157.6s
+[graph] removed 679 EM chemical synapses on declared mixed pairs (modelled as electrical)
+  raster: 4 ms/char, 100 ms from onset   (| spike, # multiple)
+  t0  DNp01  .........................
+  t0  CNS    ..1212122132321..........   (log2 spikes/bin, 9 = flood)
+
+  t1  DNp01  .........................
+  t1  CNS    ..1..111.11122221........   (log2 spikes/bin, 9 = flood)
+
+[A4_jo_rewired_null_chem] GF 0.00/cell hit 0.00 lat nan ms depol 0.01 mV | CNS 0.0007 Hz | 155.2s
+A2 (reported, 40 trials/arm): loom alone 0.05 -> with JO 0.23; difference +0.17 (95% CI -0.13 to +0.48) -> UNRESOLVED
 
 CHECKS
   PASS  A1_jo_alone_mostly_subthreshold
   REPORTED  A2_jo_effect_on_near_threshold_loom_REPORTED
-  FAIL  A3_declared_pairs_carry_jo_drive
+  PASS  A3_declared_pairs_carry_jo_drive
   PASS  A4_null_silent
   PASS  A5_cns_quiet
 
-BENCHMARK FAIL  -> results/auditory/report.json
+BENCHMARK PASS  -> results/auditory/report.json
